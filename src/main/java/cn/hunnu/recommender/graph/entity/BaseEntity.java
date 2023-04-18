@@ -9,18 +9,22 @@ import java.util.Map;
  * 基础实体类
  */
 public class BaseEntity implements Serializable {
+
     /**
      * 实体唯一id
      */
     private String id;
+
     /**
      * 实体name
      */
     private String name;
+
     /**
      * 实体label
      */
     private List<String> label;
+
     /**
      * 实体属性
      */

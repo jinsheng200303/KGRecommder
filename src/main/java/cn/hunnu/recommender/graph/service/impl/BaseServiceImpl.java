@@ -201,7 +201,7 @@ public class BaseServiceImpl implements IBaseService {
                 Record record = result.next();
                 Value recordId = record.get("id");
                 String entityId = recordId.toString();
-                log.info("新增实体：{}",entityId);
+                log.info("新增实体：{}", entityId);
             }
             return true;
         } catch (Exception e) {

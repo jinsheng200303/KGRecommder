@@ -7,7 +7,6 @@ import org.neo4j.driver.Session;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 
 /**
  * neo4j数据库连接类
@@ -19,19 +18,19 @@ public class Neo4jDao {
      * 数据库连接地址
      */
     @Value("${spring.neo4j.url}")
-    private String URL ;
+    private String URL;
 
     /**
      * 数据库连接用户名
      */
     @Value("${spring.neo4j.user}")
-    private String USER ;
+    private String USER;
 
     /**
      * 数据库连接密码
      */
     @Value("${spring.neo4j.password}")
-    private String PASSWORD ;
+    private String PASSWORD;
 
     /**
      * 加载的静态驱动
@@ -40,10 +39,11 @@ public class Neo4jDao {
 
     /**
      * 获取驱动
+     *
      * @return
      */
-    private Driver getNeo4jDriver(){
-        if (driver==null){ // 若驱动不存在则重新初始化
+    private Driver getNeo4jDriver() {
+        if (driver == null) { // 若驱动不存在则重新初始化
             driver = GraphDatabase.driver(URL, AuthTokens.basic(USER, PASSWORD));
         }
         return driver;
@@ -51,6 +51,7 @@ public class Neo4jDao {
 
     /**
      * 获取数据库连接session
+     *
      * @return
      */
     public Session getSession() {

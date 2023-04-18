@@ -16,7 +16,7 @@ public interface IBaseService {
     /**
      * 根据名称和类型获取实体id
      *
-     * @param name 实体名
+     * @param name  实体名
      * @param label 实体类型
      * @return
      */
@@ -67,7 +67,7 @@ public interface IBaseService {
     /**
      * 批量插入关系
      *
-     * @param batch 关系集合
+     * @param batch    关系集合
      * @param relation 关系类型
      * @return
      */
@@ -76,8 +76,8 @@ public interface IBaseService {
     /**
      * 批量插入关系，并带一特定关系属性
      *
-     * @param batch 关系集合
-     * @param relation 关系类型
+     * @param batch       关系集合
+     * @param relation    关系类型
      * @param relationKey 关系属性
      * @return
      */

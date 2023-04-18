@@ -1,4 +1,4 @@
-package cn.hunnu.recommender.graph.controller;
+package cn.hunnu.recommender.graph.rest;
 
 import cn.hunnu.recommender.graph.entity.BaseEntity;
 import cn.hunnu.recommender.graph.service.IBaseService;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/oulad/v1/graph/base", produces = "application/json")
+@RequestMapping(value = "/recommender/v1/graph/base", produces = "application/json")
 public class BaseController {
     @Autowired
     IBaseService baseService;
