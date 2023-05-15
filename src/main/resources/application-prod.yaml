@@ -1,0 +1,75 @@
+#生产环境
+text: 这里是生产环境
+
+#mysql数据源配置
+spring:
+  datasource:
+    type: com.mysql.cj.jdbc.MysqlConnectionPoolDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db.zhangxuxiang.cn:13306/recommender?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: xxx
+    password: xxx
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+    tomcat:
+      max-active: 30
+
+
+---
+# 自动将数据库下划线字段转成java驼峰
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+#分页插件配置
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count==countSql
+  page-size-zero: true
+
+
+#日志级别 trace<debug<info<warn<error<fatal,默认级别为info，即默认打印info及其以上级别的日志
+
+logging:
+  level:
+    cn:
+      zxx: debug
+    org:
+      springframework:
+        data:
+          convert:
+            CustomConversions: ERROR
+
+---
+#neo4j数据源配置
+
+spring:
+  neo4j:
+    url: bolt://app.zhangxuxiang.cn:17687
+    user: xxx
+    password: xxx
+
+
+#服务端口
+#应用上下文
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+
+---
+#为引入swagger生成api文档,更改默认路径匹配策略为AntPathMatcher
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
