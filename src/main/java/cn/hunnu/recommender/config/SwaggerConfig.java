@@ -1,4 +1,4 @@
-package cn.hunnu.recommender.mytest.config;
+package cn.hunnu.recommender.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
