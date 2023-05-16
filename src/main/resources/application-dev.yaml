@@ -6,7 +6,7 @@ spring:
   datasource:
     type: com.mysql.cj.jdbc.MysqlConnectionPoolDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db.zhangxuxiang.cn:13306/recommender?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    url: jdbc:mysql://db.zhangxuxiang.cn:13306/recommender?useUnicode=true&useSSL=false&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
     username: root
     password: Zxx123456
     dbcp2:
