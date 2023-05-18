@@ -20,7 +20,7 @@ public class SwaggerConfig {
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.hunnu.recommender.mytest.rest"))//找到对应rest包
+                .apis(RequestHandlerSelectors.basePackage("cn.hunnu.recommender.examination.rest"))//找到对应rest包
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder().title("基于知识建模和认知诊断的大学生个性化智能辅学系统").version("v1.0").build());
     }

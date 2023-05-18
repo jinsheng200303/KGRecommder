@@ -9,3 +9,13 @@ mybatis-plus:
   #配置SQL日志
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#调整界面编码格式
+server.tomcat.uri-encoding: UTF-8
+server:
+  servlet:
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8

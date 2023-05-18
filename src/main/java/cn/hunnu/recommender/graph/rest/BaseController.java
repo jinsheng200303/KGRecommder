@@ -14,6 +14,7 @@ public class BaseController {
     @Autowired
     IBaseService baseService;
 
+
     @GetMapping(value = "/getEntitiesById")
     public BaseEntity getEntitiesById(@RequestParam("id") String id) {
         log.info("根据id获取实体：{}", id);
