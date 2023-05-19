@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.examination.controller;
 
+import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.mapper.ExamsMapper;
 import cn.hunnu.recommender.examination.entity.Exams;
 import io.swagger.annotations.Api;
@@ -36,4 +37,17 @@ public class MyTestController {
     public List<Exams> exams(){
         return examsMapper.selectList(null);
     }
+
+    @GetMapping(value = "/success")
+    @ApiOperation(value = "测试统一返回类,成功")
+    public Result success(){
+        return new Result<>().success(examsMapper.selectList(null));
+    }
+
+    @GetMapping(value = "/error")
+    @ApiOperation(value = "测试统一返回类,失败")
+    public Result error(){
+        return new Result<>().error("测试统一返回类,失败");
+    }
+
 }

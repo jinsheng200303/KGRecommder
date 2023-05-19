@@ -42,13 +42,4 @@ public class Exams extends examsBaseEntity {
     @TableField("total_marks")
     private String totalMarks;
 
-    @ApiModelProperty("开始时间")
-    @TableField("start_time")
-    private LocalDateTime startTime;
-
-    @ApiModelProperty("结束时间")
-    @TableField("end_time")
-    private LocalDateTime endTime;
-
-
 }
