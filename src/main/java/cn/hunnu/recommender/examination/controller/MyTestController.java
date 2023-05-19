@@ -1,6 +1,6 @@
-package cn.hunnu.recommender.examination.rest;
+package cn.hunnu.recommender.examination.controller;
 
-import cn.hunnu.recommender.examination.dao.ExamsMapper;
+import cn.hunnu.recommender.examination.mapper.ExamsMapper;
 import cn.hunnu.recommender.examination.entity.Exams;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
