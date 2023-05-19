@@ -34,10 +34,4 @@ public class AppTestController {
         return appTestService.getAllAppTestByPage(page,pageSize);
     }
 
-    @GetMapping(value = "/getByPage11")
-    public PageInfo<AppTest> getAllAppTestByPage111(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
-        log.info("分页获取AppTest11，page:{} ,pageSize:{}", page, pageSize);
-        return appTestService.getAllAppTestByPage(page,pageSize);
-    }
-
 }

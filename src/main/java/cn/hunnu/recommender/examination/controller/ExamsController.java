@@ -23,8 +23,7 @@ import java.util.List;
 @RequestMapping("/exams")
 public class ExamsController extends examsBaseController {
 
-    @Autowired
-    private ExamsServiceImpl examsService;
+
 
     @GetMapping("/list")
     public List<Exams> list(){

@@ -11,13 +11,8 @@ import java.util.List;
 @SpringBootTest
 class RecommenderApplicationTests {
 
-	@Autowired
-	private ExamsMapper examsMapper;
-
 	@Test
 	void contextLoads() {
-		List<Exams> exams = examsMapper.selectList(null);
-		exams.forEach(System.out::println);
 	}
 
 }
