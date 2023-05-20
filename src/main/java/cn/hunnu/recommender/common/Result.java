@@ -17,12 +17,16 @@ public class Result<T> {
     @ApiModelProperty("数据")
     private T data;
 
-    public Result success(){
+    public Result success() {
         return new Result(200,"操作成功",null);
     }
 
     public Result success(T data){
         return new Result(200,"操作成功",data);
+    }
+
+    public static<T> Result<T> success(T data,String message){
+        return new Result<>(200,message,data);
     }
 
     public Result error(String msg){
@@ -35,5 +39,9 @@ public class Result<T> {
 
     public Result error(){
         return new Result(500,"系统错误，请联系管理员",null);
+    }
+
+    public static<T> Result<T> error(Integer code){
+        return new Result<>(code,"错误错误",null);
     }
 }
