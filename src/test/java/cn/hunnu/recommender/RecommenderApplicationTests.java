@@ -13,13 +13,14 @@ import java.util.List;
 @MapperScan("cn.hunnu.recommender.user.dao.PermissionsTestMapper")
 class RecommenderApplicationTests {
 
-	@Autowired
-	private ExamsMapper examsMapper;
-
 	@Test
+<<<<<<< HEAD
 	public void contextLoads() {
 		List<Exams> exams = examsMapper.selectList(null);
 		exams.forEach(System.out::println);
+=======
+	void contextLoads() {
+>>>>>>> da356ba343ec037a1f0ffa013690fca8bb008025
 	}
 
 
