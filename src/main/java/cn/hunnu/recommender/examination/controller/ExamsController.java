@@ -6,6 +6,7 @@ import cn.hunnu.recommender.examination.dto.ExamsQuery;
 import cn.hunnu.recommender.examination.dto.PageInfo;
 import cn.hunnu.recommender.examination.entity.Exams;
 import cn.hunnu.recommender.examination.serviceImpl.ExamsServiceImpl;
+import cn.hunnu.recommender.exception.CustomException;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -61,6 +62,9 @@ public class ExamsController extends examsBaseController {
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
     public Result save(@RequestBody Exams exams) {
+
+//        throw new CustomException("这个是自定义异常");
+
         examsService.saveOrUpdate(exams);
         return Result.success();
     }
