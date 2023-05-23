@@ -58,7 +58,7 @@ public class ExamsController extends examsBaseController {
         return Result.success();
     }
 
-    //根据id来删除
+    //根据id来进行批量删除
     @PostMapping("/delBatch")
     public Result delBatch(@RequestBody List<Integer> ids) {
         examsService.removeByIds(ids);
