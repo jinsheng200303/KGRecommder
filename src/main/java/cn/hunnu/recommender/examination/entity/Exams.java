@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.examination.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -27,8 +28,8 @@ public class Exams extends examsBaseEntity {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("考试ID")
-    @TableId("exam_id")
-    private String examId;
+    @TableId(value = "exam_id", type = IdType.AUTO)
+    private Integer examId;
 
     @ApiModelProperty("考试标题")
     @TableField("exam_title")
