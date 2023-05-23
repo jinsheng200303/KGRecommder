@@ -53,7 +53,7 @@ public class PermissionController extends userBaseController {
 //    }
 
     @PostMapping("/tt")
-    public Result<Map<String,Object>> tt(@RequestBody Permission permission){
+    public Result tt(@RequestBody Permission permission){
         Map<String,Object> data = permissionService.tt(permission);
         if(data != null){
             return Result.success(data,"成功接受前端传值");

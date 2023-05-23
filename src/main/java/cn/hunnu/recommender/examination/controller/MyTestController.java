@@ -41,13 +41,13 @@ public class MyTestController {
     @GetMapping(value = "/success")
     @ApiOperation(value = "测试统一返回类,成功")
     public Result success(){
-        return new Result<>().success(examsMapper.selectList(null));
+        return new Result().success(examsMapper.selectList(null));
     }
 
     @GetMapping(value = "/error")
     @ApiOperation(value = "测试统一返回类,失败")
     public Result error(){
-        return new Result<>().error("测试统一返回类,失败");
+        return new Result().error("测试统一返回类,失败");
     }
 
 }

@@ -8,40 +8,40 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result<T> {
+public class Result {
 
     @ApiModelProperty("状态码")
     private Integer code;
     @ApiModelProperty("提示")
     private String msg;
     @ApiModelProperty("数据")
-    private T data;
+    private Object data;
 
-    public Result success() {
+    public static Result success() {
         return new Result(200,"操作成功",null);
     }
 
-    public Result success(T data){
+    public static Result success(Object data){
         return new Result(200,"操作成功",data);
     }
 
-    public static<T> Result<T> success(T data,String message){
-        return new Result<>(200,message,data);
+    public static<T> Result success(T data,String message){
+        return new Result(200,message,data);
     }
 
-    public Result error(String msg){
+    public static Result error(String msg){
         return new Result(500,msg,null);
     }
 
-    public Result error(Integer code, String msg){
+    public static Result error(Integer code, String msg){
         return new Result(code,msg,null);
     }
 
-    public Result error(){
+    public static Result error(){
         return new Result(500,"系统错误，请联系管理员",null);
     }
 
-    public static<T> Result<T> error(Integer code){
-        return new Result<>(code,"错误错误",null);
+    public static Result error(Integer code){
+        return new Result(code,"错误错误",null);
     }
 }
