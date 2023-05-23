@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/*
+全局异常捕获
+ */
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {

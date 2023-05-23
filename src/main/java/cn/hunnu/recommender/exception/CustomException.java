@@ -2,6 +2,9 @@ package cn.hunnu.recommender.exception;
 
 import lombok.Getter;
 
+/*
+自定义异常捕获
+ */
 @Getter
 public class CustomException extends RuntimeException{
     private Integer code;
