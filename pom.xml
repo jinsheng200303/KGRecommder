@@ -134,6 +134,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.7.10</version>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -148,6 +149,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.7.10</version>
 				<configuration>
 					<fork>true</fork>
 					<addResources>true</addResources>
