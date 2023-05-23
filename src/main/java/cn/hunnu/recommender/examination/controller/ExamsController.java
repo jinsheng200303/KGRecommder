@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.List;
 @RequestMapping("/exams")
 public class ExamsController extends examsBaseController {
 
-    @ApiOperation(value = "用户列表",notes = "用户列表")
+    @ApiOperation(value = "考试列表",notes = "考试列表")
     @GetMapping("/list")
     public List<Exams> list() {
         return examsService.list();
@@ -61,7 +62,7 @@ public class ExamsController extends examsBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@RequestBody Exams exams) {
+    public Result save(@Validated @RequestBody Exams exams) {
 
 //        throw new CustomException("这个是自定义异常");
 

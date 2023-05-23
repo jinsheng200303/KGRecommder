@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = CustomException.class)
     @ResponseBody
+    //自定义异常捕获
     public Result CustomExceptionHandler(CustomException e){
         log.error("错误原因为"+e.getMessage());
         return new Result().error(e.getCode(),e.getMessage());
@@ -32,6 +33,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
+    //方法异常捕获
     public Result MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         String defaultMessage = fieldErrors.get(0).getDefaultMessage();

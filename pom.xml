@@ -127,6 +127,14 @@
 			<version>2.3.30</version>
 		</dependency>
 
+		<!--增加数据验证 -->
+		<!--当导入pom依赖后，需要重新编译，不能使用热部署方式更新代码-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

@@ -10,6 +10,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * <p>
@@ -31,6 +35,9 @@ public class Exams extends examsBaseEntity {
     @TableId(value = "exam_id", type = IdType.AUTO)
     private Integer examId;
 
+    //数据为""和空格和null情况下会被拦截
+    @NotBlank(message = "考试标题不能为空")
+    @Length(min = 3, max = 20, message = "考试标题长度需要在【3-20】之间")
     @ApiModelProperty("考试标题")
     @TableField("exam_title")
     private String examTitle;
@@ -39,8 +46,9 @@ public class Exams extends examsBaseEntity {
     @TableField("time_duration")
     private LocalDateTime timeDuration;
 
+    @Range(min = 0,max = 100, message = "考试最终得分需要在【0-100】之间")
     @ApiModelProperty("最终得分")
     @TableField("total_marks")
-    private String totalMarks;
+    private Integer totalMarks;
 
 }
