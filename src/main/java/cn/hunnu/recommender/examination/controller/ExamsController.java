@@ -39,6 +39,4 @@ public class ExamsController extends examsBaseController {
         );
         return Result.success(page);
     }
-
-
 }

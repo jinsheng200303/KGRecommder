@@ -8,5 +8,4 @@ public class PageInfo {
     private Integer pageNum;
     //每页显示条数
     private Integer pageSize;
-
 }
