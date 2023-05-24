@@ -39,6 +39,5 @@ public class GlobalExceptionHandler {
         String defaultMessage = fieldErrors.get(0).getDefaultMessage();
         log.error("错误原因为"+defaultMessage);
         return new Result().error(defaultMessage);
-
     }
 }
