@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hunnu.recommender.user.mapper.PersonMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.hunnu.recommender.user.entity.Person">
+        <id column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="id_card" property="idCard" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="moblie_phone" property="mobliePhone" />
+        <result column="gender" property="gender" />
+        <result column="birth" property="birth" />
+        <result column="policity" property="policity" />
+        <result column="profession" property="profession" />
+        <result column="school" property="school" />
+        <result column="age" property="age" />
+        <result column="avatar" property="avatar" />
+        <result column="synopsis" property="synopsis" />
+        <result column="permission" property="permission" />
+    </resultMap>
+
+</mapper>

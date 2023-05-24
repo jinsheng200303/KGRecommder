@@ -9,19 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RecommenderApplication {
 
-//	@Autowired
-//	PermissionsTestMapper permissionsTestMapper;
-
 	public static void main(String[] args) {
 		SpringApplication.run(RecommenderApplication.class, args);
 		log.info("应用启动完成！");
 
 	}
-
-//	@Test
-//	public void load(){
-//		System.out.println(permissionsTestMapper.selectById(1));
-//	}
-
 
 }

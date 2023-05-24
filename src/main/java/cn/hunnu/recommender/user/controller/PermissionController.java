@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/permission")
-@Api(value = "用户信息测试模块",tags = "用户信息测试模块")
+@Api(value = "测试模块",tags = "测试模块")
 public class PermissionController extends userBaseController {
 
     @Autowired
@@ -45,12 +45,6 @@ public class PermissionController extends userBaseController {
     public List<Permission> permissionTable(){
         return permissionMapper.selectList(null);
     }
-
-//    @GetMapping("/tt")
-//    public List<Permission> tt(){
-//        List<Permission> list = permissionService.list();
-//        return list;
-//    }
 
     @PostMapping("/tt")
     public Result tt(@RequestBody Permission permission){
