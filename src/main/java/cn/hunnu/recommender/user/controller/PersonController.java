@@ -4,18 +4,12 @@ package cn.hunnu.recommender.user.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.entity.Person;
-import cn.hunnu.recommender.user.serviceImpl.PersonServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,11 +23,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/person")
-@Api(value = "用户信息测试模块",tags = "用户信息测试模块")
+@Api(value = "用户信息模块",tags = "用户信息模块")
 public class PersonController extends userBaseController {
 
-    @Autowired
-    private PersonServiceImpl personService;
+    @ApiOperation(value = "用户列表",notes = "用户列表")
+    @GetMapping("/list")
+    public List<Person> list() {
+        return personService.list();
+    }
 
     //编辑 新增 根据ID是否存在判断
     @PostMapping("/add-save")
