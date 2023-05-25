@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- * 角色 前端控制器
+ * 权限 前端控制器
  * </p>
  *
  * @author czj

@@ -2,9 +2,7 @@ package cn.hunnu.recommender.user.controller;
 
 
 import cn.hunnu.recommender.common.Result;
-import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.PersonRoleQuery;
-import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.PersonRole;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -62,9 +60,9 @@ public class PersonRoleController extends userBaseController {
             wrapper.like(PersonRole::getUserId, personRoleQuery.getUserID());
         }
 
-//        if(!"".equals(personRoleQuery.getRoleID())&& personRoleQuery.getRoleID()!=null){
-//            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleID());
-//        }
+        if(!"".equals(personRoleQuery.getRoleID())&& personRoleQuery.getRoleID()!=null){
+            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleID());
+        }
 
         Page<PersonRole> page = personRoleService.page(
                 new Page<>(
