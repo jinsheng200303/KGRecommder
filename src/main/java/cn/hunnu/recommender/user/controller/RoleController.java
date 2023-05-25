@@ -3,6 +3,7 @@ package cn.hunnu.recommender.user.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.RoleQuery;
+import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.Role;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,6 +27,11 @@ import java.util.List;
 @Api(value = "角色模块",tags = "角色模块")
 public class RoleController extends userBaseController {
 
+    @ApiOperation(value = "角色列表",notes = "角色列表")
+    @GetMapping("/list")
+    public List<Role> list() {
+        return roleService.list();
+    }
     @PostMapping("/add-save")
     @ApiOperation(value = "角色新增/修改",notes = "角色新增/修改")
     public Result save(@Validated @RequestBody Role role){
