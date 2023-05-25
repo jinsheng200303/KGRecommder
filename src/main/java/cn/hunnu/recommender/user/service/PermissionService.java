@@ -15,5 +15,4 @@ import java.util.Map;
  */
 public interface PermissionService extends IService<Permission> {
 
-    Map<String, Object> tt(Permission permission);
 }

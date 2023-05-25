@@ -44,14 +44,14 @@ public class RoleController extends userBaseController {
     //分页模糊查询
     @PostMapping("/page-search")
     @ApiOperation(value = "角色信息查询",notes = "角色信息查询")
-    public Result queryPersonInfo(@RequestBody RoleQuery roleQuery){
+    public Result queryRoleInfo(@RequestBody RoleQuery roleQuery){
 
 
         LambdaQueryWrapper<Role> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Role::getRoleId);
 
-        if(!"".equals(roleQuery.getRolename())&& roleQuery.getRolename()!=null){
-            wrapper.like(Role::getRoleName, roleQuery.getRolename());
+        if(!"".equals(roleQuery.getRoleName())&& roleQuery.getRoleName()!=null){
+            wrapper.like(Role::getRoleName, roleQuery.getRoleName());
         }
 
         Page<Role> page = roleService.page(
