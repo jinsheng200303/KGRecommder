@@ -32,7 +32,7 @@ public class RoleController extends userBaseController {
     public List<Role> list() {
         return roleService.list();
     }
-    @PostMapping("/add-save")
+    @PostMapping("/save")
     @ApiOperation(value = "角色新增/修改",notes = "角色新增/修改")
     public Result save(@Validated @RequestBody Role role){
         roleService.saveOrUpdate(role);
@@ -40,7 +40,7 @@ public class RoleController extends userBaseController {
     }
 
     //根据ID删除角色
-    @PostMapping("delete-id")
+    @PostMapping("/delBatch")
     @ApiOperation(value = "删除角色",notes = "删除角色")
     public Result delete(@RequestBody List<Integer> IDS){
         roleService.removeByIds(IDS);
@@ -48,7 +48,7 @@ public class RoleController extends userBaseController {
     }
 
     //分页模糊查询
-    @PostMapping("/page-search")
+    @PostMapping("/page")
     @ApiOperation(value = "角色信息查询",notes = "角色信息查询")
     public Result queryRoleInfo(@RequestBody RoleQuery roleQuery){
 

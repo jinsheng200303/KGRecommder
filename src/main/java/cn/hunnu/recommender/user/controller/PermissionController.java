@@ -32,7 +32,7 @@ public class PermissionController extends userBaseController {
     public List<Permission> list() {
         return permissionService.list();
     }
-    @PostMapping("/add-save")
+    @PostMapping("/save")
     @ApiOperation(value = "权限新增/修改",notes = "权限新增/修改")
     public Result save(@Validated @RequestBody Permission permission){
         permissionService.saveOrUpdate(permission);
@@ -40,7 +40,7 @@ public class PermissionController extends userBaseController {
     }
 
     //根据ID删除权限
-    @PostMapping("delete-id")
+    @PostMapping("/delBatch")
     @ApiOperation(value = "删除权限",notes = "删除权限")
     public Result delete(@RequestBody List<Integer> IDS){
         permissionService.removeByIds(IDS);
@@ -48,7 +48,7 @@ public class PermissionController extends userBaseController {
     }
 
     //分页模糊查询
-    @PostMapping("/page-search")
+    @PostMapping("/page")
     @ApiOperation(value = "权限查询",notes = "权限查询")
     public Result queryPermission(@RequestBody PermissionQuery permissionQuery){
 

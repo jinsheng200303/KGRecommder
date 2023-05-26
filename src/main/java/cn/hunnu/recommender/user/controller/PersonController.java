@@ -37,7 +37,7 @@ public class PersonController extends userBaseController {
     }
 
     //编辑 新增 根据ID是否存在判断
-    @PostMapping("/add-save")
+    @PostMapping("/save")
     @ApiOperation(value = "用户新增/修改",notes = "用户新增/修改")
     public Result save(@Validated @RequestBody Person person){
         personService.saveOrUpdate(person);
@@ -45,14 +45,14 @@ public class PersonController extends userBaseController {
     }
 
     //根据ID删除用户
-    @PostMapping("delete-id")
+    @PostMapping("/delBatch")
     @ApiOperation(value = "删除用户",notes = "删除用户")
     public Result delete(@RequestBody List<Integer> IDS){
         personService.removeByIds(IDS);
         return Result.success();
     }
 
-    @PostMapping("/page-search")
+    @PostMapping("/page")
     @ApiOperation(value = "用户信息查询",notes = "用户信息查询")
     public Result queryPersonInfo(@RequestBody PersonQuery personQuery){
 
