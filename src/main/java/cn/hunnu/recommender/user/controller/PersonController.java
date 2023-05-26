@@ -2,8 +2,11 @@ package cn.hunnu.recommender.user.controller;
 
 
 import cn.hunnu.recommender.common.Result;
+import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.PersonQuery;
+import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.utils.JwtUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -11,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -70,6 +74,29 @@ public class PersonController extends userBaseController {
         return Result.success(page);
     }
 
+    @PostMapping("/login")
+    public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO){
+        LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Person::getUserName, userLoginDTO.getUserName())
+                .eq(Person::getPassword, userLoginDTO.getPassword())
+                .last("limit 1");
+        Person userInfo = personService.getOne(wrapper);
+
+        if (userInfo != null){
+            //生成jwt
+            String token = JwtUtils.generateToken(userInfo);
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("token", token);
+            map.put("userName", userInfo.getUserName());
+            map.put("phoneNumber", userInfo.getPhoneNumber());
+            map.put("name", userInfo.getName());
+            return Result.success(map);
+        }else {
+            //Result.error
+            //return Result.error("请检查用户名密码是否正确");
+            throw new CustomException("请检查用户名密码是否正确");
+        }
+    }
 
 
 }

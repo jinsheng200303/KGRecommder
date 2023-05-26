@@ -9,16 +9,15 @@
         <result column="id_card" property="idCard" />
         <result column="name" property="name" />
         <result column="password" property="password" />
-        <result column="moblie_phone" property="mobliePhone" />
+        <result column="phone_number" property="phoneNumber" />
         <result column="gender" property="gender" />
         <result column="birth" property="birth" />
-        <result column="policity" property="policity" />
+        <result column="politics" property="politics" />
         <result column="profession" property="profession" />
         <result column="school" property="school" />
         <result column="age" property="age" />
         <result column="avatar" property="avatar" />
         <result column="synopsis" property="synopsis" />
-        <result column="permission" property="permission" />
     </resultMap>
 
 </mapper>

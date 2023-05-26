@@ -110,10 +110,6 @@
 			<version>3.5.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
 
         <!--引入代码生成器的依赖-->
 		<dependency>
@@ -146,6 +142,13 @@
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
 			<version>5.7.20</version>
+		</dependency>
+
+		<!--解决jwt进行登录javax.xml.bind.DatatypeConverter问题-->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
 		</dependency>
 
 

@@ -100,7 +100,7 @@ public class JwtUtils {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", person.getUserId());
         map.put("username", person.getUserName());
-        map.put("mobliephone", person.getMobliePhone());
+        map.put("phoneNumber", person.getPhoneNumber());
         map.put("name", person.getName());
 /*        map.put("openId", openId);
         map.put("sub", openId);*/

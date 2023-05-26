@@ -33,7 +33,7 @@ public class Person extends userBaseEntity {
 
     @ApiModelProperty("用户ID")
     @TableId(value = "user_id", type = IdType.AUTO)
-    private int userId;
+    private Integer userId;
 
     @NotBlank(message = "用户名不能为空")
     @ApiModelProperty("用户名")
@@ -55,8 +55,8 @@ public class Person extends userBaseEntity {
 
     @Length(min = 10, max = 12, message = "手机号必须为11位")
     @ApiModelProperty("手机号;11位手机号")
-    @TableField("moblie_phone")
-    private String mobliePhone;
+    @TableField("phone_number")
+    private String phoneNumber;
 
     @ApiModelProperty("性别;性别说明,M为男，F为女，U为未知")
     @TableField("gender")
@@ -67,8 +67,8 @@ public class Person extends userBaseEntity {
     private LocalDateTime birth;
 
     @ApiModelProperty("政治面貌，10为共青团员，20为中共党员，30为民主党派，40为群众")
-    @TableField("policity")
-    private String policity;
+    @TableField("politics")
+    private String politics;
 
     @ApiModelProperty("职业")
     @TableField("profession")
