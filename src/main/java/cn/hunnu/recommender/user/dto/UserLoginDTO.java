@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
+//专门用于登陆的实体类
 @Data
 public class UserLoginDTO {
     @NotBlank(message = "用户名不能为空")

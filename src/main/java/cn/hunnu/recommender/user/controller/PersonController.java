@@ -75,6 +75,7 @@ public class PersonController extends userBaseController {
     }
 
     @PostMapping("/login")
+    @ApiOperation(value = "用户登陆",notes = "用户登陆")
     public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO){
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Person::getUserName, userLoginDTO.getUserName())
