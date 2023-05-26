@@ -7,10 +7,12 @@ import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.utils.JwtUtils;
+import cn.hunnu.recommender.user.vo.UserVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -98,6 +100,17 @@ public class PersonController extends userBaseController {
             throw new CustomException("请检查用户名密码是否正确");
         }
     }
+
+    //通过用户id查询出用户相关信息用于前段显示
+    @GetMapping("/getById")
+    @ApiOperation(value = "根据用户ID查找",notes = "根据用户ID查找")
+    public Result getById(@RequestParam("userId") Integer userId){
+        Person byId = personService.getById(userId);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(byId, userVO);
+        return Result.success(userVO);
+    }
+
 
 
 }
