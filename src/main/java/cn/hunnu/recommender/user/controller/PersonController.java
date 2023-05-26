@@ -101,7 +101,7 @@ public class PersonController extends userBaseController {
         }
     }
 
-    //通过用户id查询出用户相关信息用于前段显示
+    //通过用户id查询出用户相关信息用于前端显示
     @GetMapping("/getById")
     @ApiOperation(value = "根据用户ID查找",notes = "根据用户ID查找")
     public Result getById(@RequestParam("userId") Integer userId){

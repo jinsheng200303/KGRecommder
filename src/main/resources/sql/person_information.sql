@@ -5,7 +5,7 @@ CREATE TABLE person(
                        `id_card` VARCHAR(255)    COMMENT '身份证;18位身份证' ,
                        `name` VARCHAR(90)    COMMENT '真实姓名' ,
                        `password` VARCHAR(255) NOT NULL   COMMENT '密码' ,
-                       `moblie_phone` VARCHAR(255) NOT NULL   COMMENT '手机号;11位手机号' ,
+                       `phone_number` VARCHAR(255) NOT NULL   COMMENT '手机号;11位手机号' ,
                        `gender` VARCHAR(32)   DEFAULT 'M' COMMENT '性别;性别说明' ,
                        `birth` DATETIME    COMMENT '出生日期' ,
                        `politics` VARCHAR(32)   DEFAULT '10' COMMENT '政治面貌' ,

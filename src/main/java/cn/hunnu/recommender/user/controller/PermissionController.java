@@ -4,7 +4,6 @@ package cn.hunnu.recommender.user.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.PermissionQuery;
 import cn.hunnu.recommender.user.entity.Permission;
-import cn.hunnu.recommender.user.entity.Person;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -32,6 +31,7 @@ public class PermissionController extends userBaseController {
     public List<Permission> list() {
         return permissionService.list();
     }
+
     @PostMapping("/save")
     @ApiOperation(value = "权限新增/修改",notes = "权限新增/修改")
     public Result save(@Validated @RequestBody Permission permission){

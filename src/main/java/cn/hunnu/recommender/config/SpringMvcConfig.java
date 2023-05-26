@@ -20,6 +20,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 //允许直接访问的接口
                 .excludePathPatterns(
+
                         "/person/login",
 
 
@@ -28,6 +29,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/person/save",
                         "/person/getById",
                         "/person/page",
+                        "/announcement/*",
 
 
 
