@@ -30,6 +30,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/person/getById",
                         "/person/page",
                         "/announcement/*",
+                        "/classes/*",
 
 
 

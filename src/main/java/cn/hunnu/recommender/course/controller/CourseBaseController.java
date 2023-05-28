@@ -8,4 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CourseBaseController {
     @Autowired
     AnnouncementServiceImpl announcementService;
+
+    @Autowired
+    ClassesServiceImpl classesService;
 }
