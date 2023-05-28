@@ -14,4 +14,7 @@ public class CourseBaseController {
 
     @Autowired
     KnowledgeServiceImpl knowledgeService;
+
+    @Autowired
+    LessonServiceImpl lessonService;
 }

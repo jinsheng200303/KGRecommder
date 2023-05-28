@@ -22,7 +22,7 @@ public class CodeGenerator {
         String mapperLocation = "D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\resources\\mapper";
         List<String> tables = new ArrayList<>();
 
-        tables.add("knowledge");
+        tables.add("lesson");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {
