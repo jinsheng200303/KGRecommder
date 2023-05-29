@@ -32,4 +32,7 @@ public class CourseBaseController {
 
     @Autowired
     ClassUserServiceImpl classUserService;
+
+    @Autowired
+    TeachingMaterialServiceImpl teachingMaterialService;
 }
