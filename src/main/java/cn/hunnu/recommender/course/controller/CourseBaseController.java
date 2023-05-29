@@ -26,4 +26,7 @@ public class CourseBaseController {
 
     @Autowired
     ClassResourceServiceImpl classResourceService;
+
+    @Autowired
+    ClassStudentGraphServiceImpl classStudentGraphService;
 }

@@ -36,6 +36,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/class-announcement/*",
                         "/class-homework/*",
                         "/class-resource/*",
+                        "/class-student-graph/*",
 
 
                         "/doc.html",
