@@ -29,4 +29,7 @@ public class CourseBaseController {
 
     @Autowired
     ClassStudentGraphServiceImpl classStudentGraphService;
+
+    @Autowired
+    ClassUserServiceImpl classUserService;
 }
