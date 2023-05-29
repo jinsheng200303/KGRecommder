@@ -20,4 +20,7 @@ public class CourseBaseController {
 
     @Autowired
     ClassAnnouncementServiceImpl classAnnouncementService;
+
+    @Autowired
+    ClassHomeworkServiceImpl classHomeworkService;
 }
