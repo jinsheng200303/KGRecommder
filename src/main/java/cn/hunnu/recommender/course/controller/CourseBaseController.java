@@ -23,4 +23,7 @@ public class CourseBaseController {
 
     @Autowired
     ClassHomeworkServiceImpl classHomeworkService;
+
+    @Autowired
+    ClassResourceServiceImpl classResourceService;
 }
