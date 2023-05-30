@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.PapersQuery;
+import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Papers;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -35,7 +36,7 @@ public class PapersController extends ExaminationBaseController {
     //分页查询 页码 每页显示多少条
     @ApiOperation(value = "分页查询",notes = "分页查询")
     @PostMapping("/page")
-    public Result findPage(@RequestBody PapersQuery papersQuery) {
+    public Result<Page<Papers>> findPage(@RequestBody PapersQuery papersQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Papers> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Papers::getExamId);

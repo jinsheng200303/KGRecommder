@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassUserQuery;
+import cn.hunnu.recommender.course.entity.ClassStudentGraph;
 import cn.hunnu.recommender.course.entity.ClassUser;
 import cn.hunnu.recommender.course.service.ClassUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -49,7 +50,7 @@ public class ClassUserController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "课堂用户关联查询",notes = "课堂用户关联查询")
-    public Result queryClassUser(@RequestBody ClassUserQuery classUserQuery){
+    public Result<Page<ClassUser>> queryClassUser(@RequestBody ClassUserQuery classUserQuery){
 
 
         LambdaQueryWrapper<ClassUser> wrapper = new LambdaQueryWrapper<>();

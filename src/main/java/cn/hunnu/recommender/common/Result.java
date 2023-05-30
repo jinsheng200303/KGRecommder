@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result {
+public class Result<T> {
 
     @ApiModelProperty("状态码")
     private Integer code;
     @ApiModelProperty("提示")
     private String msg;
     @ApiModelProperty("数据")
-    private Object data;
+    private T data;
 
     public static Result success() {
         return new Result(200,"操作成功",null);

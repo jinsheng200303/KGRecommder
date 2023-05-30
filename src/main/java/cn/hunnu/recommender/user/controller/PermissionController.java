@@ -2,6 +2,7 @@ package cn.hunnu.recommender.user.controller;
 
 
 import cn.hunnu.recommender.common.Result;
+import cn.hunnu.recommender.examination.entity.ResourcesKnowledge;
 import cn.hunnu.recommender.user.dto.PermissionQuery;
 import cn.hunnu.recommender.user.entity.Permission;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -50,7 +51,7 @@ public class PermissionController extends userBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "权限查询",notes = "权限查询")
-    public Result queryPermission(@RequestBody PermissionQuery permissionQuery){
+    public Result<Page<Permission>> queryPermission(@RequestBody PermissionQuery permissionQuery){
 
 
         LambdaQueryWrapper<Permission> wrapper = new LambdaQueryWrapper<>();

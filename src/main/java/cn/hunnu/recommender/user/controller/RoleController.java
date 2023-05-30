@@ -4,6 +4,7 @@ package cn.hunnu.recommender.user.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.RoleQuery;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.entity.PersonRole;
 import cn.hunnu.recommender.user.entity.Role;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -50,7 +51,7 @@ public class RoleController extends userBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "角色信息查询",notes = "角色信息查询")
-    public Result queryRoleInfo(@RequestBody RoleQuery roleQuery){
+    public Result<Page<Role>> queryRoleInfo(@RequestBody RoleQuery roleQuery){
 
 
         LambdaQueryWrapper<Role> wrapper = new LambdaQueryWrapper<>();

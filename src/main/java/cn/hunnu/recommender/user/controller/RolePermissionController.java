@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.PersonRoleQuery;
 import cn.hunnu.recommender.user.dto.RolePermissionQuery;
 import cn.hunnu.recommender.user.entity.PersonRole;
+import cn.hunnu.recommender.user.entity.Role;
 import cn.hunnu.recommender.user.entity.RolePermission;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -51,7 +52,7 @@ public class RolePermissionController extends userBaseController {
 
     @PostMapping("/page")
     @ApiOperation(value = "角色权限关联信息查询",notes = "角色权限关联信息查询")
-    public Result queryPersonInfo(@RequestBody RolePermissionQuery rolePermissionQuery){
+    public Result<Page<RolePermission>> queryPersonInfo(@RequestBody RolePermissionQuery rolePermissionQuery){
 
 
         LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();

@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.TeachingMaterialQuery;
+import cn.hunnu.recommender.course.entity.Lesson;
 import cn.hunnu.recommender.course.entity.TeachingMaterial;
 import cn.hunnu.recommender.course.service.TeachingMaterialService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -51,7 +52,7 @@ public class TeachingMaterialController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "教学资料查询",notes = "教学资料查询")
-    public Result queryTeachingMaterial(@RequestBody TeachingMaterialQuery teachingMaterialQuery){
+    public Result<Page<TeachingMaterial>> queryTeachingMaterial(@RequestBody TeachingMaterialQuery teachingMaterialQuery){
 
 
         LambdaQueryWrapper<TeachingMaterial> wrapper = new LambdaQueryWrapper<>();

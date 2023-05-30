@@ -36,7 +36,7 @@ public class ExamsController extends ExaminationBaseController {
     //分页查询 页码 每页显示多少条
     @ApiOperation(value = "分页查询",notes = "分页查询")
     @PostMapping("/page")
-    public Result findPage(@RequestBody ExamsQuery examsQuery) {
+    public Result<Page<Exams>> findPage(@RequestBody ExamsQuery examsQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Exams> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Exams::getExamId);

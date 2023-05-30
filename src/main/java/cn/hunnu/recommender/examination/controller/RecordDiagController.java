@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.RecordDiagQuery;
+import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.entity.RecordDiag;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -37,7 +38,7 @@ public class RecordDiagController extends ExaminationBaseController {
     //分页查询 页码 每页显示多少条
     @ApiOperation(value = "分页查询",notes = "分页查询")
     @PostMapping("/page")
-    public Result findPage(@RequestBody RecordDiagQuery recordDiagQuery) {
+    public Result<Page<RecordDiag>> findPage(@RequestBody RecordDiagQuery recordDiagQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<RecordDiag> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(RecordDiag::getRecordDiagId);

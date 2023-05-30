@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassAnnouncementQuery;
+import cn.hunnu.recommender.course.entity.Announcement;
 import cn.hunnu.recommender.course.entity.ClassAnnouncement;
 import cn.hunnu.recommender.course.service.ClassAnnouncementService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -49,7 +50,7 @@ public class ClassAnnouncementController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "课堂公告关联查询",notes = "课堂公告关联查询")
-    public Result queryClassAnnouncement(@RequestBody ClassAnnouncementQuery classAnnouncementQuery){
+    public Result<Page<ClassAnnouncement>> queryClassAnnouncement(@RequestBody ClassAnnouncementQuery classAnnouncementQuery){
 
 
         LambdaQueryWrapper<ClassAnnouncement> wrapper = new LambdaQueryWrapper<>();

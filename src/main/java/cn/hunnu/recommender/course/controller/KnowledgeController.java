@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.KnowledgeQuery;
+import cn.hunnu.recommender.course.entity.Homework;
 import cn.hunnu.recommender.course.entity.Knowledge;
 import cn.hunnu.recommender.course.service.KnowledgeService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -50,7 +51,7 @@ public class KnowledgeController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "知识点查询",notes = "知识点查询")
-    public Result queryKnowledge(@RequestBody KnowledgeQuery knowledgeQuery){
+    public Result<Page<Knowledge>> queryKnowledge(@RequestBody KnowledgeQuery knowledgeQuery){
 
 
         LambdaQueryWrapper<Knowledge> wrapper = new LambdaQueryWrapper<>();

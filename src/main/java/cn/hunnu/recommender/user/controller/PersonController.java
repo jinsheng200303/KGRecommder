@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
+import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.utils.JwtUtils;
 import cn.hunnu.recommender.user.vo.UserVO;
@@ -56,7 +57,7 @@ public class PersonController extends userBaseController {
 
     @PostMapping("/page")
     @ApiOperation(value = "用户信息查询",notes = "用户信息查询")
-    public Result queryPersonInfo(@RequestBody PersonQuery personQuery){
+    public Result<Page<Person>> queryPersonInfo(@RequestBody PersonQuery personQuery){
 
 
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();

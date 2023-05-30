@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassResourceQuery;
+import cn.hunnu.recommender.course.entity.ClassHomework;
 import cn.hunnu.recommender.course.entity.ClassResource;
 import cn.hunnu.recommender.course.service.ClassResourceService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -49,7 +50,7 @@ public class ClassResourceController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "课堂资源关联查询",notes = "课堂资源关联查询")
-    public Result queryClassResource(@RequestBody ClassResourceQuery classResourceQuery){
+    public Result<Page<ClassResource>> queryClassResource(@RequestBody ClassResourceQuery classResourceQuery){
 
 
         LambdaQueryWrapper<ClassResource> wrapper = new LambdaQueryWrapper<>();

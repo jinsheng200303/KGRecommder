@@ -3,6 +3,7 @@ package cn.hunnu.recommender.course.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.HomeworkQuery;
+import cn.hunnu.recommender.course.entity.ClassUser;
 import cn.hunnu.recommender.course.entity.Homework;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -37,7 +38,7 @@ public class HomeworkController extends CourseBaseController {
     //分页查询 页码 每页显示多少条
     @ApiOperation(value = "分页查询",notes = "分页查询")
     @PostMapping("/page")
-    public Result findPage(@RequestBody HomeworkQuery homeworkQuery) {
+    public Result<Page<Homework>> findPage(@RequestBody HomeworkQuery homeworkQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Homework> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Homework::getHomeworkId);

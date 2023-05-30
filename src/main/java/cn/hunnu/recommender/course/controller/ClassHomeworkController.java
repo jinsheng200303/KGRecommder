@@ -4,6 +4,7 @@ package cn.hunnu.recommender.course.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassHomeworkQuery;
 import cn.hunnu.recommender.course.entity.ClassHomework;
+import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.service.ClassHomeworkService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -49,7 +50,7 @@ public class ClassHomeworkController extends CourseBaseController {
     //分页模糊查询
     @PostMapping("/page")
     @ApiOperation(value = "课堂作业关联查询",notes = "课堂作业关联查询")
-    public Result queryClassHomework(@RequestBody ClassHomeworkQuery classHomeworkQuery){
+    public Result<Page<ClassHomework>> queryClassHomework(@RequestBody ClassHomeworkQuery classHomeworkQuery){
 
 
         LambdaQueryWrapper<ClassHomework> wrapper = new LambdaQueryWrapper<>();
