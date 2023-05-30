@@ -44,7 +44,7 @@ public class Exams extends examinationBaseEntity {
 
     @ApiModelProperty("考试持续时间")
     @TableField("time_duration")
-    private LocalDateTime timeDuration;
+    private Date timeDuration;
 
     @Range(min = 0,max = 100, message = "考试最终得分需要在【0-100】之间")
     @ApiModelProperty("最终得分")

@@ -27,7 +27,8 @@ public class AutoGenerator {
 //        tables.add("question_bank");
 //        tables.add("questions");
 //        tables.add("options");
-        tables.add("records");
+//        tables.add("records");
+        tables.add("resources_knowledge");
 
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)

@@ -23,4 +23,7 @@ public class examinationBaseController {
 
     @Autowired
     RecordsServiceImpl recordsService;
+
+    @Autowired
+    ResourcesKnowledgeServiceImpl resourcesKnowledgeService;
 }

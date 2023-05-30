@@ -33,7 +33,7 @@ public class Questions extends examinationBaseEntity {
 
     @ApiModelProperty("题库ID号;外键")
     @TableField("bank_id")
-    private String bankId;
+    private Integer bankId;
 
     @ApiModelProperty("试题类型;选择题或者判断题")
     @TableField("question_type")
@@ -41,7 +41,7 @@ public class Questions extends examinationBaseEntity {
 
     @ApiModelProperty("试题知识点分类")
     @TableField("knowledge_id")
-    private String knowledgeId;
+    private Integer knowledgeId;
 
     @ApiModelProperty("试题描述")
     @TableField("question_statement")

@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,15 +38,15 @@ public class Records extends examinationBaseEntity {
 
     @ApiModelProperty("考试ID;外键")
     @TableField("exam_id")
-    private String examId;
+    private Integer examId;
 
     @ApiModelProperty("试卷ID;外键")
     @TableField("paper_id")
-    private String paperId;
+    private Integer paperId;
 
     @ApiModelProperty("试题ID;外键")
     @TableField("question_id")
-    private String questionId;
+    private Integer questionId;
 
     @ApiModelProperty("学生答案")
     @TableField("answer")

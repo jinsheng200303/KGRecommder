@@ -32,7 +32,7 @@ public class Options extends examinationBaseEntity {
 
     @ApiModelProperty("试题ID号;外键")
     @TableField("question_id")
-    private String questionId;
+    private Integer questionId;
 
     @ApiModelProperty("选项标号")
     @TableField("option_label")
