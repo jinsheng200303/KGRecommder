@@ -32,4 +32,7 @@ public class ExaminationBaseController {
 
     @Autowired
     DiagResultsServiceImpl diagResultsService;
+
+    @Autowired
+    RecordDiagServiceImpl recordDiagService;
 }
