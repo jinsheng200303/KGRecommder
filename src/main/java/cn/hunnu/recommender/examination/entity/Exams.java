@@ -1,11 +1,11 @@
 package cn.hunnu.recommender.examination.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -27,7 +27,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @TableName("exams")
 @ApiModel(value = "Exams对象", description = "考试表")
-public class Exams extends examsBaseEntity {
+public class Exams extends examinationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,5 +50,15 @@ public class Exams extends examsBaseEntity {
     @ApiModelProperty("最终得分")
     @TableField("total_marks")
     private Integer totalMarks;
+
+    @ApiModelProperty("开始时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "start_time", fill = FieldFill.INSERT)
+    private Date startTime;
+
+    @ApiModelProperty("结束时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "end_time", fill = FieldFill.UPDATE)
+    private Date endTime;
 
 }

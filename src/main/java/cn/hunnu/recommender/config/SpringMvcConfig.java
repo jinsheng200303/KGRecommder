@@ -39,6 +39,8 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/class-student-graph/*",
                         "/class-user/*",
                         "/teaching-material/*",
+                        "/papers/**",
+                        "/exams/**",
 
 
                         "/doc.html",

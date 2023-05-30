@@ -1,18 +1,14 @@
 package cn.hunnu.recommender.user.utils;
 
-import cn.hunnu.recommender.examination.controller.examsBaseController;
-import cn.hunnu.recommender.examination.entity.examsBaseEntity;
 import cn.hunnu.recommender.user.controller.userBaseController;
 import cn.hunnu.recommender.user.entity.userBaseEntity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.fill.Column;
 
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

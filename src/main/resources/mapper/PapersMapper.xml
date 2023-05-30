@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hunnu.recommender.examination.mapper.PapersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.hunnu.recommender.examination.entity.Papers">
+        <id column="paper_id" property="paperId" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="status" property="status" />
+        <result column="exam_id" property="examId" />
+        <result column="paper_title" property="paperTitle" />
+        <result column="question_set" property="questionSet" />
+    </resultMap>
+
+</mapper>
