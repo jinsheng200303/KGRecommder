@@ -35,4 +35,7 @@ public class CourseBaseController {
 
     @Autowired
     TeachingMaterialServiceImpl teachingMaterialService;
+
+    @Autowired
+    HomeworkServiceImpl homeworkService;
 }

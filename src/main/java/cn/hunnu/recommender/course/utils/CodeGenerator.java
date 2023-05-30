@@ -19,18 +19,22 @@ public class CodeGenerator {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Zxx123456";
     public static void main(String[] args) {
-        String mapperLocation = "D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\resources\\mapper";
+//        String mapperLocation = "D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\resources\\mapper";
         List<String> tables = new ArrayList<>();
 
-        tables.add("teaching_material");
+//        tables.add("teaching _material");
+        tables.add("homework");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {
-                    builder.author("czj") // 设置作者
+//                    builder.author("czj") // 设置作者
+                    builder.author("JinSheng") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
-//                            .fileOverride() // 覆盖已生成文件
+                            .fileOverride() // 覆盖已生成文件
                             .commentDate("yyyy-MM-dd")
-                            .outputDir("D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\java"); // 指定输出目录
+//                            .outputDir("D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\java"); // 指定输出目录
+                            .outputDir(System.getProperty("user.dir") + "/src/main/java");    //输出路径(写到java目录)
+
                 })
                 .packageConfig(builder -> {
                     builder.parent("cn.hunnu.recommender.course") // 设置父包名
@@ -41,7 +45,8 @@ public class CodeGenerator {
                             .controller("controller")
                             .mapper("mapper")
                             .xml("mapper")
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, mapperLocation)); // 设置mapperXml生成路径
+//                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, mapperLocation)); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, System.getProperty("user.dir") + "/src/main/resources/mapper"));
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude(tables) // 设置需要生成的表名
