@@ -20,4 +20,7 @@ public class examinationBaseController {
 
     @Autowired
     OptionsServiceImpl optionsService;
+
+    @Autowired
+    RecordsServiceImpl recordsService;
 }

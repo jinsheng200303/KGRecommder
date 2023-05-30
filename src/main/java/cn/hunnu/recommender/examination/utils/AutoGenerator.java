@@ -22,11 +22,12 @@ public class AutoGenerator {
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
 
-        //tables.add("exams");
+//        tables.add("exams");
 //        tables.add("papers");
 //        tables.add("question_bank");
 //        tables.add("questions");
-        tables.add("options");
+//        tables.add("options");
+        tables.add("records");
 
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
