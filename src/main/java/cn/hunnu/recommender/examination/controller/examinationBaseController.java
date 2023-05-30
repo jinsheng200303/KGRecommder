@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.controller;
 import cn.hunnu.recommender.examination.serviceImpl.ExamsServiceImpl;
 import cn.hunnu.recommender.examination.serviceImpl.PapersServiceImpl;
 import cn.hunnu.recommender.examination.serviceImpl.QuestionBankServiceImpl;
+import cn.hunnu.recommender.examination.serviceImpl.QuestionsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,4 +17,7 @@ public class examinationBaseController {
 
     @Autowired
     QuestionBankServiceImpl questionBankService;
+
+    @Autowired
+    QuestionsServiceImpl questionsService;
 }

@@ -24,7 +24,8 @@ public class AutoGenerator {
 
         //tables.add("exams");
 //        tables.add("papers");
-        tables.add("question_bank");
+//        tables.add("question_bank");
+        tables.add("questions");
 
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)

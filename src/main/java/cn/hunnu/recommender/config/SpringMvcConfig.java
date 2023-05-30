@@ -42,6 +42,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/papers/**",
                         "/exams/**",
                         "/question-bank/**",
+                        "/questions/**",
 
 
                         "/doc.html",
