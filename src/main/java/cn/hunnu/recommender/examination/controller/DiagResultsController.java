@@ -2,8 +2,8 @@ package cn.hunnu.recommender.examination.controller;
 
 
 import cn.hunnu.recommender.common.Result;
-import cn.hunnu.recommender.examination.dto.OptionsQuery;
-import cn.hunnu.recommender.examination.entity.Options;
+import cn.hunnu.recommender.examination.dto.DiagResultsQuery;
+import cn.hunnu.recommender.examination.entity.DiagResults;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -15,39 +15,39 @@ import java.util.List;
 
 /**
  * <p>
- * 选项表 前端控制器
+ * 诊断结果表 前端控制器
  * </p>
  *
  * @author JinSheng
  * @since 2023-05-30
  */
-@Api(value = "选项模块",tags = "选项模块")
+@Api(value = "认知诊断结果模块",tags = "认知诊断结果模块")
 @RestController
-@RequestMapping("/options")
-public class OptionsController extends ExaminationBaseController {
+@RequestMapping("/diag-results")
+public class DiagResultsController extends ExaminationBaseController {
 
-    @ApiOperation(value = "选项列表",notes = "选项列表")
+    @ApiOperation(value = "认知诊断结果列表",notes = "认知诊断结果列表")
     @GetMapping("/list")
-    public List<Options> list() {
-        return optionsService.list();
+    public List<DiagResults> list() {
+        return diagResultsService.list();
     }
 
     //分页查询 页码 每页显示多少条
     @ApiOperation(value = "分页查询",notes = "分页查询")
     @PostMapping("/page")
-    public Result findPage(@RequestBody OptionsQuery optionsQuery) {
+    public Result findPage(@RequestBody DiagResultsQuery diagResultsQuery) {
         //查出的数据降序排列，且支持名称模糊查询
-        LambdaQueryWrapper<Options> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(Options::getOptionId);
+        LambdaQueryWrapper<DiagResults> wrapper = new LambdaQueryWrapper<>();
+        wrapper.orderByDesc(DiagResults::getResultId);
 
-        if (!"".equals(optionsQuery.getOptionsValue()) && optionsQuery.getOptionsValue() != null) {
-            wrapper.like(Options::getOptionValue, optionsQuery.getOptionsValue());
+        if (!"".equals(diagResultsQuery.getDiagResultsSuggestion()) && diagResultsQuery.getDiagResultsSuggestion() != null) {
+            wrapper.like(DiagResults::getSuggestion, diagResultsQuery.getDiagResultsSuggestion());
         }
 
-        Page<Options> page = optionsService.page(
+        Page<DiagResults> page = diagResultsService.page(
                 new Page<>(
-                        optionsQuery.getPageNum(),
-                        optionsQuery.getPageSize()
+                        diagResultsQuery.getPageNum(),
+                        diagResultsQuery.getPageSize()
                 ),
                 wrapper
         );
@@ -57,11 +57,11 @@ public class OptionsController extends ExaminationBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody Options papers) {
+    public Result save(@Validated @RequestBody DiagResults papers) {
 
 //        throw new CustomException("这个是自定义异常");
 
-        optionsService.saveOrUpdate(papers);
+        diagResultsService.saveOrUpdate(papers);
         return Result.success();
     }
 
@@ -69,8 +69,7 @@ public class OptionsController extends ExaminationBaseController {
     @ApiOperation(value = "数据根据id批量删除",notes = "数据根据id批量删除")
     @PostMapping("/delBatch")
     public Result delBatch(@RequestBody List<Integer> ids) {
-        optionsService.removeByIds(ids);
+        diagResultsService.removeByIds(ids);
         return Result.success();
     }
-
 }

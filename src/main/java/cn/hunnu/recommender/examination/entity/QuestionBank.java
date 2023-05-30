@@ -1,13 +1,11 @@
 package cn.hunnu.recommender.examination.entity;
 
-import cn.hunnu.recommender.examination.entity.examinationBaseEntity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
+
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,7 +26,7 @@ import lombok.Setter;
 @Setter
 @TableName("question_bank")
 @ApiModel(value = "QuestionBank对象", description = "题库表")
-public class QuestionBank extends examinationBaseEntity {
+public class QuestionBank extends ExaminationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 

@@ -2,7 +2,6 @@ package cn.hunnu.recommender.examination.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -27,7 +26,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @TableName("exams")
 @ApiModel(value = "Exams对象", description = "考试表")
-public class Exams extends examinationBaseEntity {
+public class Exams extends ExaminationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 

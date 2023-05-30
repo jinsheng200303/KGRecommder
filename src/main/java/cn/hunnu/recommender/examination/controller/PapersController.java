@@ -11,8 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cn.hunnu.recommender.examination.controller.examinationBaseController;
-
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
 @Api(value = "试卷模块",tags = "试卷模块")
 @RestController
 @RequestMapping("/papers")
-public class PapersController extends examinationBaseController {
+public class PapersController extends ExaminationBaseController {
 
     @ApiOperation(value = "试卷列表",notes = "试卷列表")
     @GetMapping("/list")

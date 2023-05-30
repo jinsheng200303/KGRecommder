@@ -25,7 +25,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/exams")
-public class ExamsController extends examinationBaseController {
+public class ExamsController extends ExaminationBaseController {
 
     @ApiOperation(value = "考试列表",notes = "考试列表")
     @GetMapping("/list")

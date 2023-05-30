@@ -1,9 +1,7 @@
 package cn.hunnu.recommender.examination.entity;
 
-import cn.hunnu.recommender.examination.entity.examinationBaseEntity;
 import com.baomidou.mybatisplus.annotation.*;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,7 +22,7 @@ import lombok.Setter;
 @Setter
 @TableName("papers")
 @ApiModel(value = "Papers对象", description = "试卷表")
-public class Papers extends examinationBaseEntity {
+public class Papers extends ExaminationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 

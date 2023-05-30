@@ -1,11 +1,9 @@
 package cn.hunnu.recommender.examination.entity;
 
-import cn.hunnu.recommender.examination.entity.examinationBaseEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,7 +21,7 @@ import lombok.Setter;
 @Setter
 @TableName("questions")
 @ApiModel(value = "Questions对象", description = "试题表")
-public class Questions extends examinationBaseEntity {
+public class Questions extends ExaminationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 

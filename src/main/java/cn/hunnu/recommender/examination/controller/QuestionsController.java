@@ -11,8 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cn.hunnu.recommender.examination.controller.examinationBaseController;
-
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
 @Api(value = "试题模块",tags = "试题模块")
 @RestController
 @RequestMapping("/questions")
-public class QuestionsController extends examinationBaseController {
+public class QuestionsController extends ExaminationBaseController {
 
     @ApiOperation(value = "试题列表",notes = "试题列表")
     @GetMapping("/list")
@@ -40,7 +38,7 @@ public class QuestionsController extends examinationBaseController {
     public Result findPage(@RequestBody QuestionsQuery questionsQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Questions> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(Questions::getBankId);
+        wrapper.orderByDesc(Questions::getQuestionId);
 
         if (!"".equals(questionsQuery.getQuestionStatement()) && questionsQuery.getQuestionStatement() != null) {
             wrapper.like(Questions::getQuestionStatement, questionsQuery.getQuestionStatement());

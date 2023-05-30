@@ -1,10 +1,8 @@
 package cn.hunnu.recommender.examination.entity;
 
-import cn.hunnu.recommender.examination.entity.examinationBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -22,7 +20,7 @@ import lombok.Setter;
 @Setter
 @TableName("options")
 @ApiModel(value = "Options对象", description = "选项表")
-public class Options extends examinationBaseEntity {
+public class Options extends ExaminationBaseEntity {
 
     private static final long serialVersionUID = 1L;
 

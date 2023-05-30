@@ -11,8 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cn.hunnu.recommender.examination.controller.examinationBaseController;
-
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
 @Api(value = "学习资源模块",tags = "学习资源模块")
 @RestController
 @RequestMapping("/resources")
-public class ResourcesController extends examinationBaseController {
+public class ResourcesController extends ExaminationBaseController {
 
     @ApiOperation(value = "学习资源列表",notes = "学习资源列表")
     @GetMapping("/list")
@@ -40,7 +38,7 @@ public class ResourcesController extends examinationBaseController {
     public Result findPage(@RequestBody ResourcesQuery resourcesQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Resources> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(Resources::getResourceName);
+        wrapper.orderByDesc(Resources::getResourceId);
 
         if (!"".equals(resourcesQuery.getResourcesName()) && resourcesQuery.getResourcesName() != null) {
             wrapper.like(Resources::getResourceName, resourcesQuery.getResourcesName());

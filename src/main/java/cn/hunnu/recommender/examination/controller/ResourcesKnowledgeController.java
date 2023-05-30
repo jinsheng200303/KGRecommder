@@ -11,8 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cn.hunnu.recommender.examination.controller.examinationBaseController;
-
 import java.util.List;
 
 /**
@@ -26,7 +24,7 @@ import java.util.List;
 @Api(value = "学习资源与知识点关联模块",tags = "学习资源与知识点关联模块")
 @RestController
 @RequestMapping("/resources-knowledge")
-public class ResourcesKnowledgeController extends examinationBaseController {
+public class ResourcesKnowledgeController extends ExaminationBaseController {
 
     @ApiOperation(value = "学习资源与知识点关联列表",notes = "学习资源与知识点关联列表")
     @GetMapping("/list")
@@ -42,7 +40,7 @@ public class ResourcesKnowledgeController extends examinationBaseController {
         LambdaQueryWrapper<ResourcesKnowledge> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ResourcesKnowledge::getResourcesKnowledgeId);
 
-        if (!"".equals(resourcesKnowledgeQuery.getResourcesKnowledgeId()) && resourcesKnowledgeQuery.getResourcesKnowledgeId() != null) {
+        if (resourcesKnowledgeQuery.getResourcesKnowledgeId() != null) {
             wrapper.like(ResourcesKnowledge::getResourcesKnowledgeId, resourcesKnowledgeQuery.getResourcesKnowledgeId());
         }
 

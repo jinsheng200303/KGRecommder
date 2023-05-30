@@ -1,8 +1,8 @@
 package cn.hunnu.recommender.examination.utils;
 
 
-import cn.hunnu.recommender.examination.controller.examinationBaseController;
-import cn.hunnu.recommender.examination.entity.examinationBaseEntity;
+import cn.hunnu.recommender.examination.controller.ExaminationBaseController;
+import cn.hunnu.recommender.examination.entity.ExaminationBaseEntity;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
@@ -29,7 +29,8 @@ public class AutoGenerator {
 //        tables.add("options");
 //        tables.add("records");
 //        tables.add("resources_knowledge");
-        tables.add("resources");
+//        tables.add("resources");
+        tables.add("diag_results");
 
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
@@ -61,7 +62,7 @@ public class AutoGenerator {
                             .formatServiceImplFileName("%sServiceImpl")
                             .entityBuilder()
                             //如果没有共有属性字段父类请注释这行
-                            .superClass(examinationBaseEntity.class)
+                            .superClass(ExaminationBaseEntity.class)
                             //开启Lombok，默认生成@Get，@Set，可以手动换成@Data
                             .addTableFills(new Column("create_time", FieldFill.INSERT))
                             .addTableFills(new Column("update_time", FieldFill.UPDATE))
@@ -70,7 +71,7 @@ public class AutoGenerator {
                             .enableTableFieldAnnotation()
                             .controllerBuilder()
                             //如果没有父类请注释掉
-                            .superClass(examinationBaseController.class)
+                            .superClass(ExaminationBaseController.class)
                             .formatFileName("%sController")
                             .enableRestStyle()
                             .mapperBuilder()
