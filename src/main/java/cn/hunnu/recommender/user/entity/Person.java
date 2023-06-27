@@ -90,6 +90,8 @@ public class Person extends userBaseEntity {
     @TableField("synopsis")
     private String synopsis;
 
-
+    @ApiModelProperty("邮箱")
+    @TableField("email")
+    private String email;
 
 }

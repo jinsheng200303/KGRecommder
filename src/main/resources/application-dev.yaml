@@ -73,4 +73,16 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-
+  mail:
+    #smtp服务主机  qq邮箱则为smtp.qq.com
+    host: smtp.163.com
+    #服务协议
+    protocol: smtps
+    # 编码集
+    default-encoding: UTF-8
+    #发送邮件的账户
+    username: 19308484968@163.com
+    #授权码
+    password: OQWNBQUJATYYEHID
+    #端口465或587
+    port: 465

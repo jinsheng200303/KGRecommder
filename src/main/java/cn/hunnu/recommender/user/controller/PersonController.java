@@ -7,8 +7,11 @@ import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.entity.Validation;
+import cn.hunnu.recommender.user.service.PersonService;
 import cn.hunnu.recommender.user.utils.JwtUtils;
 import cn.hunnu.recommender.user.vo.UserVO;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -17,6 +20,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
@@ -81,7 +85,7 @@ public class PersonController extends userBaseController {
     @ApiOperation(value = "用户登陆",notes = "用户登陆")
     public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO){
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Person::getUserName, userLoginDTO.getUserName())
+        wrapper.eq(Person::getEmail, userLoginDTO.getEmail())
                 .eq(Person::getPassword, userLoginDTO.getPassword())
                 .last("limit 1");
         Person userInfo = personService.getOne(wrapper);
@@ -112,6 +116,55 @@ public class PersonController extends userBaseController {
         return Result.success(userVO);
     }
 
+    @PostMapping("/registerCode")
+    @ApiOperation(value = "用户注册获取验证码",notes = "用户注册获取验证码")
+    public Result registerCode(@Validated @RequestBody UserLoginDTO userLoginDTO){
+        String username = userLoginDTO.getUserName();
+        String email = userLoginDTO.getEmail();
+        String password = userLoginDTO.getPassword();
+        if(StrUtil.isBlank(email) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
+            return Result.error(400);
+        }
+//        UserLoginDTO dto = personService.register(userLoginDTO);
+        if(!StrUtil.isBlank(email)){
+            personService.sendEmailCode(email);
+        }
+        return Result.success(null,"验证码发送成功！");
+    }
 
+    @PostMapping("/register")
+    @ApiOperation(value = "用户注册",notes = "用户注册")
+    public Result register(@Validated @RequestBody UserLoginDTO userLoginDTO){
+        String username = userLoginDTO.getUserName();
+        String email = userLoginDTO.getEmail();
+        String password = userLoginDTO.getPassword();
+        String code = userLoginDTO.getCode();
+        if(StrUtil.isBlank(email) || StrUtil.isBlank(code) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
+            return Result.error(400);
+        }
+        LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Validation::getEmail, email)
+                .eq(Validation::getCode, code);
+        Validation validationInfo = validationService.getOne(wrapper);
+
+        LambdaQueryWrapper<Person> wrapperPerson = new LambdaQueryWrapper<>();
+        wrapperPerson.eq(Person::getUserName, userLoginDTO.getUserName())
+                .eq(Person::getPassword, userLoginDTO.getPassword())
+                .eq(Person::getEmail, userLoginDTO.getEmail());
+        Person userInfo = personService.getOne(wrapperPerson);
+
+        if (validationInfo != null && userInfo == null){
+            Person person = new Person();
+            person.setUserName(username);
+            person.setEmail(email);
+            person.setPassword(password);
+            save(person);
+            return Result.success(null,"用户注册成功");
+        }else {
+            //Result.error
+            //return Result.error("请检查用户名密码是否正确");
+            throw new CustomException("用户注册失败");
+        }
+    }
 
 }

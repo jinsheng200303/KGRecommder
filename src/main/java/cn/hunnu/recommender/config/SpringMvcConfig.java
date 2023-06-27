@@ -50,7 +50,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/diag-results/**",
                         "/record-diag/**",
                         "/homework/**",
-
+                        "/validation/**",
+                        "/person/registerCode",
+                        "/person/register",
 
                         "/doc.html",
                         "/swagger-ui/**",

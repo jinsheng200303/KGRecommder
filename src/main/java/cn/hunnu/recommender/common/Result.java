@@ -42,6 +42,6 @@ public class Result<T> {
     }
 
     public static Result error(Integer code){
-        return new Result(code,"错误错误",null);
+        return new Result(code,"参数错误",null);
     }
 }
