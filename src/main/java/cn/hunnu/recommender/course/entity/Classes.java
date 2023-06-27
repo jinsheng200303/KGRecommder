@@ -31,10 +31,6 @@ public class Classes extends CourseBaseEntity {
     @TableId(value = "class_id", type = IdType.AUTO)
     private Integer classId;
 
-    @ApiModelProperty("用户ID")
-    @TableField("user_id")
-    private String userId;
-
     @ApiModelProperty("课堂名称")
     @TableField("class_name")
     private String className;
