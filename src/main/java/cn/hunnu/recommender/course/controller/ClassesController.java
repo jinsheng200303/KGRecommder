@@ -3,8 +3,10 @@ package cn.hunnu.recommender.course.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassesQuery;
 import cn.hunnu.recommender.course.entity.ClassAnnouncement;
+import cn.hunnu.recommender.course.entity.ClassUser;
 import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.service.ClassesService;
+import cn.hunnu.recommender.user.entity.Person;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -33,8 +35,12 @@ public class ClassesController extends CourseBaseController {
 
     @PostMapping("/save")
     @ApiOperation(value = "课堂新增/修改",notes = "课堂新增/修改")
-    public Result save(@Validated @RequestBody Classes classes){
+    public Result save(@Validated @RequestBody Classes classes,@RequestParam int id){
         classesService.saveOrUpdate(classes);
+        ClassUser classUser = new ClassUser();
+        classUser.setClassId(classes.getClassId());
+        classUser.setUserId(id);
+        classUserService.saveOrUpdate(classUser);
         return Result.success();
     }
 

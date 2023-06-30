@@ -14,6 +14,7 @@ import cn.hunnu.recommender.user.vo.UserVO;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -122,11 +123,13 @@ public class PersonController extends userBaseController {
         String username = userLoginDTO.getUserName();
         String email = userLoginDTO.getEmail();
         String password = userLoginDTO.getPassword();
+        LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Validation::getEmail, email);
+        Validation validationInfo = validationService.getOne(wrapper);
         if(StrUtil.isBlank(email) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
             return Result.error(400);
         }
-//        UserLoginDTO dto = personService.register(userLoginDTO);
-        if(!StrUtil.isBlank(email)){
+        if(!StrUtil.isBlank(email) && !validationInfo.getEmail().equals(email)){
             personService.sendEmailCode(email);
         }
         return Result.success(null,"验证码发送成功！");
