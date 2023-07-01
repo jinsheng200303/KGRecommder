@@ -65,7 +65,6 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/configuration/security"
 
                 );
-
     }
 
 
