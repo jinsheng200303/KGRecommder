@@ -5,11 +5,14 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassUserQuery;
 import cn.hunnu.recommender.course.entity.ClassStudentGraph;
 import cn.hunnu.recommender.course.entity.ClassUser;
+import cn.hunnu.recommender.course.mapper.ClassUserMapper;
 import cn.hunnu.recommender.course.service.ClassUserService;
+import cn.hunnu.recommender.course.vo.ClassVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +29,9 @@ import java.util.List;
 @RequestMapping("/class-user")
 @Api(value = "课堂用户关联模块",tags = "课堂用户关联模块")
 public class ClassUserController extends CourseBaseController {
+    @Autowired
+    private ClassUserMapper classUserMapper;
+
     @ApiOperation(value = "课堂用户关联列表",notes = "课堂用户关联列表")
     @GetMapping("/list")
     public List<ClassUser> list() {
@@ -72,5 +78,13 @@ public class ClassUserController extends CourseBaseController {
                 wrapper
         );
         return Result.success(page);
+    }
+
+    @PostMapping("/class-student")
+    @ApiOperation(value = "课堂学生查询",notes = "课堂学生查询")
+    public List queryClassUser(@RequestParam int classId,@RequestParam int roleId){
+        List<ClassVO> list =classUserMapper.classStudentQuery(classId,roleId);
+        System.out.println(classUserMapper.classStudentQuery(classId,roleId));
+        return list;
     }
 }

@@ -73,6 +73,10 @@ public class PersonController extends userBaseController {
             wrapper.like(Person::getUserName, personQuery.getUsername());
         }
 
+        if(!"".equals(personQuery.getEmail())&& personQuery.getEmail()!=null){
+            wrapper.like(Person::getEmail, personQuery.getEmail());
+        }
+
         Page<Person> page = personService.page(
                 new Page<>(
                         personQuery.getPageNum(),
