@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
+import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.Validation;
@@ -86,7 +87,7 @@ public class PersonController extends userBaseController {
     @ApiOperation(value = "用户登陆",notes = "用户登陆")
     public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO){
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Person::getEmail, userLoginDTO.getEmail())
+        wrapper.eq(Person::getUserName, userLoginDTO.getUserName())
                 .eq(Person::getPassword, userLoginDTO.getPassword())
                 .last("limit 1");
         Person userInfo = personService.getOne(wrapper);
@@ -119,10 +120,10 @@ public class PersonController extends userBaseController {
 
     @PostMapping("/registerCode")
     @ApiOperation(value = "用户注册获取验证码",notes = "用户注册获取验证码")
-    public Result registerCode(@Validated @RequestBody UserLoginDTO userLoginDTO){
-        String username = userLoginDTO.getUserName();
-        String email = userLoginDTO.getEmail();
-        String password = userLoginDTO.getPassword();
+    public Result registerCode(@Validated @RequestBody UserRegisterDTO userRegisterDTO){
+        String username = userRegisterDTO.getUserName();
+        String email = userRegisterDTO.getEmail();
+        String password = userRegisterDTO.getPassword();
         LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Validation::getEmail, email);
         Validation validationInfo = validationService.getOne(wrapper);
@@ -137,11 +138,11 @@ public class PersonController extends userBaseController {
 
     @PostMapping("/register")
     @ApiOperation(value = "用户注册",notes = "用户注册")
-    public Result register(@Validated @RequestBody UserLoginDTO userLoginDTO){
-        String username = userLoginDTO.getUserName();
-        String email = userLoginDTO.getEmail();
-        String password = userLoginDTO.getPassword();
-        String code = userLoginDTO.getCode();
+    public Result register(@Validated @RequestBody UserRegisterDTO userRegisterDTO){
+        String username = userRegisterDTO.getUserName();
+        String email = userRegisterDTO.getEmail();
+        String password = userRegisterDTO.getPassword();
+        String code = userRegisterDTO.getCode();
         if(StrUtil.isBlank(email) || StrUtil.isBlank(code) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
             return Result.error(400);
         }
@@ -151,9 +152,9 @@ public class PersonController extends userBaseController {
         Validation validationInfo = validationService.getOne(wrapper);
 
         LambdaQueryWrapper<Person> wrapperPerson = new LambdaQueryWrapper<>();
-        wrapperPerson.eq(Person::getUserName, userLoginDTO.getUserName())
-                .eq(Person::getPassword, userLoginDTO.getPassword())
-                .eq(Person::getEmail, userLoginDTO.getEmail());
+        wrapperPerson.eq(Person::getUserName, userRegisterDTO.getUserName())
+                .eq(Person::getPassword, userRegisterDTO.getPassword())
+                .eq(Person::getEmail, userRegisterDTO.getEmail());
         Person userInfo = personService.getOne(wrapperPerson);
 
         if (validationInfo != null && userInfo == null){

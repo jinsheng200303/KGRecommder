@@ -2,6 +2,7 @@ package cn.hunnu.recommender.user.serviceImpl;
 
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
+import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.Validation;
 import cn.hunnu.recommender.user.mapper.PersonMapper;
@@ -43,9 +44,9 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
     private ValidationService validationService;
 
     @Override
-    public UserLoginDTO register(UserLoginDTO userLoginDTO) {
-        userLoginDTO.getEmail();
-        userLoginDTO.getCode();
+    public UserRegisterDTO register(UserRegisterDTO userRegisterDTO) {
+        userRegisterDTO.getEmail();
+        userRegisterDTO.getCode();
         return null;
     }
 
