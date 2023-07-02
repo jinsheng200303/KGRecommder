@@ -32,6 +32,12 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        // 判断Content-Type是否为multipart/form-data
+        String contentType = request.getHeader("Content-Type");
+        if (contentType != null && contentType.startsWith("multipart/form-data")) {
+            return true;
+        }
+
         String path = request.getRequestURL().toString();
         log.info("接口登录拦截：，path：{}", path);
 

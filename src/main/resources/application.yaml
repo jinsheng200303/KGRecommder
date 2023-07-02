@@ -19,3 +19,7 @@ server:
       force: true
       enabled: true
       charset: UTF-8
+
+files:
+  upload:
+    path: D:/CZJ/大二下实训/files/
