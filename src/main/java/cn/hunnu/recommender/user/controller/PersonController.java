@@ -9,6 +9,7 @@ import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.Validation;
+import cn.hunnu.recommender.user.mapper.PersonMapper;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hunnu.recommender.user.utils.JwtUtils;
 import cn.hunnu.recommender.user.vo.UserVO;
@@ -39,6 +40,9 @@ import java.util.List;
 @Api(value = "用户信息模块",tags = "用户信息模块")
 public class PersonController extends userBaseController {
 
+    @Resource
+    PersonMapper personMapper;
+
     @ApiOperation(value = "用户列表",notes = "用户列表")
     @GetMapping("/list")
     public List<Person> list() {
@@ -61,10 +65,16 @@ public class PersonController extends userBaseController {
         return Result.success();
     }
 
+    //根据用户ID数组查询用户
+    @PostMapping("/UserList")
+    @ApiOperation(value = "查询用户数组",notes = "查询用户数组")
+    public Result UserList(@RequestBody List<Integer> IDS){
+        return Result.success(personMapper.selectBatchIds(IDS));
+    }
+
     @PostMapping("/page")
     @ApiOperation(value = "用户信息查询",notes = "用户信息查询")
     public Result<Page<Person>> queryPersonInfo(@RequestBody PersonQuery personQuery){
-
 
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Person::getUserId);
