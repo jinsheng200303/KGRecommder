@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class PersonQuery extends PageInfo {
+    @ApiModelProperty("用户ID")
+    private String userId;
+
     @ApiModelProperty("用户名")
     private String username;
 

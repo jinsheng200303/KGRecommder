@@ -69,6 +69,10 @@ public class PersonController extends userBaseController {
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Person::getUserId);
 
+        if(!"".equals(personQuery.getUserId())&& personQuery.getUserId()!=null){
+            wrapper.eq(Person::getUserId, personQuery.getUserId());
+        }
+
         if(!"".equals(personQuery.getUsername())&& personQuery.getUsername()!=null){
             wrapper.like(Person::getUserName, personQuery.getUsername());
         }
