@@ -29,6 +29,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/person/save",
                         "/person/getById",
                         "/person/page",
+                        "/person/delBatch",
                         "/announcement/*",
                         "/classes/*",
                         "/knowledge/*",

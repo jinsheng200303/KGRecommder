@@ -28,8 +28,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
 /**
  * <p>
  * 课堂 前端控制器

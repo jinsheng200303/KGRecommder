@@ -84,7 +84,6 @@ public class ClassUserController extends CourseBaseController {
     @ApiOperation(value = "课堂学生查询",notes = "课堂学生查询")
     public List queryClassUser(@RequestParam int classId,@RequestParam int roleId){
         List<ClassVO> list =classUserMapper.classStudentQuery(classId,roleId);
-        System.out.println(classUserMapper.classStudentQuery(classId,roleId));
         return list;
     }
 }

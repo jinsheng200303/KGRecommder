@@ -51,7 +51,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-
         Claims claims = JwtUtils.verifyJwt(token);
         //获取用户ID
         if (claims == null) {

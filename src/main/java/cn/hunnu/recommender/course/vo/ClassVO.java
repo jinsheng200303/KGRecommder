@@ -9,10 +9,10 @@ import lombok.Data;
 public class ClassVO {
     @ApiModelProperty("用户ID")
     @TableField("user_id")
-    private Integer userID;
+    private Integer userId;
 
     @ApiModelProperty("课堂ID")
     @TableField("class_id")
-    private String classID;
+    private String classId;
 
 }
