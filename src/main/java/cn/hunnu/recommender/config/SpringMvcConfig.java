@@ -55,7 +55,6 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/validation/**",
                         "/person/registerCode",
                         "/person/register",
-                        "/class-user/class-student",
 
                         "/doc.html",
                         "/swagger-ui/**",

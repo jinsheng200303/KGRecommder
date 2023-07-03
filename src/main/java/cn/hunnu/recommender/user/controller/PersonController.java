@@ -67,7 +67,7 @@ public class PersonController extends userBaseController {
 
     //根据用户ID数组查询用户
     @PostMapping("/UserList")
-    @ApiOperation(value = "查询用户数组",notes = "查询用户数组")
+    @ApiOperation(value = "用户ID数组查询",notes = "用户ID数组查询")
     public Result UserList(@RequestBody List<Integer> IDS){
         return Result.success(personMapper.selectBatchIds(IDS));
     }
@@ -117,7 +117,8 @@ public class PersonController extends userBaseController {
             map.put("token", token);
             map.put("userName", userInfo.getUserName());
             map.put("phoneNumber", userInfo.getPhoneNumber());
-            map.put("name", userInfo.getName());
+            map.put("avatar", userInfo.getAvatar());
+            map.put("userId",userInfo.getUserId());
             return Result.success(map);
         }else {
             //Result.error
@@ -139,16 +140,16 @@ public class PersonController extends userBaseController {
     @PostMapping("/registerCode")
     @ApiOperation(value = "用户注册获取验证码",notes = "用户注册获取验证码")
     public Result registerCode(@Validated @RequestBody UserRegisterDTO userRegisterDTO){
-        String username = userRegisterDTO.getUserName();
+        String userName = userRegisterDTO.getUserName();
         String email = userRegisterDTO.getEmail();
         String password = userRegisterDTO.getPassword();
         LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Validation::getEmail, email);
         Validation validationInfo = validationService.getOne(wrapper);
-        if(StrUtil.isBlank(email) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
+        if(StrUtil.isBlank(email) || StrUtil.isBlank(password) || StrUtil.isBlank(userName)){
             return Result.error(400);
         }
-        if(!StrUtil.isBlank(email) && !validationInfo.getEmail().equals(email)){
+        if(!StrUtil.isBlank(email) && validationInfo==null){
             personService.sendEmailCode(email);
         }
         return Result.success(null,"验证码发送成功！");
@@ -157,29 +158,27 @@ public class PersonController extends userBaseController {
     @PostMapping("/register")
     @ApiOperation(value = "用户注册",notes = "用户注册")
     public Result register(@Validated @RequestBody UserRegisterDTO userRegisterDTO){
-        String username = userRegisterDTO.getUserName();
-        String email = userRegisterDTO.getEmail();
-        String password = userRegisterDTO.getPassword();
-        String code = userRegisterDTO.getCode();
-        if(StrUtil.isBlank(email) || StrUtil.isBlank(code) || StrUtil.isBlank(password) || StrUtil.isBlank(username)){
+        Person person = new Person();
+        BeanUtils.copyProperties(userRegisterDTO,person);
+        if(StrUtil.isBlank(userRegisterDTO.getEmail())
+                || StrUtil.isBlank(userRegisterDTO.getCode())
+                || StrUtil.isBlank(userRegisterDTO.getPassword())
+                || StrUtil.isBlank(userRegisterDTO.getUserName())){
             return Result.error(400);
         }
         LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Validation::getEmail, email)
-                .eq(Validation::getCode, code);
+        wrapper.eq(Validation::getEmail, userRegisterDTO.getEmail())
+                .eq(Validation::getCode, userRegisterDTO.getCode());
         Validation validationInfo = validationService.getOne(wrapper);
 
         LambdaQueryWrapper<Person> wrapperPerson = new LambdaQueryWrapper<>();
+        //邮箱是唯一匹配凭证，但为了测试更多数据加上用户名和密码匹配来降低匹配成功率
         wrapperPerson.eq(Person::getUserName, userRegisterDTO.getUserName())
                 .eq(Person::getPassword, userRegisterDTO.getPassword())
                 .eq(Person::getEmail, userRegisterDTO.getEmail());
         Person userInfo = personService.getOne(wrapperPerson);
 
         if (validationInfo != null && userInfo == null){
-            Person person = new Person();
-            person.setUserName(username);
-            person.setEmail(email);
-            person.setPassword(password);
             save(person);
             return Result.success(null,"用户注册成功");
         }else {

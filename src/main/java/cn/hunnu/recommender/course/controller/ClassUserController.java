@@ -80,10 +80,17 @@ public class ClassUserController extends CourseBaseController {
         return Result.success(page);
     }
 
-    @PostMapping("/class-student")
+    @PostMapping("/class-student-query")
     @ApiOperation(value = "课堂学生查询",notes = "课堂学生查询")
     public List queryClassUser(@RequestParam int classId,@RequestParam int roleId){
         List<ClassVO> list =classUserMapper.classStudentQuery(classId,roleId);
         return list;
+    }
+
+    @PostMapping("/class-student-del")
+    @ApiOperation(value = "删除指定课堂学生",notes = "删除指定课堂学生")
+    public Result delClassUser(@RequestParam int classId,@RequestBody List<Integer> studentId){
+        classUserMapper.classStudentDelete(classId,studentId);
+        return Result.success();
     }
 }

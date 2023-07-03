@@ -9,4 +9,11 @@
         <result column="user_id" property="userId" />
     </resultMap>
 
+    <!-- public void classStudentDelete(int classId,List<Integer> studentId);  -->
+    <delete id="classStudentDelete">
+        delete from class_user where user_id in
+        <foreach collection="studentId" item="userId"  separator="," open="(" close=")">
+            #{userId}
+        </foreach>
+    </delete>
 </mapper>
