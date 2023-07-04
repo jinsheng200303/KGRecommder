@@ -8,6 +8,7 @@ import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.entity.PersonRole;
 import cn.hunnu.recommender.user.entity.Validation;
 import cn.hunnu.recommender.user.mapper.PersonMapper;
 import cn.hunnu.recommender.user.service.PersonService;
@@ -40,6 +41,8 @@ import java.util.List;
 @Api(value = "用户信息模块",tags = "用户信息模块")
 public class PersonController extends userBaseController {
 
+    @Resource
+    PersonRoleController personRoleController;
     @Resource
     PersonMapper personMapper;
 
@@ -110,13 +113,18 @@ public class PersonController extends userBaseController {
                 .last("limit 1");
         Person userInfo = personService.getOne(wrapper);
 
+        LambdaQueryWrapper<PersonRole> wrapperPR = new LambdaQueryWrapper<>();
+        wrapperPR.eq(PersonRole::getUserId, userInfo.getUserId())
+                .last("limit 1");
+        PersonRole personRole = personRoleService.getOne(wrapperPR);
+
         if (userInfo != null){
             //生成jwt
             String token = JwtUtils.generateToken(userInfo);
             HashMap<String, Object> map = new HashMap<>();
             map.put("token", token);
             map.put("userName", userInfo.getUserName());
-            map.put("phoneNumber", userInfo.getPhoneNumber());
+            map.put("roleId", personRole.getRoleId());
             map.put("avatar", userInfo.getAvatar());
             map.put("userId",userInfo.getUserId());
             return Result.success(map);
@@ -178,12 +186,15 @@ public class PersonController extends userBaseController {
                 .eq(Person::getEmail, userRegisterDTO.getEmail());
         Person userInfo = personService.getOne(wrapperPerson);
 
+        PersonRole personRole = new PersonRole();
+        personRole.setRoleId(1);
+        personRole.setUserId(person.getUserId());
+
         if (validationInfo != null && userInfo == null){
             save(person);
+            personRoleController.save(personRole);
             return Result.success(null,"用户注册成功");
         }else {
-            //Result.error
-            //return Result.error("请检查用户名密码是否正确");
             throw new CustomException("用户注册失败");
         }
     }

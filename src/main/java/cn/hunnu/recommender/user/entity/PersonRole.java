@@ -33,11 +33,11 @@ public class PersonRole extends userBaseEntity {
 
     @ApiModelProperty("角色ID")
     @TableField("role_id")
-    private String roleId;
+    private Integer roleId;
 
     @ApiModelProperty("用户ID")
     @TableField("user_id")
-    private String userId;
+    private Integer userId;
 
 
 }
