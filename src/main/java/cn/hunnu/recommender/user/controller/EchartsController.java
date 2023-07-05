@@ -2,6 +2,8 @@ package cn.hunnu.recommender.user.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.entity.PersonRole;
+import cn.hunnu.recommender.user.service.PersonRoleService;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hutool.core.collection.CollUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,10 @@ import java.util.Map;
 public class EchartsController {
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private PersonRoleService personRoleService;
+
     @GetMapping("/politics")
     public Result getPoliticsNum() {
         List<Person> list = personService.list();
@@ -54,5 +60,24 @@ public class EchartsController {
             }
         }
         return Result.success(CollUtil.newArrayList(male,female,other));
+    }
+
+    @GetMapping("/role")
+    public Result getRoleNum() {
+        List<PersonRole> list = personRoleService.list();
+        int student = 0; // 学生
+        int teacher = 0; // 教师
+        int manager = 0; // 管理员
+        int other = 0; // 其他
+        for (PersonRole personRole : list) {
+            Integer roleId = personRole.getRoleId();
+            switch (roleId){
+                case 1: student += 1; break;
+                case 2: teacher += 1; break;
+                case 3: manager += 1; break;
+                default: other += 1; break;
+            }
+        }
+        return Result.success(CollUtil.newArrayList(student,teacher,manager,other));
     }
 }

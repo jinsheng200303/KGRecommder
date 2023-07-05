@@ -190,12 +190,19 @@ public class PersonController extends userBaseController {
                 .eq(Person::getEmail, userRegisterDTO.getEmail());
         Person userInfo = personService.getOne(wrapperPerson);
 
-        PersonRole personRole = new PersonRole();
-        personRole.setRoleId(1);
-        personRole.setUserId(person.getUserId());
-
         if (validationInfo != null && userInfo == null){
             save(person);
+
+            LambdaQueryWrapper<Person> wrapperPerson2 = new LambdaQueryWrapper<>();
+            //邮箱是唯一匹配凭证，但为了测试更多数据加上用户名和密码匹配来降低匹配成功率
+            wrapperPerson2.eq(Person::getUserName, userRegisterDTO.getUserName())
+                    .eq(Person::getPassword, userRegisterDTO.getPassword())
+                    .eq(Person::getEmail, userRegisterDTO.getEmail());
+            Person userInfo2 = personService.getOne(wrapperPerson);
+
+            PersonRole personRole = new PersonRole();
+            personRole.setRoleId(1);
+            personRole.setUserId(userInfo2.getUserId());
             personRoleController.save(personRole);
             return Result.success(null,"用户注册成功");
         }else {
