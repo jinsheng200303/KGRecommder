@@ -53,7 +53,6 @@ public class Person extends userBaseEntity {
     @TableField("password")
     private String password;
 
-    @Length(min = 10, max = 12, message = "手机号必须为11位")
     @ApiModelProperty("手机号;11位手机号")
     @TableField("phone_number")
     private String phoneNumber;

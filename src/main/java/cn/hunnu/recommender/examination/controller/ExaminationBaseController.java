@@ -35,4 +35,7 @@ public class ExaminationBaseController {
 
     @Autowired
     RecordDiagServiceImpl recordDiagService;
+
+    @Autowired
+    UserGradeServiceImpl userGradeService;
 }

@@ -31,8 +31,8 @@ public class AutoGenerator {
 //        tables.add("resources_knowledge");
 //        tables.add("resources");
 //        tables.add("diag_results");
-        tables.add("record_diag");
-
+//        tables.add("record_diag");
+        tables.add("user_grade");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {

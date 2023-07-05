@@ -55,7 +55,7 @@ public class ClassesController extends CourseBaseController {
 
     @PostMapping("/save")
     @ApiOperation(value = "课堂新增/修改",notes = "课堂新增/修改")
-    public Result save(@Validated Classes classes,@RequestParam int id,
+    public Result save(@Validated Classes classes,@RequestParam int userId,
                        @RequestParam MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         System.out.println(originalFilename);
@@ -80,7 +80,7 @@ public class ClassesController extends CourseBaseController {
         classesService.saveOrUpdate(classes);
         ClassUser classUser = new ClassUser();
         classUser.setClassId(classes.getClassId());
-        classUser.setUserId(id);
+        classUser.setUserId(userId);
         classUserService.saveOrUpdate(classUser);
         return Result.success(classes);
     }
