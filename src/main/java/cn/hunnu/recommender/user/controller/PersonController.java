@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.PersonQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
+import cn.hunnu.recommender.user.dto.UserRegisterCodeDTO;
 import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
@@ -108,7 +109,7 @@ public class PersonController extends userBaseController {
     @ApiOperation(value = "用户登陆",notes = "用户登陆")
     public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO){
         LambdaQueryWrapper<Person> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Person::getUserName, userLoginDTO.getUserName())
+        wrapper.eq(Person::getEmail, userLoginDTO.getEmail())
                 .eq(Person::getPassword, userLoginDTO.getPassword())
                 .last("limit 1");
         Person userInfo = personService.getOne(wrapper);
@@ -147,20 +148,23 @@ public class PersonController extends userBaseController {
 
     @PostMapping("/registerCode")
     @ApiOperation(value = "用户注册获取验证码",notes = "用户注册获取验证码")
-    public Result registerCode(@Validated @RequestBody UserRegisterDTO userRegisterDTO){
-        String userName = userRegisterDTO.getUserName();
-        String email = userRegisterDTO.getEmail();
-        String password = userRegisterDTO.getPassword();
+    public Result registerCode(@Validated @RequestBody UserRegisterCodeDTO userRegisterCodeDTO){
+        boolean flag = true;
+        String email = userRegisterCodeDTO.getEmail();
         LambdaQueryWrapper<Validation> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Validation::getEmail, email);
         Validation validationInfo = validationService.getOne(wrapper);
-        if(StrUtil.isBlank(email) || StrUtil.isBlank(password) || StrUtil.isBlank(userName)){
+        if(StrUtil.isBlank(email)){
             return Result.error(400);
+        }else{
+//        if(!StrUtil.isBlank(email) && validationInfo==null) {
+            flag = personService.sendEmailCode(email);
         }
-        if(!StrUtil.isBlank(email) && validationInfo==null){
-            personService.sendEmailCode(email);
+        if (flag) {
+            return Result.success(null, "验证码发送成功！");
+        } else {
+            return Result.error(200, "重复发送，验证码5分钟内有效！");
         }
-        return Result.success(null,"验证码发送成功！");
     }
 
     @PostMapping("/register")

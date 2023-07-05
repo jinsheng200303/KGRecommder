@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.user.serviceImpl;
 
+import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.dto.UserRegisterDTO;
@@ -51,7 +52,7 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
     }
 
     @Override
-    public void sendEmailCode(String email) {
+    public boolean sendEmailCode(String email) {
         Date now = new Date();
         String code = RandomUtil.randomNumbers(4);
         //先查询验证码是否有效
@@ -60,7 +61,8 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
         validationQueryWrapper.gt("time",now);  //查询数据库没过期的code
         Validation validation = validationService.getOne(validationQueryWrapper);
         if(validation != null){
-            throw new CustomException(-1,"您当前的验证码仍然有效");
+            return false;
+//            throw new CustomException(-1,"您当前的验证码仍然有效");
         }
 
         SimpleMailMessage message = new SimpleMailMessage();
@@ -73,5 +75,6 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
 
         //发送成功之后把验证码存入数据库
         validationService.saveCode(email, code, DateUtil.offsetMinute(now,5));
+        return true;
     }
 }

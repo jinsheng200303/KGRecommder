@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.user.service;
 
+import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Person;
@@ -16,5 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface PersonService extends IService<Person> {
     UserRegisterDTO register(UserRegisterDTO userRegisterDTO);
 
-    void sendEmailCode(String email);
+    boolean sendEmailCode(String email);
 }
