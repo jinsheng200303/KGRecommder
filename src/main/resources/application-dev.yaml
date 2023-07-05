@@ -48,14 +48,21 @@ logging:
             CustomConversions: ERROR
 
 ---
-#neo4j数据源配置
+#官方驱动neo4j数据源配置
 
 spring:
   neo4j:
-    url: bolt://app.zhangxuxiang.cn:17687
+    url: neo4j://localhost:7687
     user: neo4j
-    password: 565804
-
+    password: js20030320
+---
+#集成驱动neo4j数据源配置
+spring:
+  data:
+    neo4j:
+      uri:neo4j://localhost:7687
+      username:neo4j
+      password:js20030320
 
 #服务端口
 #应用上下文

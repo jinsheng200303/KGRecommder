@@ -2,12 +2,14 @@ package cn.hunnu.recommender.graph.rest;
 
 import cn.hunnu.recommender.graph.entity.BaseEntity;
 import cn.hunnu.recommender.graph.service.IBaseService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
+@Api(value = "知识图谱模块",tags = "知识图谱模块")
 @RestController
 @RequestMapping(value = "/recommender/v1/graph/base", produces = "application/json")
 public class BaseController {
