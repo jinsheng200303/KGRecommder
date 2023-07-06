@@ -45,6 +45,10 @@ public class QuestionsController extends ExaminationBaseController {
             wrapper.like(Questions::getQuestionStatement, questionsQuery.getQuestionStatement());
         }
 
+        if (!"".equals(questionsQuery.getBankId()) && questionsQuery.getBankId() != null) {
+            wrapper.like(Questions::getBankId, questionsQuery.getBankId());
+        }
+
         Page<Questions> page = questionsService.page(
                 new Page<>(
                         questionsQuery.getPageNum(),

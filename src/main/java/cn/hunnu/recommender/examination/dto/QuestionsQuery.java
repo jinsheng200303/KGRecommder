@@ -7,4 +7,7 @@ import lombok.Data;
 public class QuestionsQuery extends PageInfo{
     @ApiModelProperty("试题名称")
     private String questionStatement;
+
+    @ApiModelProperty("试题库名称")
+    private String bankId;
 }
