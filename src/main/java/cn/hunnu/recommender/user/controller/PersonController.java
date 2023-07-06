@@ -3,10 +3,7 @@ package cn.hunnu.recommender.user.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
-import cn.hunnu.recommender.user.dto.PersonQuery;
-import cn.hunnu.recommender.user.dto.UserLoginDTO;
-import cn.hunnu.recommender.user.dto.UserRegisterCodeDTO;
-import cn.hunnu.recommender.user.dto.UserRegisterDTO;
+import cn.hunnu.recommender.user.dto.*;
 import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.PersonRole;
@@ -14,6 +11,7 @@ import cn.hunnu.recommender.user.entity.Validation;
 import cn.hunnu.recommender.user.mapper.PersonMapper;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hunnu.recommender.user.utils.JwtUtils;
+import cn.hunnu.recommender.user.vo.UserRoleVO;
 import cn.hunnu.recommender.user.vo.UserVO;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -208,6 +206,15 @@ public class PersonController extends userBaseController {
         }else {
             throw new CustomException("用户注册失败");
         }
+    }
+
+    @PostMapping("/pageUserName")
+    @ApiOperation(value = "用户名角色关联信息查询",notes = "用户名角色关联信息查询")
+    public Result queryUserNameRoleInfo(@RequestBody UserRoleVO userRoleVO){
+
+        Page<UserRoleVO> page = personService.getUserNameRole(new Page<>(userRoleVO.getPageNum(),userRoleVO.getPageSize())
+                , userRoleVO.getUserName(),userRoleVO.getRoleName());
+        return Result.success(page);
     }
 
 }

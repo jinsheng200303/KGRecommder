@@ -2,16 +2,20 @@ package cn.hunnu.recommender.user.serviceImpl;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.exception.CustomException;
+import cn.hunnu.recommender.user.dto.PersonRoleQuery;
 import cn.hunnu.recommender.user.dto.UserLoginDTO;
 import cn.hunnu.recommender.user.dto.UserRegisterDTO;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.Validation;
 import cn.hunnu.recommender.user.mapper.PersonMapper;
+import cn.hunnu.recommender.user.mapper.PersonRoleMapper;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hunnu.recommender.user.service.ValidationService;
+import cn.hunnu.recommender.user.vo.UserRoleVO;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.sql.rowset.serial.SerialException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -34,6 +39,9 @@ import java.util.Date;
  */
 @Service
 public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> implements PersonService {
+
+    @Autowired
+    private PersonMapper personMapper;
 
     @Autowired
     JavaMailSender javaMailSender;
@@ -77,4 +85,12 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
         validationService.saveCode(email, code, DateUtil.offsetMinute(now,5));
         return true;
     }
+
+    @Override
+    public Page<UserRoleVO> getUserNameRole(Page<UserRoleVO> page,String userName,String roleName) {
+        return personMapper.getUserNameRole(page,userName,roleName);
+    }
+
+
+
 }

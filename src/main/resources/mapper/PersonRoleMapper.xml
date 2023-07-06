@@ -9,4 +9,27 @@
         <result column="user_id" property="userId" />
     </resultMap>
 
+    <insert id="addUserRole">
+        insert into person_role (user_id,role_id)
+        values (#{userId},#{roleId})
+    </insert>
+
+    <update id="reviseUserRole">
+        update person_role
+        set role_id = #{roleId}
+        where person_role_id = #{personRoleId}
+    </update>
+
+    <select id="findUserRole" resultType="cn.hunnu.recommender.user.entity.PersonRole">
+        select person_role.*
+        from person_role
+        where user_id = #{userId} and role_id = #{roleId}
+    </select>
+
+    <select id="findUserId" resultType="java.lang.Integer">
+        select user_id
+        from person
+        where user_id = #{userId}
+    </select>
+
 </mapper>

@@ -5,6 +5,8 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.QuestionBankQuery;
 import cn.hunnu.recommender.examination.entity.Papers;
 import cn.hunnu.recommender.examination.entity.QuestionBank;
+import cn.hunnu.recommender.examination.service.QuestionBankService;
+import cn.hunnu.recommender.user.vo.UserRoleVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -73,5 +75,14 @@ public class QuestionBankController extends ExaminationBaseController {
         questionBankService.removeByIds(ids);
         return Result.success();
     }
+
+//    @PostMapping("/pageQuestionBank")
+//    @ApiOperation(value = "查询题库中所有题目",notes = "查询题库中所有题目")
+//    public Result queryUserNameRoleInfo(@RequestBody UserRoleVO userRoleVO){
+//
+//        Page<UserRoleVO> page = questionBankServicean.getUserNameRole(new Page<>(userRoleVO.getPageNum(),userRoleVO.getPageSize()),userRoleVO.getUserName(),userRoleVO.getRoleName());
+//
+//        return Result.success(page);
+//    }
 
 }

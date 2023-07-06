@@ -5,13 +5,17 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.PersonRoleQuery;
 import cn.hunnu.recommender.user.entity.Person;
 import cn.hunnu.recommender.user.entity.PersonRole;
+import cn.hunnu.recommender.user.mapper.PersonRoleMapper;
+import cn.hunnu.recommender.user.vo.UserRoleVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,6 +30,7 @@ import java.util.List;
 @RequestMapping("/person-role")
 @Api(value = "用户角色关联模块",tags = "用户角色关联模块")
 public class PersonRoleController extends userBaseController {
+
 
     @ApiOperation(value = "用户角色关联列表",notes = "用户角色关联列表")
     @GetMapping("/list")
@@ -51,18 +56,17 @@ public class PersonRoleController extends userBaseController {
 
     @PostMapping("/page")
     @ApiOperation(value = "用户角色关联信息查询",notes = "用户角色关联信息查询")
-    public Result<Page<PersonRole>> queryPersonInfo(@RequestBody PersonRoleQuery personRoleQuery){
-
+    public Result<Page<PersonRole>> queryPersonRoleInfo(@RequestBody PersonRoleQuery personRoleQuery){
 
         LambdaQueryWrapper<PersonRole> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(PersonRole::getPersonRoleId);
 
-        if(!"".equals(personRoleQuery.getUserID())&& personRoleQuery.getUserID()!=null){
-            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserID());
+        if(!"".equals(personRoleQuery.getUserId())&& personRoleQuery.getUserId()!=null){
+            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserId());
         }
 
-        if(!"".equals(personRoleQuery.getRoleID())&& personRoleQuery.getRoleID()!=null){
-            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleID());
+        if(!"".equals(personRoleQuery.getRoleId())&& personRoleQuery.getRoleId()!=null){
+            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleId());
         }
 
         Page<PersonRole> page = personRoleService.page(
@@ -75,6 +79,30 @@ public class PersonRoleController extends userBaseController {
         return Result.success(page);
     }
 
+    @PostMapping("/reviseUserRole")
+    @ApiOperation(value = "根据用户ID修改用户角色",notes = "根据用户ID修改用户角色")
+    public Result reviseUserRole(@Validated @RequestBody PersonRole personRole){
+        personRoleService.reviseUserRole(personRole.getPersonRoleId(),personRole.getRoleId());
+        return Result.success();
+    }
 
-
+    //根据用户名和roleId来新增用户角色
+    @PostMapping("/addUserRole")
+    @ApiOperation(value = "新增用户角色",notes = "新增用户角色")
+    public Result addUserRole(@Validated @RequestBody PersonRole personRole){
+        PersonRole personRole1 = new PersonRole();
+        personRole1 = personRoleService.findUserRole(personRole.getUserId(),personRole.getRoleId());
+        if (personRole1!=null){
+            return Result.error("用户角色已经存在！");
+        }else {
+            int userId = -1;
+            userId = personRoleService.findUserId(personRole.getUserId());
+            if(userId==-1){
+                return Result.error("用户不存在！");
+            }else {
+                personRoleService.addUserRole(personRole.getUserId(),personRole.getRoleId());
+                return Result.success();
+            }
+        }
+    }
 }

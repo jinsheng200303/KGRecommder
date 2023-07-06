@@ -19,5 +19,14 @@
         <result column="avatar" property="avatar" />
         <result column="synopsis" property="synopsis" />
     </resultMap>
+    <select id="getUserNameRole" resultType="cn.hunnu.recommender.user.vo.UserRoleVO">
+        select person_role_id personRoleId,person.user_id userId,user_name userName,role_name roleName
+        from person,person_role,role
+        where person.user_id = person_role.user_id and person_role.role_id = role.role_id
+          and person.user_name like concat('%',#{userName},'%')
+          and role.role_name like concat('%',#{roleName},'%')
+        order by person_role_id desc
+    </select>
+
 
 </mapper>
