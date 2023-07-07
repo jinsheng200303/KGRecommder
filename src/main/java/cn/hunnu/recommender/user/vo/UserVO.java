@@ -21,6 +21,9 @@ public class UserVO {
     @ApiModelProperty("真实姓名")
     private String name;
 
+    @ApiModelProperty("邮箱")
+    private String email;
+
     @ApiModelProperty("性别;性别说明,M为男，F为女，U为未知")
     private String gender;
 
