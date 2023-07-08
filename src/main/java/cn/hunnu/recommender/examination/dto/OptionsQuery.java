@@ -7,4 +7,7 @@ import lombok.Data;
 public class OptionsQuery extends PageInfo{
     @ApiModelProperty("选项内容")
     private String optionsValue;
+
+    @ApiModelProperty("试题ID")
+    private String questionId;
 }

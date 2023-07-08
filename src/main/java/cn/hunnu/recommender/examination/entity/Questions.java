@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.examination.entity;
 
+import cn.hunnu.recommender.examination.vo.OptionVO;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,6 +9,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * <p>
@@ -57,5 +60,6 @@ public class Questions extends ExaminationBaseEntity {
     @TableField("score")
     private String score;
 
+    List<Options> options;
 
 }

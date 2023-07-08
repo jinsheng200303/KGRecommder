@@ -12,5 +12,5 @@ public class ExaminationBaseEntity implements Serializable {
 
     @ApiModelProperty("状态 已封禁/已删除/正常")
     @TableField("status")
-    private StatusType status;
+    private Integer status;
 }

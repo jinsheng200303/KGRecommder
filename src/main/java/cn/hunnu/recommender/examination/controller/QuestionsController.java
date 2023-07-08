@@ -5,6 +5,9 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.QuestionsQuery;
 import cn.hunnu.recommender.examination.entity.QuestionBank;
 import cn.hunnu.recommender.examination.entity.Questions;
+import cn.hunnu.recommender.examination.service.QuestionsService;
+import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
+import cn.hunnu.recommender.user.vo.UserRoleVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -76,5 +79,13 @@ public class QuestionsController extends ExaminationBaseController {
     public Result delBatch(@RequestBody List<Integer> ids) {
         questionsService.removeByIds(ids);
         return Result.success();
+    }
+
+    @PostMapping("/questionAndOptions")
+    @ApiOperation(value = "试题数组查询",notes = "试题数组查询")
+    public Result queryQuestionOptionsInfo(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam Integer bankId){
+
+        Page<Questions> page = questionsService.queryQuestion(new Page<>(pageNum,pageSize), bankId);
+        return Result.success(page);
     }
 }

@@ -13,6 +13,17 @@
         <result column="answer" property="answer" />
         <result column="difficulty_level" property="difficultyLevel" />
         <result column="score" property="score" />
+            <collection property="options" ofType="cn.hunnu.recommender.examination.entity.Options">
+                <id column="option_id" property="optionId"/>
+                <result column="option_label" property="optionLabel"/>
+                <result column="option_value" property="optionValue"/>
+                <result column="question_id" property="questionId"/>
+                <result column="status" property="status"/>
+            </collection>
     </resultMap>
+
+    <select id="queryQuestion" resultMap="BaseResultMap">
+        select * from questions Q left join options as O on Q.question_id = O.question_id where bank_id = #{bankId}
+    </select>
 
 </mapper>
