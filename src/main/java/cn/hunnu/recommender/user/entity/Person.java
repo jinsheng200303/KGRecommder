@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -63,6 +65,7 @@ public class Person extends userBaseEntity {
 
     @ApiModelProperty("出生日期")
     @TableField("birth")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private LocalDateTime birth;
 
     @ApiModelProperty("政治面貌，10为共青团员，20为中共党员，30为民主党派，40为群众")
