@@ -60,6 +60,11 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/user-grade/**",
                         "/person-role/**",
                         "/person/**",
+                        "/class-category/**",
+                        "/category/**",
+                        "/role/**",
+                        "/role-permission/**",
+
 
                         "/doc.html",
                         "/swagger-ui/**",

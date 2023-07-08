@@ -23,6 +23,5 @@ public interface ClassUserMapper extends BaseMapper<ClassUser> {
     @Select("select class_user.user_id,class_id from class_user,person_role where class_user.user_id=person_role.user_id and class_id=#{classId} and role_id=#{roleId}")
     public List<ClassVO> classStudentQuery(int classId,int roleId);
 
-//    @Delete("<script>delete from class_user where class_id=#{classId} and user_id in (#{studentId})</script>")
     public void classStudentDelete(int classId,List<Integer> studentId);
 }

@@ -23,7 +23,7 @@ public class CodeGenerator {
         List<String> tables = new ArrayList<>();
 
 //        tables.add("teaching _material");
-        tables.add("homework");
+        tables.add("category");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {

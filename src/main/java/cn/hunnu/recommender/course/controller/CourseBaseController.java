@@ -38,4 +38,10 @@ public class CourseBaseController {
 
     @Autowired
     HomeworkServiceImpl homeworkService;
+
+    @Autowired
+    ClassCategoryServiceImpl classCategoryService;
+
+    @Autowired
+    CategoryServiceImpl categoryService;
 }
