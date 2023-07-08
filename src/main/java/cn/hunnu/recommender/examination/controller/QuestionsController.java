@@ -85,7 +85,7 @@ public class QuestionsController extends ExaminationBaseController {
     @ApiOperation(value = "试题数组查询",notes = "试题数组查询")
     public Result queryQuestionOptionsInfo(@RequestBody QuestionsQuery questionsQuery){
 
-        Page<Questions> page = questionsService.queryQuestion(new Page<>(questionsQuery.getPageNum(),questionsQuery.getPageSize()),questionsQuery.getBankId(), questionsQuery.getQuestionStatement());
+        Page<Questions> page = questionsService.queryQuestion(new Page<Questions>(questionsQuery.getPageNum(),questionsQuery.getPageSize()),questionsQuery.getBankId(), questionsQuery.getQuestionStatement());
         return Result.success(page);
     }
 }

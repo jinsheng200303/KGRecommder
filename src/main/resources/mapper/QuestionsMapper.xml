@@ -13,12 +13,12 @@
         <result column="answer" property="answer" />
         <result column="difficulty_level" property="difficultyLevel" />
         <result column="score" property="score" />
-            <collection property="options" ofType="cn.hunnu.recommender.examination.entity.Options">
-                <id column="option_id" property="optionId"/>
-                <result column="option_label" property="optionLabel"/>
-                <result column="option_value" property="optionValue"/>
-                <result column="question_id" property="questionId"/>
-                <result column="status" property="status"/>
+            <collection property="options" ofType="cn.hunnu.recommender.examination.entity.Options" column="option_id"
+                        select="cn.hunnu.recommender.examination.mapper.OptionsMapper.selectByQuestionId">
+<!--                <id column="option_id" property="optionId"/>-->
+<!--                <result column="option_label" property="optionLabel"/>-->
+<!--                <result column="option_value" property="optionValue"/>-->
+<!--                <result column="status" property="status"/>-->
             </collection>
     </resultMap>
 

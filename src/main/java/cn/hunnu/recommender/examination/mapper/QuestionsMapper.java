@@ -20,6 +20,6 @@ import java.util.List;
 @Mapper
 public interface QuestionsMapper extends BaseMapper<Questions> {
 
-    Page<Questions> queryQuestion(Page<Object> objectPage,@Param("bankId") Integer bankId,@Param("questionStatement") String questionStatement);
+    Page<Questions> queryQuestion(Page<Questions> objectPage,@Param("bankId") Integer bankId,@Param("questionStatement") String questionStatement);
 
 }
