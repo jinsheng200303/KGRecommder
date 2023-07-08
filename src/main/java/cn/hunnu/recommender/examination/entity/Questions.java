@@ -60,6 +60,7 @@ public class Questions extends ExaminationBaseEntity {
     @TableField("score")
     private String score;
 
+    @TableField(exist = false)
     List<Options> options;
 
 }

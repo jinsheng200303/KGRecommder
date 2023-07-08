@@ -28,8 +28,8 @@ public class QuestionsServiceImpl extends ServiceImpl<QuestionsMapper, Questions
     QuestionsMapper questionsMapper;
 
     @Override
-    public Page<Questions> queryQuestion(Page<Object> objectPage, Integer bankId) {
-        return questionsMapper.queryQuestion(objectPage,bankId);
+    public Page<Questions> queryQuestion(Page<Object> objectPage, Integer bankId, String questionStatement) {
+        return questionsMapper.queryQuestion(objectPage,bankId,questionStatement);
     }
 
 }

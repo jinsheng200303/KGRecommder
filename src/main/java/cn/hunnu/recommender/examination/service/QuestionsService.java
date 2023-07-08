@@ -17,6 +17,6 @@ import java.util.List;
  */
 public interface QuestionsService extends IService<Questions> {
 
-    Page<Questions> queryQuestion(Page<Object> objectPage, Integer bankId);
+    Page<Questions> queryQuestion(Page<Object> objectPage, Integer bankId, String questionStatement);
 
 }

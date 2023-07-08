@@ -23,7 +23,8 @@
     </resultMap>
 
     <select id="queryQuestion" resultMap="BaseResultMap">
-        select * from questions Q left join options as O on Q.question_id = O.question_id where bank_id = #{bankId}
+        select * from questions Q left join options as O on Q.question_id = O.question_id
+                 where bank_id = #{bankId} and question_statement like concat('%',#{questionStatement},'%')
     </select>
 
 </mapper>

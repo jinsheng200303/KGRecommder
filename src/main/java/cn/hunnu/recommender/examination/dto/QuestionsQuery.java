@@ -9,5 +9,5 @@ public class QuestionsQuery extends PageInfo{
     private String questionStatement;
 
     @ApiModelProperty("试题库名称")
-    private String bankId;
+    private Integer bankId;
 }
