@@ -43,4 +43,9 @@ public class PersonRoleServiceImpl extends ServiceImpl<PersonRoleMapper, PersonR
     public int findUserId(Integer userId) {
         return personRoleMapper.findUserId(userId);
     }
+
+    @Override
+    public int findUsersRole(Integer userId) {
+        return personRoleMapper.findUsersRole(userId);
+    }
 }

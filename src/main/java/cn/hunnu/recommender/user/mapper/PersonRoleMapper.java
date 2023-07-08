@@ -5,6 +5,7 @@ import cn.hunnu.recommender.user.entity.PersonRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface PersonRoleMapper extends BaseMapper<PersonRole> {
 
     int findUserId(@Param("userId") Integer userId);
 
+    @Select("select role_id from person_role where user_id = #{userId}")
+    Integer findUsersRole(Integer userId);
 }

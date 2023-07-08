@@ -3,11 +3,14 @@ package cn.hunnu.recommender.course.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassesQuery;
 import cn.hunnu.recommender.course.entity.ClassAnnouncement;
+import cn.hunnu.recommender.course.entity.ClassCategory;
 import cn.hunnu.recommender.course.entity.ClassUser;
 import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.mapper.ClassesMapper;
 import cn.hunnu.recommender.course.service.ClassesService;
 import cn.hunnu.recommender.user.entity.Person;
+import cn.hunnu.recommender.user.service.PersonRoleService;
+import cn.hunnu.recommender.user.serviceImpl.PersonRoleServiceImpl;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
@@ -15,6 +18,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -55,8 +59,12 @@ public class ClassesController extends CourseBaseController {
 
     @PostMapping("/save")
     @ApiOperation(value = "课堂新增/修改",notes = "课堂新增/修改")
-    public Result save(@Validated Classes classes,@RequestParam int userId,
+    public Result save(@Validated Classes classes,@RequestParam int userId,@RequestParam Integer classCategoryId,
                        @RequestParam MultipartFile file) throws IOException {
+        int roleId = classesMapper.findUsersRole(userId);
+        if (roleId == 1) {
+            return Result.error("用户权限不足！");
+        }
         String originalFilename = file.getOriginalFilename();
         System.out.println(originalFilename);
         String type = FileUtil.extName(originalFilename);
@@ -78,10 +86,16 @@ public class ClassesController extends CourseBaseController {
         classes.setClassPicture(url);
 
         classesService.saveOrUpdate(classes);
+
         ClassUser classUser = new ClassUser();
         classUser.setClassId(classes.getClassId());
         classUser.setUserId(userId);
         classUserService.saveOrUpdate(classUser);
+
+        ClassCategory classCategory = new ClassCategory();
+        classCategory.setClassId(classes.getClassId());
+        classCategory.setCategoryId(classCategoryId);
+        classCategoryService.saveOrUpdate(classCategory);
         return Result.success(classes);
     }
 

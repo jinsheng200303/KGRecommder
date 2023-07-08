@@ -31,7 +31,7 @@ import java.util.List;
 @Api(value = "用户角色关联模块",tags = "用户角色关联模块")
 public class PersonRoleController extends userBaseController {
 
-
+    PersonRoleMapper personRoleMapper;
     @ApiOperation(value = "用户角色关联列表",notes = "用户角色关联列表")
     @GetMapping("/list")
     public List<PersonRole> list() {
@@ -61,12 +61,12 @@ public class PersonRoleController extends userBaseController {
         LambdaQueryWrapper<PersonRole> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(PersonRole::getPersonRoleId);
 
-        if(!"".equals(personRoleQuery.getUserId())&& personRoleQuery.getUserId()!=null){
-            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserId());
+        if(!"".equals(personRoleQuery.getUserID())&& personRoleQuery.getUserID()!=null){
+            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserID());
         }
 
-        if(!"".equals(personRoleQuery.getRoleId())&& personRoleQuery.getRoleId()!=null){
-            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleId());
+        if(!"".equals(personRoleQuery.getRoleID())&& personRoleQuery.getRoleID()!=null){
+            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleID());
         }
 
         Page<PersonRole> page = personRoleService.page(
@@ -103,6 +103,29 @@ public class PersonRoleController extends userBaseController {
                 personRoleService.addUserRole(personRole.getUserId(),personRole.getRoleId());
                 return Result.success();
             }
+        }
+    }
+
+    @PostMapping("/judgementUserRole")
+    @ApiOperation(value = "判断用户角色是否存在",notes = "判断用户角色是否存在")
+    public boolean judgementUserRole(@Validated @RequestBody PersonRole personRole){
+        PersonRole personRole1 = new PersonRole();
+        personRole1 = personRoleService.findUserRole(personRole.getUserId(),personRole.getRoleId());
+        if (personRole1==null){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    @PostMapping("/findUserRole")
+    @ApiOperation(value = "查找用户的角色",notes = "查找用户的角色")
+    public int findUsersRole(@RequestParam Integer userId){
+        Integer roleId = personRoleService.findUsersRole(userId);
+        if (roleId==null){
+            return 0;
+        }else {
+            return roleId.intValue();
         }
     }
 }

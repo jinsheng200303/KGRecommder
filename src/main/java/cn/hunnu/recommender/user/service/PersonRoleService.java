@@ -24,4 +24,5 @@ public interface PersonRoleService extends IService<PersonRole> {
 
     int findUserId(Integer userId);
 
+    int findUsersRole(Integer userId);
 }
