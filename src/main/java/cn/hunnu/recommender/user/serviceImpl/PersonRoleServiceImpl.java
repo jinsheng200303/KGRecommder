@@ -29,6 +29,7 @@ public class PersonRoleServiceImpl extends ServiceImpl<PersonRoleMapper, PersonR
         personRoleMapper.reviseUserRole(personRoleId,roleId);
     }
 
+    //查找用户对应的角色是否存在
     @Override
     public PersonRole findUserRole(Integer userId, Integer roleId) {
         return personRoleMapper.findUserRole(userId,roleId);

@@ -43,8 +43,8 @@ public class CategoryController extends CourseBaseController {
         LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Category::getCategoryId);
 
-        if (!"".equals(categoryQuery.getCategory()) && categoryQuery.getCategory() != null) {
-            wrapper.like(Category::getCategory, categoryQuery.getCategory());
+        if (!"".equals(categoryQuery.getCategoryName()) && categoryQuery.getCategoryName() != null) {
+            wrapper.like(Category::getCategoryName, categoryQuery.getCategoryName());
         }
 
         Page<Category> page = categoryService.page(

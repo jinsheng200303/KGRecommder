@@ -13,10 +13,13 @@ public class ClassVO {
     private Integer userId;
 
     @ApiModelProperty("课堂ID")
-    private String classId;
+    private Integer classId;
 
-    @ApiModelProperty("课堂类别")
-    private String classCategory;
+    @ApiModelProperty("课堂名")
+    private String className;
+
+    @ApiModelProperty("课堂类别ID")
+    private String classCategoryId;
 
     @ApiModelProperty("课堂图片")
     private MultipartFile file;

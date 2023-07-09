@@ -11,4 +11,18 @@
         <result column="class_picture" property="classPicture" />
     </resultMap>
 
+    <select id="classInfoQuery" resultType="cn.hunnu.recommender.course.vo.ClassInfoVO">
+        select cl.*,p.user_name,ca.category_name
+        from classes cl,category ca,person p
+        where p.user_id = cl.create_user_id and ca.category_id = cl.class_category_id
+            and user_name like concat('%',#{userName},'%') and category_name like concat('%',#{categoryName},'%')
+            and class_name like concat('%',#{className},'%')
+        order by cl.class_id desc
+    </select>
+
+    <insert id="addClass">
+        insert into classes(class_name,create_user_id,class_category_id)
+        values (#{className},#{userId},#{classCategoryId});
+    </insert>
+
 </mapper>

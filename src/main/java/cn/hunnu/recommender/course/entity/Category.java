@@ -32,8 +32,8 @@ public class Category {
     private Integer categoryId;
 
     @ApiModelProperty("课堂类别")
-    @TableField("category")
-    private String category;
+    @TableField("category_name")
+    private String categoryName;
 
 
 }

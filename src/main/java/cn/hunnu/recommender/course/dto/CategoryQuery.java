@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class CategoryQuery extends PageInfo {
     @ApiModelProperty("课堂类别名")
-    private String Category;
+    private String CategoryName;
 }

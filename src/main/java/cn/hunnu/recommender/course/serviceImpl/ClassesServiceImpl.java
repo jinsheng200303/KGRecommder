@@ -3,7 +3,10 @@ package cn.hunnu.recommender.course.serviceImpl;
 import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.mapper.ClassesMapper;
 import cn.hunnu.recommender.course.service.ClassesService;
+import cn.hunnu.recommender.course.vo.ClassInfoVO;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +20,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> implements ClassesService {
 
+    @Autowired
+    ClassesMapper classesMapper;
+    @Override
+    public Page<ClassInfoVO> classInfoQuery(Page<ClassInfoVO> page, String className, String userName, String categoryName) {
+        return classesMapper.classInfoQuery(page,className,userName,categoryName);
+    }
+
+    @Override
+    public Integer findUserRole(Integer userId) {
+        return classesMapper.findUsersRole(userId);
+    }
+
+    @Override
+    public void addClass(Integer userId, String className, String classCategoryId) {
+        classesMapper.addClass(userId,className,classCategoryId);
+    }
 }

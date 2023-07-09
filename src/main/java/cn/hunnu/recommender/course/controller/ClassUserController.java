@@ -80,8 +80,8 @@ public class ClassUserController extends CourseBaseController {
         return Result.success(page);
     }
 
-    @PostMapping("/class-student-query")
-    @ApiOperation(value = "课堂学生查询",notes = "课堂学生查询")
+    @PostMapping("/class-users-query")
+    @ApiOperation(value = "课堂学生/教师查询",notes = "课堂学生/教师查询")
     public List queryClassUser(@RequestParam int classId,@RequestParam int roleId){
         List<ClassVO> list =classUserMapper.classStudentQuery(classId,roleId);
         return list;
