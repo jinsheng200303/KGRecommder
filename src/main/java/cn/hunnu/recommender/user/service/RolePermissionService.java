@@ -1,7 +1,11 @@
 package cn.hunnu.recommender.user.service;
 
+import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.RolePermission;
+import cn.hunnu.recommender.user.vo.RolePermissionVO;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RolePermissionService extends IService<RolePermission> {
 
+    List<Permission> findRolePermissions(Integer roleId,String permissionName);
 }

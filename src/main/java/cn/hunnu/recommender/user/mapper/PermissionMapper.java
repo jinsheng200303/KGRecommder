@@ -1,8 +1,12 @@
 package cn.hunnu.recommender.user.mapper;
 
+import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.user.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>

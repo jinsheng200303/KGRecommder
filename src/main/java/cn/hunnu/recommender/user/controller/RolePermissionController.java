@@ -4,9 +4,12 @@ package cn.hunnu.recommender.user.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.user.dto.PersonRoleQuery;
 import cn.hunnu.recommender.user.dto.RolePermissionQuery;
+import cn.hunnu.recommender.user.entity.Permission;
 import cn.hunnu.recommender.user.entity.PersonRole;
 import cn.hunnu.recommender.user.entity.Role;
 import cn.hunnu.recommender.user.entity.RolePermission;
+import cn.hunnu.recommender.user.mapper.RolePermissionMapper;
+import cn.hunnu.recommender.user.vo.RolePermissionVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -74,5 +77,12 @@ public class RolePermissionController extends userBaseController {
                 wrapper
         );
         return Result.success(page);
+    }
+
+    @ApiOperation(value = "查询单个角色权限信息",notes = "查询单个角色权限信息")
+    @PostMapping("/rolePermissions")
+    public Result findRolePermissions(@RequestBody RolePermissionVO rolePermissionVO) {
+        List<Permission> permissions = rolePermissionService.findRolePermissions(rolePermissionVO.getRoleId(),rolePermissionVO.getPermissionName());
+        return Result.success(permissions);
     }
 }

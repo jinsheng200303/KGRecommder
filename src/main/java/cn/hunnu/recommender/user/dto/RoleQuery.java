@@ -8,4 +8,7 @@ import lombok.Data;
 public class RoleQuery extends PageInfo {
     @ApiModelProperty("角色名")
     private String roleName;
+
+    @ApiModelProperty("唯一标识")
+    private String flag;
 }

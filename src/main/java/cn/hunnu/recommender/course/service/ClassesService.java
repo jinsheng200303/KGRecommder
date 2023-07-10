@@ -19,5 +19,5 @@ public interface ClassesService extends IService<Classes> {
 
     Integer findUserRole(Integer userId);
 
-    void addClass(Integer userId, String className, String classCategoryId);
+    void addClass(Integer userId, String className, String categoryId);
 }

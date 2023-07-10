@@ -55,7 +55,7 @@ public class ClassesController extends CourseBaseController {
 
     @PostMapping("/save")
     @ApiOperation(value = "带图片的课堂新增/修改",notes = "带图片的课堂新增/修改")
-    public Result save(@Validated Classes classes,@RequestParam Integer classCategoryId,
+    public Result save(@Validated Classes classes,@RequestParam Integer categoryId,
                        @RequestParam MultipartFile file) throws IOException {
         int roleId = classesMapper.findUsersRole(classes.getCreateUserId());
         if (roleId == 1 || roleId == 4) {

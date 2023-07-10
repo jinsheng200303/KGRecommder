@@ -8,5 +8,11 @@
         <result column="role_id" property="roleId" />
         <result column="permission_id" property="permissionId" />
     </resultMap>
+    <select id="findRolePermissions" resultType="cn.hunnu.recommender.user.entity.Permission">
+        select permission_name,p.permission_id
+        from permission p,role_permission pr
+        where p.permission_id = pr.permission_id and role_id=#{roleId} and permission_name like concat('%',#{permissionName},'%')
+    </select>
+
 
 </mapper>

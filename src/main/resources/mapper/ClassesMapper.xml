@@ -21,7 +21,7 @@
     </select>
 
     <insert id="addClass">
-        insert into classes(class_name,create_user_id,class_category_id)
+        insert into classes(class_name,create_user_id,category_id)
         values (#{className},#{userId},#{classCategoryId});
     </insert>
 

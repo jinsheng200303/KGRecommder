@@ -44,8 +44,8 @@ public class Classes extends CourseBaseEntity {
     private Integer createUserId;
 
     @ApiModelProperty("课堂类别ID")
-    @TableField("class_category_id")
-    private String classCategoryId;
+    @TableField("category_id")
+    private Integer categoryId;
 
     @ApiModelProperty("课堂描述")
     @TableField("description")

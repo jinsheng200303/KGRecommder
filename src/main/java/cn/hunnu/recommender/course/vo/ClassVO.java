@@ -19,7 +19,7 @@ public class ClassVO {
     private String className;
 
     @ApiModelProperty("课堂类别ID")
-    private String classCategoryId;
+    private Integer categoryId;
 
     @ApiModelProperty("课堂图片")
     private MultipartFile file;

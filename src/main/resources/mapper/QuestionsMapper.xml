@@ -15,10 +15,6 @@
         <result column="score" property="score" />
             <collection property="options" column="question_id"
                         select="cn.hunnu.recommender.examination.mapper.OptionsMapper.selectByQuestionId">
-<!--                <id column="option_id" property="optionId"/>-->
-<!--                <result column="option_label" property="optionLabel"/>-->
-<!--                <result column="option_value" property="optionValue"/>-->
-<!--                <result column="status" property="status"/>-->
             </collection>
     </resultMap>
 

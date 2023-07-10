@@ -33,7 +33,7 @@ public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> impl
     }
 
     @Override
-    public void addClass(Integer userId, String className, String classCategoryId) {
-        classesMapper.addClass(userId,className,classCategoryId);
+    public void addClass(Integer userId, String className, String categoryId) {
+        classesMapper.addClass(userId,className,categoryId);
     }
 }

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -35,5 +37,10 @@ public class Permission extends userBaseEntity {
     @TableId(value = "permission_id", type = IdType.AUTO)
     private Integer permissionId;
 
+    @ApiModelProperty("父级ID")
+    @TableField("pid")
+    private Integer pid;
 
+    @TableField(exist = false)
+    private List<Permission> children;
 }

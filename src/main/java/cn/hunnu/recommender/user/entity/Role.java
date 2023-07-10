@@ -35,5 +35,11 @@ public class Role extends userBaseEntity {
     @TableField("role_name")
     private String roleName;
 
+    @ApiModelProperty("描述")
+    @TableField("description")
+    private String description;
 
+    @ApiModelProperty("唯一标识")
+    @TableField("flag")
+    private String flag;
 }

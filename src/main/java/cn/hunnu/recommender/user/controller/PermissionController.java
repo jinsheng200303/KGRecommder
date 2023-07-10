@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -71,4 +72,18 @@ public class PermissionController extends userBaseController {
         return Result.success(page);
     }
 
+    @PostMapping("/findUserPermission")
+    @ApiOperation(value = "查找用户权限",notes = "查找用户权限")
+    public Result findAll(){
+        //查出所有数据
+        List<Permission> list = permissionService.list();
+        //找出pid为null的一级权限
+        List<Permission> parentNode = list.stream().filter(permission -> permission.getPid()==null).collect(Collectors.toList());
+        //找出一级权限的子权限
+        for(Permission permission : parentNode){
+            //筛选所有数据中pid=父级id的数据就是二级权限
+            permission.setChildren(list.stream().filter(m -> permission.getPermissionId().equals(m.getPid())).collect(Collectors.toList()));
+        }
+        return Result.success(parentNode);
+    }
 }

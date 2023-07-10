@@ -58,7 +58,7 @@ public class RoleController extends userBaseController {
         wrapper.orderByDesc(Role::getRoleId);
 
         if(!"".equals(roleQuery.getRoleName())&& roleQuery.getRoleName()!=null){
-            wrapper.eq(Role::getRoleName, roleQuery.getRoleName());
+            wrapper.like(Role::getRoleName, roleQuery.getRoleName());
         }
 
         Page<Role> page = roleService.page(
