@@ -36,7 +36,7 @@ public class Questions extends ExaminationBaseEntity {
     @TableField("bank_id")
     private Integer bankId;
 
-    @ApiModelProperty("试题类型;选择题或者判断题")
+    @ApiModelProperty("试题类型:1选择题;2填空题;3问答题")
     @TableField("question_type")
     private String questionType;
 
@@ -59,6 +59,10 @@ public class Questions extends ExaminationBaseEntity {
     @ApiModelProperty("试题得分")
     @TableField("score")
     private String score;
+
+    @ApiModelProperty("试题所属课堂id")
+    @TableField("class_id")
+    private Integer classId;
 
     @TableField(exist = false)
     List<Options> options;
