@@ -7,6 +7,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -60,4 +61,7 @@ public class Exams extends ExaminationBaseEntity {
     @TableField(value = "end_time", fill = FieldFill.UPDATE)
     private Date endTime;
 
+    @ApiModelProperty("考试所属课堂ID")
+    @TableField("class_id")
+    private Integer classId;
 }
