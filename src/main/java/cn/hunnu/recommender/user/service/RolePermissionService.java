@@ -18,4 +18,6 @@ import java.util.List;
 public interface RolePermissionService extends IService<RolePermission> {
 
     List<Permission> findRolePermissions(Integer roleId,String permissionName);
+
+    void reviseRolePermissions(Integer roleId, List<Integer> permissionIds);
 }

@@ -33,11 +33,11 @@ public class RolePermission extends userBaseEntity {
 
     @ApiModelProperty("角色ID")
     @TableField("role_id")
-    private String roleId;
+    private Integer roleId;
 
     @ApiModelProperty("权限ID")
     @TableField("permission_id")
-    private String permissionId;
+    private Integer permissionId;
 
 
 }

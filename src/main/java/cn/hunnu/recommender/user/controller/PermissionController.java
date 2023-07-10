@@ -72,8 +72,8 @@ public class PermissionController extends userBaseController {
         return Result.success(page);
     }
 
-    @PostMapping("/findUserPermission")
-    @ApiOperation(value = "查找用户权限",notes = "查找用户权限")
+    @PostMapping("/findAllPermission")
+    @ApiOperation(value = "分级查找权限",notes = "分级查找权限")
     public Result findAll(){
         //查出所有数据
         List<Permission> list = permissionService.list();
