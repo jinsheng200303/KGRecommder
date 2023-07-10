@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @author JinSheng
  * @since 2023-05-30
  */
-@Api(value = "试卷模块",tags = "试卷模块")
+@Api(value = "试卷模块", tags = "试卷模块")
 @RestController
 @RequestMapping("/papers")
 public class PapersController extends ExaminationBaseController {
@@ -46,14 +46,14 @@ public class PapersController extends ExaminationBaseController {
     @Resource
     PapersQuestionsService papersQuestionsService;
 
-    @ApiOperation(value = "试卷列表",notes = "试卷列表")
+    @ApiOperation(value = "试卷列表", notes = "试卷列表")
     @GetMapping("/list")
     public List<Papers> list() {
         return papersService.list();
     }
 
     //分页查询 页码 每页显示多少条
-    @ApiOperation(value = "分页查询",notes = "分页查询")
+    @ApiOperation(value = "分页查询", notes = "分页查询")
     @PostMapping("/page")
     public Result<Page<Papers>> findPage(@RequestBody PapersQuery papersQuery) {
         //查出的数据降序排列，且支持名称模糊查询
@@ -61,7 +61,7 @@ public class PapersController extends ExaminationBaseController {
         wrapper.orderByDesc(Papers::getExamId);
 
         if (!"".equals(papersQuery.getPaperTitle()) && papersQuery.getPaperTitle() != null) {
-            wrapper.like(Papers::getPaperTitle,papersQuery.getPaperTitle());
+            wrapper.like(Papers::getPaperTitle, papersQuery.getPaperTitle());
         }
 
         Page<Papers> page = papersService.page(
@@ -75,7 +75,7 @@ public class PapersController extends ExaminationBaseController {
     }
 
     //编辑和新增
-    @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
+    @ApiOperation(value = "数据保存或更新", notes = "数据保存或更新")
     @PostMapping("/save")
     public Result save(@Validated @RequestBody Papers papers) {
 
@@ -86,7 +86,7 @@ public class PapersController extends ExaminationBaseController {
     }
 
     //根据id来进行批量删除
-    @ApiOperation(value = "数据根据id批量删除",notes = "数据根据id批量删除")
+    @ApiOperation(value = "数据根据id批量删除", notes = "数据根据id批量删除")
     @PostMapping("/delBatch")
     public Result delBatch(@RequestBody List<Integer> ids) {
         papersService.removeByIds(ids);
@@ -94,9 +94,9 @@ public class PapersController extends ExaminationBaseController {
     }
 
 
-    @ApiOperation(value = "自动生成试卷",notes = "自动生成试卷")
+    @ApiOperation(value = "自动生成试卷", notes = "自动生成试卷")
     @PostMapping("/autoTakePaper")
-    public Result autoTakePaper(@RequestBody GeneratePapersQuery generatePapersQuery){
+    public Result autoTakePaper(@RequestBody GeneratePapersQuery generatePapersQuery) {
         //删除之前生成的重复ID的试卷
         UpdateWrapper<PapersQuestions> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("paper_id", generatePapersQuery.getPaperId());
@@ -117,13 +117,13 @@ public class PapersController extends ExaminationBaseController {
                 .filter(questions -> questions.getQuestionType().equals("3"))
                 .collect(Collectors.toList());//问答
 
-        if (typeChoiceList.size() < generatePapersQuery.getTypeChoice()){
+        if (typeChoiceList.size() < generatePapersQuery.getTypeChoice()) {
             throw new CustomException(-1, "选择题数量不足");
         }
-        if (typeGapList.size() < generatePapersQuery.getTypeGap()){
+        if (typeGapList.size() < generatePapersQuery.getTypeGap()) {
             throw new CustomException(-1, "填空题数量不足");
         }
-        if (typeEssayList.size() < generatePapersQuery.getTypeEssay()){
+        if (typeEssayList.size() < generatePapersQuery.getTypeEssay()) {
             throw new CustomException(-1, "问答题数量不足");
         }
         //开始随机组卷
@@ -135,10 +135,10 @@ public class PapersController extends ExaminationBaseController {
     }
 
     //封装一个获取试卷和题目关联关系list的方法
-    private List<PapersQuestions> getPapersQuestions(int questionSize, int paperQuestionSize, List<Questions> source, Integer paperId){
+    private List<PapersQuestions> getPapersQuestions(int questionSize, int paperQuestionSize, List<Questions> source, Integer paperId) {
         List<Integer> typeRandomList = getEleList(questionSize, paperQuestionSize);
         List<PapersQuestions> list = new ArrayList<>();
-        for (Integer index: typeRandomList) {
+        for (Integer index : typeRandomList) {
             Questions questions = source.get(index);
             PapersQuestions papersQuestions = new PapersQuestions();
             papersQuestions.setPaperId(paperId);
@@ -149,7 +149,7 @@ public class PapersController extends ExaminationBaseController {
     }
 
     //封装一个获取不重复随机数的方法
-    private List<Integer> getEleList(int sourceSize, int resultSize){
+    private List<Integer> getEleList(int sourceSize, int resultSize) {
         List<Integer> list = CollUtil.newArrayList();
         for (int i = 0; i < sourceSize; i++) {
             list.add(i);
