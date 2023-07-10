@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.GeneratePapersQuery;
+import cn.hunnu.recommender.examination.dto.HandPapersQuery;
 import cn.hunnu.recommender.examination.dto.PapersQuery;
 import cn.hunnu.recommender.examination.entity.*;
 import cn.hunnu.recommender.examination.service.PapersQuestionsService;
@@ -90,6 +91,29 @@ public class PapersController extends ExaminationBaseController {
         return Result.success();
     }
 
+    @ApiOperation(value = "手动编写试卷", notes = "手动编写试卷")
+    @PostMapping("/handPaper")
+    public Result handPaper(@RequestBody HandPapersQuery handPapersQuery){
+        //删除之前生成的重复ID的试卷
+        UpdateWrapper<PapersQuestions> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("paper_id", handPapersQuery.getPaperId());
+        papersQuestionsService.remove(updateWrapper);
+
+        if (CollUtil.isEmpty(handPapersQuery.getHandleQuestionIds())){
+            throw new CustomException(-2, "题目数量不能为空");
+        }
+
+        List<Integer> handleQuestionIds = handPapersQuery.getHandleQuestionIds();
+        List<PapersQuestions> list = new ArrayList<>();
+        for (Integer handleQuestionId : handleQuestionIds){
+            PapersQuestions papersQuestions = new PapersQuestions();
+            papersQuestions.setPaperId(handPapersQuery.getPaperId());
+            papersQuestions.setQuestionId(handleQuestionId);
+            list.add(papersQuestions);
+        }
+        papersQuestionsService.saveBatch(list);
+        return Result.success();
+    }
 
     @ApiOperation(value = "自动生成试卷", notes = "自动生成试卷")
     @PostMapping("/autoTakePaper")
