@@ -52,5 +52,9 @@ public class Papers extends ExaminationBaseEntity {
     @TableField(value = "end_time", fill = FieldFill.UPDATE)
     private Date endTime;
 
+    @ApiModelProperty("试卷所属课堂ID")
+    @TableField("class_id")
+    private Integer classId;
+
 
 }
