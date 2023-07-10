@@ -85,4 +85,12 @@ public class RolePermissionController extends userBaseController {
         List<Permission> permissions = rolePermissionService.findRolePermissions(rolePermissionVO.getRoleId(),rolePermissionVO.getPermissionName());
         return Result.success(permissions);
     }
+
+    //参数为角色ID和权限ID数组
+    @ApiOperation(value = "分配角色权限",notes = "分配角色权限")
+    @PostMapping("/reviseRolePermissions")
+    public Result reviseRolePermissions(@RequestParam Integer roleId,@RequestBody List<Integer> permissionIds) {
+        rolePermissionService.reviseRolePermissions(roleId,permissionIds);
+        return Result.success();
+    }
 }
