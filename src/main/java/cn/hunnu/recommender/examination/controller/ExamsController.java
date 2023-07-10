@@ -45,6 +45,10 @@ public class ExamsController extends ExaminationBaseController {
             wrapper.like(Exams::getExamTitle,examsQuery.getExamTitle());
         }
 
+        if (examsQuery.getClassId() != null) {
+            wrapper.eq(Exams::getClassId,examsQuery.getClassId());
+        }
+
         Page<Exams> page = examsService.page(
                 new Page<>(
                         examsQuery.getPageNum(),
