@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.examination.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,7 +27,7 @@ public class PapersQuestions implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("试卷试题关联id")
-    @TableId("paper_question_id")
+    @TableId(value = "paper_question_id", type = IdType.AUTO)
     private Integer paperQuestionId;
 
     @ApiModelProperty("试卷id")
