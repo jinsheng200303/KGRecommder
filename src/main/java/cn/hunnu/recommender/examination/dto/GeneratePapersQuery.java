@@ -18,7 +18,7 @@ public class GeneratePapersQuery {
     @ApiModelProperty("试卷ID")
     private Integer paperId;
 
-    @ApiModelProperty("课堂ID")
-    private Integer classId;
+    @ApiModelProperty("题库ID")
+    private Integer bankId;
 
 }

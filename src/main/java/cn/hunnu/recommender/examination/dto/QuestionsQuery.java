@@ -11,9 +11,6 @@ public class QuestionsQuery extends PageInfo{
     @ApiModelProperty("试题库名称")
     private Integer bankId;
 
-    @ApiModelProperty("试题所属课堂ID")
-    private Integer classId;
-
     @ApiModelProperty("试题类型")
     private String type;
 }

@@ -103,8 +103,8 @@ public class PapersController extends ExaminationBaseController {
         papersQuestionsService.remove(updateWrapper);
 
         QueryWrapper<Questions> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("class_id", generatePapersQuery.getClassId());
-        //根据课堂id查出所有该课堂的题目，然后根据type区分
+        queryWrapper.eq("bank_id", generatePapersQuery.getBankId());
+        //根据题库id查出所有该题库的题目，然后根据type区分
         List<Questions> questionsList = questionsService.list(queryWrapper);
 
         List<Questions> typeChoiceList = questionsList.stream()

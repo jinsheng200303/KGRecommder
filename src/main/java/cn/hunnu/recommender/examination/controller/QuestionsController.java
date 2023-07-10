@@ -44,14 +44,17 @@ public class QuestionsController extends ExaminationBaseController {
         LambdaQueryWrapper<Questions> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Questions::getQuestionId);
 
+        //根据试题描述查找试题
         if (!"".equals(questionsQuery.getQuestionStatement()) && questionsQuery.getQuestionStatement() != null) {
             wrapper.like(Questions::getQuestionStatement, questionsQuery.getQuestionStatement());
         }
 
+        //根据题库ID查找试题
         if (!"".equals(questionsQuery.getBankId()) && questionsQuery.getBankId() != null) {
             wrapper.eq(Questions::getBankId, questionsQuery.getBankId());
         }
 
+        //根据试题类型查找试题
         if (!"".equals(questionsQuery.getType()) && questionsQuery.getType() != null) {
             wrapper.eq(Questions::getQuestionType, questionsQuery.getType());
         }
