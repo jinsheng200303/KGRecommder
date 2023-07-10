@@ -1,7 +1,10 @@
 package cn.hunnu.recommender.examination.service;
 
 import cn.hunnu.recommender.examination.entity.PapersQuestions;
+import cn.hunnu.recommender.examination.entity.Questions;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PapersQuestionsService extends IService<PapersQuestions> {
 
+//    根据试卷ID查找组成该试卷的试题详细信息
+    List<Questions> selectQuestions(Integer paperId);
 }

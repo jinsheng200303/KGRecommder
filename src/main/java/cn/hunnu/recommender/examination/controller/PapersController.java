@@ -157,4 +157,11 @@ public class PapersController extends ExaminationBaseController {
         return RandomUtil.randomEleList(list, resultSize);
     }
 
+    @ApiOperation(value = "根据试卷ID查找其包含的试题信息", notes = "根据试卷ID查找其包含的试题信息")
+    @GetMapping("/view/{paperId}")
+    public Result view(@PathVariable Integer paperId){
+        List<Questions> list = papersQuestionsService.selectQuestions(paperId);
+        return Result.success(list);
+    }
+
 }

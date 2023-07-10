@@ -8,5 +8,11 @@
         <result column="paper_id" property="paperId" />
         <result column="question_id" property="questionId" />
     </resultMap>
+    <!--根据试卷ID查找组成该试卷的试题详细信息-->
+    <select id="selectQuestions" resultType="cn.hunnu.recommender.examination.entity.Questions">
+        SELECT q.*
+        FROM papers_questions pq LEFT JOIN questions q ON pq.question_id = q.question_id
+        WHERE pq.paper_id = #{paperId}
+    </select>
 
 </mapper>
