@@ -165,4 +165,12 @@ public class ClassesController extends CourseBaseController {
             return Result.success("新增/修改课堂成功！");
         }
     }
+
+    @GetMapping("/getById")
+    @ApiOperation(value = "根据课堂ID查找", notes = "根据课堂ID查找")
+    public Result getById(@RequestParam("classId") Integer classId){
+        Classes byId = classesService.getById(classId);
+        return Result.success(byId);
+    }
+
 }
