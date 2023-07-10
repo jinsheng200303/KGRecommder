@@ -4,10 +4,7 @@ package cn.hunnu.recommender.examination.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.GeneratePapersQuery;
 import cn.hunnu.recommender.examination.dto.PapersQuery;
-import cn.hunnu.recommender.examination.entity.Options;
-import cn.hunnu.recommender.examination.entity.Papers;
-import cn.hunnu.recommender.examination.entity.PapersQuestions;
-import cn.hunnu.recommender.examination.entity.Questions;
+import cn.hunnu.recommender.examination.entity.*;
 import cn.hunnu.recommender.examination.service.PapersQuestionsService;
 import cn.hunnu.recommender.examination.service.QuestionsService;
 import cn.hunnu.recommender.exception.CustomException;
@@ -162,6 +159,13 @@ public class PapersController extends ExaminationBaseController {
     public Result view(@PathVariable Integer paperId){
         List<Questions> list = papersQuestionsService.selectQuestions(paperId);
         return Result.success(list);
+    }
+
+    @GetMapping("/getById")
+    @ApiOperation(value = "根据考试ID查找试卷", notes = "根据考试ID查找试卷")
+    public Result getById(@RequestParam("examId") Integer examId){
+        Papers byId = papersService.getById(examId);
+        return Result.success(byId);
     }
 
 }

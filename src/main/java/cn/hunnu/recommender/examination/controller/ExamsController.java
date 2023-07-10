@@ -4,6 +4,7 @@ package cn.hunnu.recommender.examination.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.ExamsQuery;
 import cn.hunnu.recommender.examination.entity.Exams;
+import cn.hunnu.recommender.examination.entity.QuestionBank;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -71,6 +72,13 @@ public class ExamsController extends ExaminationBaseController {
     public Result delBatch(@RequestBody List<Integer> ids) {
         examsService.removeByIds(ids);
         return Result.success();
+    }
+
+    @GetMapping("/getById")
+    @ApiOperation(value = "根据课堂ID查找考试", notes = "根据课堂ID查找考试")
+    public Result getById(@RequestParam("classId") Integer classId){
+        Exams byId = examsService.getById(classId);
+        return Result.success(byId);
     }
 
 }
