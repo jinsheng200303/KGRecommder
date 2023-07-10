@@ -32,7 +32,7 @@ public class AutoGenerator {
 //        tables.add("resources");
 //        tables.add("diag_results");
 //        tables.add("record_diag");
-        tables.add("user_grade");
+        tables.add("papers_questions");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {

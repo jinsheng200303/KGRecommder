@@ -52,5 +52,9 @@ public class QuestionBank extends ExaminationBaseEntity {
     @TableField(value = "modify_time", fill = FieldFill.UPDATE)
     private Date modifyTime;
 
+    @ApiModelProperty("题库所属类别ID号")
+    @TableField("category_id")
+    private String categoryId;
+
 
 }
