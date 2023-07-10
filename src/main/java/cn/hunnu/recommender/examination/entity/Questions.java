@@ -60,10 +60,6 @@ public class Questions extends ExaminationBaseEntity {
     @TableField("score")
     private String score;
 
-    @ApiModelProperty("试题所属课堂id")
-    @TableField("class_id")
-    private Integer classId;
-
     @TableField(exist = false)
     List<Options> options;
 

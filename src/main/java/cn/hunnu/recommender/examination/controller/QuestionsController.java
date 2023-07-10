@@ -52,10 +52,6 @@ public class QuestionsController extends ExaminationBaseController {
             wrapper.eq(Questions::getBankId, questionsQuery.getBankId());
         }
 
-        if (!"".equals(questionsQuery.getClassId()) && questionsQuery.getClassId() != null) {
-            wrapper.eq(Questions::getClassId, questionsQuery.getClassId());
-        }
-
         if (!"".equals(questionsQuery.getType()) && questionsQuery.getType() != null) {
             wrapper.eq(Questions::getQuestionType, questionsQuery.getType());
         }
