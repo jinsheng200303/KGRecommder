@@ -56,12 +56,12 @@ public class ClassHomeworkController extends CourseBaseController {
         LambdaQueryWrapper<ClassHomework> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ClassHomework::getClassId);
 
-        if(!"".equals(classHomeworkQuery.getHomeworkID())&& classHomeworkQuery.getHomeworkID()!=null){
-            wrapper.like(ClassHomework::getHomeworkId, classHomeworkQuery.getHomeworkID());
+        if(!"".equals(classHomeworkQuery.getHomeworkId())&& classHomeworkQuery.getHomeworkId()!=null){
+            wrapper.like(ClassHomework::getHomeworkId, classHomeworkQuery.getHomeworkId());
         }
 
-        if(!"".equals(classHomeworkQuery.getClassID())&& classHomeworkQuery.getClassID()!=null){
-            wrapper.like(ClassHomework::getClassId, classHomeworkQuery.getClassID());
+        if(!"".equals(classHomeworkQuery.getClassId())&& classHomeworkQuery.getClassId()!=null){
+            wrapper.like(ClassHomework::getClassId, classHomeworkQuery.getClassId());
         }
 
         Page<ClassHomework> page = classHomeworkService.page(

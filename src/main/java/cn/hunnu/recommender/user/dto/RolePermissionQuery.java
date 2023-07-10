@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class RolePermissionQuery extends PageInfo {
     @ApiModelProperty("权限ID")
-    private String permissionID;
+    private String permissionId;
 
     @ApiModelProperty("角色ID")
-    private String roleID;
+    private String roleId;
 }

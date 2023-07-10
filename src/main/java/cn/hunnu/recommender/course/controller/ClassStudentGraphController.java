@@ -57,16 +57,16 @@ public class ClassStudentGraphController extends CourseBaseController {
         LambdaQueryWrapper<ClassStudentGraph> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ClassStudentGraph::getClassId);
 
-        if(!"".equals(classStudentGraphQuery.getGraphID())&& classStudentGraphQuery.getGraphID()!=null){
-            wrapper.like(ClassStudentGraph::getGraphId, classStudentGraphQuery.getGraphID());
+        if(!"".equals(classStudentGraphQuery.getGraphId())&& classStudentGraphQuery.getGraphId()!=null){
+            wrapper.like(ClassStudentGraph::getGraphId, classStudentGraphQuery.getGraphId());
         }
 
-        if(!"".equals(classStudentGraphQuery.getClassID())&& classStudentGraphQuery.getClassID()!=null){
-            wrapper.like(ClassStudentGraph::getClassId, classStudentGraphQuery.getClassID());
+        if(!"".equals(classStudentGraphQuery.getClassId())&& classStudentGraphQuery.getClassId()!=null){
+            wrapper.like(ClassStudentGraph::getClassId, classStudentGraphQuery.getClassId());
         }
 
-        if(!"".equals(classStudentGraphQuery.getUserID())&& classStudentGraphQuery.getUserID()!=null){
-            wrapper.like(ClassStudentGraph::getUserId, classStudentGraphQuery.getUserID());
+        if(!"".equals(classStudentGraphQuery.getUserId())&& classStudentGraphQuery.getUserId()!=null){
+            wrapper.like(ClassStudentGraph::getUserId, classStudentGraphQuery.getUserId());
         }
 
         Page<ClassStudentGraph> page = classStudentGraphService.page(

@@ -56,12 +56,12 @@ public class ClassResourceController extends CourseBaseController {
         LambdaQueryWrapper<ClassResource> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ClassResource::getClassId);
 
-        if(!"".equals(classResourceQuery.getMaterialID())&& classResourceQuery.getMaterialID()!=null){
-            wrapper.like(ClassResource::getMaterialId, classResourceQuery.getMaterialID());
+        if(!"".equals(classResourceQuery.getMaterialId())&& classResourceQuery.getMaterialId()!=null){
+            wrapper.like(ClassResource::getMaterialId, classResourceQuery.getMaterialId());
         }
 
-        if(!"".equals(classResourceQuery.getClassID())&& classResourceQuery.getClassID()!=null){
-            wrapper.like(ClassResource::getClassId, classResourceQuery.getClassID());
+        if(!"".equals(classResourceQuery.getClassId())&& classResourceQuery.getClassId()!=null){
+            wrapper.like(ClassResource::getClassId, classResourceQuery.getClassId());
         }
 
         Page<ClassResource> page = classResourceService.page(

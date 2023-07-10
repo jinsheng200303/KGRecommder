@@ -61,12 +61,12 @@ public class PersonRoleController extends userBaseController {
         LambdaQueryWrapper<PersonRole> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(PersonRole::getPersonRoleId);
 
-        if(!"".equals(personRoleQuery.getUserID())&& personRoleQuery.getUserID()!=null){
-            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserID());
+        if(!"".equals(personRoleQuery.getUserId())&& personRoleQuery.getUserId()!=null){
+            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserId());
         }
 
-        if(!"".equals(personRoleQuery.getRoleID())&& personRoleQuery.getRoleID()!=null){
-            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleID());
+        if(!"".equals(personRoleQuery.getRoleId())&& personRoleQuery.getRoleId()!=null){
+            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleId());
         }
 
         Page<PersonRole> page = personRoleService.page(

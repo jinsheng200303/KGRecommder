@@ -7,8 +7,8 @@ import lombok.Data;
 public class ClassHomeworkQuery extends PageInfo {
 
     @ApiModelProperty("作业ID")
-    private Integer homeworkID;
+    private Integer homeworkId;
 
     @ApiModelProperty("课堂ID")
-    private Integer classID;
+    private Integer classId;
 }

@@ -58,12 +58,12 @@ public class RolePermissionController extends userBaseController {
         LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(RolePermission::getRolePermissionId);
 
-        if(!"".equals(rolePermissionQuery.getPermissionID())&& rolePermissionQuery.getPermissionID()!=null){
-            wrapper.like(RolePermission::getPermissionId, rolePermissionQuery.getPermissionID());
+        if(!"".equals(rolePermissionQuery.getPermissionId())&& rolePermissionQuery.getPermissionId()!=null){
+            wrapper.like(RolePermission::getPermissionId, rolePermissionQuery.getPermissionId());
         }
 
-        if(!"".equals(rolePermissionQuery.getRoleID())&& rolePermissionQuery.getRoleID()!=null){
-            wrapper.like(RolePermission::getRoleId, rolePermissionQuery.getRoleID());
+        if(!"".equals(rolePermissionQuery.getRoleId())&& rolePermissionQuery.getRoleId()!=null){
+            wrapper.like(RolePermission::getRoleId, rolePermissionQuery.getRoleId());
         }
 
         Page<RolePermission> page = rolePermissionService.page(

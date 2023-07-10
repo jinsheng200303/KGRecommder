@@ -56,12 +56,12 @@ public class ClassAnnouncementController extends CourseBaseController {
         LambdaQueryWrapper<ClassAnnouncement> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ClassAnnouncement::getClassId);
 
-        if(!"".equals(classAnnouncementQuery.getAnnouncementID())&& classAnnouncementQuery.getAnnouncementID()!=null){
-            wrapper.like(ClassAnnouncement::getAnnouncementId, classAnnouncementQuery.getAnnouncementID());
+        if(!"".equals(classAnnouncementQuery.getAnnouncementId())&& classAnnouncementQuery.getAnnouncementId()!=null){
+            wrapper.like(ClassAnnouncement::getAnnouncementId, classAnnouncementQuery.getAnnouncementId());
         }
 
-        if(!"".equals(classAnnouncementQuery.getClassID())&& classAnnouncementQuery.getClassID()!=null){
-            wrapper.like(ClassAnnouncement::getClassId, classAnnouncementQuery.getClassID());
+        if(!"".equals(classAnnouncementQuery.getClassId())&& classAnnouncementQuery.getClassId()!=null){
+            wrapper.like(ClassAnnouncement::getClassId, classAnnouncementQuery.getClassId());
         }
 
         Page<ClassAnnouncement> page = classAnnouncementService.page(

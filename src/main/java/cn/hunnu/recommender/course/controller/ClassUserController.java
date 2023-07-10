@@ -62,12 +62,12 @@ public class ClassUserController extends CourseBaseController {
         LambdaQueryWrapper<ClassUser> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(ClassUser::getClassId);
 
-        if(!"".equals(classUserQuery.getUserID())&& classUserQuery.getUserID()!=null){
-            wrapper.like(ClassUser::getUserId, classUserQuery.getUserID());
+        if(!"".equals(classUserQuery.getUserId())&& classUserQuery.getUserId()!=null){
+            wrapper.like(ClassUser::getUserId, classUserQuery.getUserId());
         }
 
-        if(!"".equals(classUserQuery.getClassID())&& classUserQuery.getClassID()!=null){
-            wrapper.like(ClassUser::getClassId, classUserQuery.getClassID());
+        if(!"".equals(classUserQuery.getClassId())&& classUserQuery.getClassId()!=null){
+            wrapper.like(ClassUser::getClassId, classUserQuery.getClassId());
         }
 
         Page<ClassUser> page = classUserService.page(
