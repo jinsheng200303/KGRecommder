@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class UserGradeQuery extends PageInfo {
     @ApiModelProperty("用户ID")
-    private String userId;
+    private Integer userId;
 
     @ApiModelProperty("考试ID")
-    private String examsId;
+    private Integer examsId;
 }

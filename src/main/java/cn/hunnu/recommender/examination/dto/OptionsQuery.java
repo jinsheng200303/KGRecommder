@@ -9,5 +9,5 @@ public class OptionsQuery extends PageInfo{
     private String optionsValue;
 
     @ApiModelProperty("试题ID")
-    private String questionId;
+    private Integer questionId;
 }

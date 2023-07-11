@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class ValidationQuery extends PageInfo {
     @ApiModelProperty("邮箱ID")
-    private String id;
+    private Integer id;
 }
