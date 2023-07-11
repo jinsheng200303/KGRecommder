@@ -10,4 +10,7 @@ public class PapersQuery extends PageInfo{
 
     @ApiModelProperty("考试ID")
     private Integer examId;
+
+    @ApiModelProperty("课堂ID")
+    private Integer classId;
 }

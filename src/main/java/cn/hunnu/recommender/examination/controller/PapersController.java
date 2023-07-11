@@ -66,6 +66,10 @@ public class PapersController extends ExaminationBaseController {
             wrapper.eq(Papers::getExamId, papersQuery.getExamId());
         }
 
+        if (papersQuery.getClassId() != null) {
+            wrapper.eq(Papers::getClassId, papersQuery.getClassId());
+        }
+
         Page<Papers> page = papersService.page(
                 new Page<>(
                         papersQuery.getPageNum(),
