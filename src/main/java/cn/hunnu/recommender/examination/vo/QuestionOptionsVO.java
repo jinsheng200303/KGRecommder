@@ -29,8 +29,8 @@ public class QuestionOptionsVO extends PageInfo {
     @ApiModelProperty("试题ID号")
     private Integer questionId;
 
-    @ApiModelProperty("试题类型;选择题或者判断题")
-    private String questionType;
+    @ApiModelProperty("试题类型ID")
+    private Integer questionTypeId;
 
     @ApiModelProperty("试题知识点分类")
     private Integer knowledgeId;

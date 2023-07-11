@@ -45,21 +45,32 @@ public class EchartsController {
         return Result.success(CollUtil.newArrayList(LeagueMembers,cpcMembers,democracyMembers,masses,other));
     }
 
-    @GetMapping("/gender")
-    public Result getGenderNum() {
+    @GetMapping("/age")
+    public Result getAgeNum() {
         List<Person> list = personService.list();
-        int male = 0; // 男
-        int female = 0; // 女
-        int other = 0; // 其他
+        int Juvenile = 0; // 0-18岁
+        int youth = 0; // 19-22岁
+        int adult = 0; // 23-35岁
+        int midlife = 0; // 36-60
+        int elderly = 0; //61+
+        int other = 0; // age < 0
         for (Person person : list) {
-            String gender = person.getGender();
-            switch (gender){
-                case "M": male += 1; break;
-                case "F": female += 1; break;
-                default: other += 1;break;
+            int age = person.getAge();
+            if(age >= 0 && age <= 18){
+                Juvenile++;
+            } else if (age >= 19 && age <= 22){
+                youth++;
+            } else if (age >= 23 && age <= 35){
+                adult++;
+            } else if (age >= 36 && age <= 60) {
+                midlife++;
+            } else if (age >= 61) {
+                elderly++;
+            }else {
+                other++;
             }
         }
-        return Result.success(CollUtil.newArrayList(male,female,other));
+        return Result.success(CollUtil.newArrayList(Juvenile,youth,adult,midlife,elderly,other));
     }
 
     @GetMapping("/role")

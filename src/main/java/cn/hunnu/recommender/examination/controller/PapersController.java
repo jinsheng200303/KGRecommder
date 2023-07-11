@@ -133,13 +133,13 @@ public class PapersController extends ExaminationBaseController {
         List<Questions> questionsList = questionsService.list(queryWrapper);
 
         List<Questions> typeChoiceList = questionsList.stream()
-                .filter(questions -> questions.getQuestionType().equals("1"))
+                .filter(questions -> questions.getQuestionTypeId()==1)
                 .collect(Collectors.toList());//选择
         List<Questions> typeGapList = questionsList.stream()
-                .filter(questions -> questions.getQuestionType().equals("2"))
+                .filter(questions -> questions.getQuestionTypeId()==2)
                 .collect(Collectors.toList());//填空
         List<Questions> typeEssayList = questionsList.stream()
-                .filter(questions -> questions.getQuestionType().equals("3"))
+                .filter(questions -> questions.getQuestionTypeId()==3)
                 .collect(Collectors.toList());//问答
 
         if (typeChoiceList.size() < generatePapersQuery.getTypeChoice()) {

@@ -37,8 +37,8 @@ public class Questions extends ExaminationBaseEntity {
     private Integer bankId;
 
     @ApiModelProperty("试题类型:1选择题;2填空题;3问答题")
-    @TableField("question_type")
-    private String questionType;
+    @TableField("question_type_id")
+    private Integer questionTypeId;
 
     @ApiModelProperty("试题知识点分类")
     @TableField("knowledge_id")

@@ -57,7 +57,7 @@ public class QuestionsController extends ExaminationBaseController {
 
         //根据试题类型查找试题
         if (!"".equals(questionsQuery.getType()) && questionsQuery.getType() != null) {
-            wrapper.eq(Questions::getQuestionType, questionsQuery.getType());
+            wrapper.eq(Questions::getQuestionTypeId, questionsQuery.getType());
         }
 
         Page<Questions> page = questionsService.page(
