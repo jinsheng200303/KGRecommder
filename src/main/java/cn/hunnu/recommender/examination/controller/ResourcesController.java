@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.ResourcesQuery;
 import cn.hunnu.recommender.examination.entity.Records;
 import cn.hunnu.recommender.examination.entity.Resources;
+import cn.hutool.extra.tokenizer.TokenizerUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

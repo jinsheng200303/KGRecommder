@@ -55,11 +55,11 @@ public class PapersQuestionsController extends ExaminationBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody PapersQuestions papers) {
+    public Result save(@Validated @RequestBody PapersQuestions papersQuestions) {
 
 //        throw new CustomException("这个是自定义异常");
 
-        papersQuestionsService.saveOrUpdate(papers);
+        papersQuestionsService.saveOrUpdate(papersQuestions);
         return Result.success();
     }
 

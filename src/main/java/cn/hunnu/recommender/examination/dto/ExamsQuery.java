@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ExamsQuery extends PageInfo{
     @ApiModelProperty("考试名称")
-    private String examTitle;
+    private Integer examTitle;
 
     @ApiModelProperty("课堂ID")
     private Integer classId;
