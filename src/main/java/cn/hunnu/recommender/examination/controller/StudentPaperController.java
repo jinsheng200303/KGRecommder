@@ -4,7 +4,12 @@ package cn.hunnu.recommender.examination.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.StudentPaperQuery;
 import cn.hunnu.recommender.examination.entity.StudentPaper;
+import cn.hunnu.recommender.exception.CustomException;
+import cn.hunnu.recommender.user.utils.JwtUtils;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import cn.hunnu.recommender.examination.controller.ExaminationBaseController;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -61,11 +67,19 @@ public class StudentPaperController extends ExaminationBaseController {
     }
 
     //编辑和新增
-    @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
+    @ApiOperation(value = "学生提交考卷保存数据",notes = "学生提交考卷保存数据")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody StudentPaper studentPaper) {
-
-//        throw new CustomException("这个是自定义异常");
+    public Result save(@RequestBody StudentPaper studentPaper) {
+        //设置不可重复提交
+        if (studentPaper.getStudentPaperId() == null){
+            List<StudentPaper> list = studentPaperService.list(new QueryWrapper<StudentPaper>().eq("exam_id", studentPaper.getExamId())
+                    .eq("user_id", studentPaper.getUserId()));
+            if (CollUtil.isNotEmpty(list)){
+                throw new CustomException(-3, "您已经提交考卷！");
+            }
+            studentPaper.setTime(DateUtil.now());
+            studentPaper.setUserId(studentPaper.getUserId());
+        }
 
         studentPaperService.saveOrUpdate(studentPaper);
         return Result.success();
