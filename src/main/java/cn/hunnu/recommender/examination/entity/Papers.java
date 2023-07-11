@@ -42,16 +42,6 @@ public class Papers extends ExaminationBaseEntity {
     @TableField("question_set")
     private String questionSet;
 
-    @ApiModelProperty("开始时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @TableField(value = "start_time", fill = FieldFill.INSERT)
-    private Date startTime;
-
-    @ApiModelProperty("结束时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @TableField(value = "end_time", fill = FieldFill.UPDATE)
-    private Date endTime;
-
     @ApiModelProperty("试卷所属课堂ID")
     @TableField("class_id")
     private Integer classId;
