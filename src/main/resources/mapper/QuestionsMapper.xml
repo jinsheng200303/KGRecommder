@@ -17,6 +17,21 @@
                         select="cn.hunnu.recommender.examination.mapper.OptionsMapper.selectByQuestionId">
             </collection>
     </resultMap>
+    <delete id="delBatchQuestions">
+        delete from questions
+        where question_id in 
+        <foreach collection="ids" item="questionId" separator="," open="(" close=")">
+            #{questionId}
+        </foreach>;
+    </delete>
+
+    <delete id="delBatchOptions">
+        delete from options
+        where question_id in
+        <foreach collection="ids" item="questionId" separator="," open="(" close=")">
+            #{questionId}
+        </foreach>;
+    </delete>
 
     <select id="queryQuestion" resultMap="BaseResultMap">
         select * from questions Q

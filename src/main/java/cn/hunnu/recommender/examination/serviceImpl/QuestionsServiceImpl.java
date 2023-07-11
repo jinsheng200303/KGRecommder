@@ -1,5 +1,6 @@
 package cn.hunnu.recommender.examination.serviceImpl;
 
+import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.mapper.QuestionsMapper;
 import cn.hunnu.recommender.examination.service.QuestionsService;
@@ -30,6 +31,17 @@ public class QuestionsServiceImpl extends ServiceImpl<QuestionsMapper, Questions
     @Override
     public Page<Questions> queryQuestion(Page<Questions> objectPage, Integer bankId, String questionStatement) {
         return questionsMapper.queryQuestion(objectPage,bankId,questionStatement);
+    }
+
+    @Override
+    public void delBatchQuestionsAndOptions(List<Integer> ids) {
+        questionsMapper.delBatchQuestions(ids);
+        questionsMapper.delBatchOptions(ids);
+    }
+
+    @Override
+    public List<Options> findQuestionOptions(Integer questionId) {
+        return questionsMapper.findQuestionOptions(questionId);
     }
 
 }

@@ -63,9 +63,6 @@ public class OptionsController extends ExaminationBaseController {
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
     public Result save(@Validated @RequestBody Options options) {
-
-//        throw new CustomException("这个是自定义异常");
-
         optionsService.saveOrUpdate(options);
         return Result.success();
     }

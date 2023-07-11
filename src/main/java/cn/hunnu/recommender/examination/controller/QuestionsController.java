@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.QuestionsQuery;
+import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.QuestionBank;
 import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.service.QuestionsService;
@@ -89,10 +90,26 @@ public class QuestionsController extends ExaminationBaseController {
     }
 
     @PostMapping("/questionAndOptions")
-    @ApiOperation(value = "试题数组查询",notes = "试题数组查询")
+    @ApiOperation(value = "题库试题数组查询",notes = "题库试题数组查询")
     public Result queryQuestionOptionsInfo(@RequestBody QuestionsQuery questionsQuery){
 
         Page<Questions> page = questionsService.queryQuestion(new Page<Questions>(questionsQuery.getPageNum(),questionsQuery.getPageSize()),questionsQuery.getBankId(), questionsQuery.getQuestionStatement());
         return Result.success(page);
+    }
+
+    //根据id来进行批量删除试题以及其对应的选项
+    @ApiOperation(value = "试题及选项根据id批量删除",notes = "试题及选项根据id批量删除")
+    @PostMapping("/delBatchQuestionsAndOptions")
+    public Result delBatchQuestionsAndOptions(@RequestBody List<Integer> ids) {
+        questionsService.delBatchQuestionsAndOptions(ids);
+        return Result.success();
+    }
+
+    //根据题目id来查询其对应的选项
+    @ApiOperation(value = "根据id查询单个试题选项",notes = "根据id查询单个试题选项")
+    @PostMapping("/findQuestionOptions")
+    public Result findQuestionOptions(@RequestBody Integer questionId) {
+        List<Options> options = questionsService.findQuestionOptions(questionId);
+        return Result.success(options);
     }
 }
