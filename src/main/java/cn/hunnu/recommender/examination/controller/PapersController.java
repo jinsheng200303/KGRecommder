@@ -8,6 +8,7 @@ import cn.hunnu.recommender.examination.dto.PapersQuery;
 import cn.hunnu.recommender.examination.entity.*;
 import cn.hunnu.recommender.examination.service.PapersQuestionsService;
 import cn.hunnu.recommender.examination.service.QuestionsService;
+import cn.hunnu.recommender.examination.vo.PaperVO;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
@@ -17,6 +18,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -199,5 +201,21 @@ public class PapersController extends ExaminationBaseController {
         Papers byId = papersService.getById(paperId);
         return Result.success(byId);
     }
+
+    @GetMapping("/getByClassId")
+    @ApiOperation(value = "根据课堂ID查找试卷ID及其标题", notes = "根据课堂ID查找试卷ID及其标题")
+    public Result getByClassId(@RequestParam("classId") Integer classId){
+        QueryWrapper<Papers> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("class_id", classId);
+        List<Papers> papersList = papersService.list(queryWrapper);
+        List<PaperVO> paperVOList = new ArrayList<>();
+        for (Papers paper: papersList) {
+            PaperVO paperVO = new PaperVO();
+            BeanUtils.copyProperties(paper, paperVO);
+            paperVOList.add(paperVO);
+        }
+        return Result.success(paperVOList);
+    }
+
 
 }
