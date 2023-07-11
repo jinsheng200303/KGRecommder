@@ -190,9 +190,9 @@ public class PapersController extends ExaminationBaseController {
     }
 
     @GetMapping("/getById")
-    @ApiOperation(value = "根据考试ID查找试卷", notes = "根据考试ID查找试卷")
-    public Result getById(@RequestParam("examId") Integer examId){
-        Papers byId = papersService.getById(examId);
+    @ApiOperation(value = "根据试卷ID查找试卷信息", notes = "根据试卷ID查找试卷信息")
+    public Result getById(@RequestParam("paperId") Integer paperId){
+        Papers byId = papersService.getById(paperId);
         return Result.success(byId);
     }
 

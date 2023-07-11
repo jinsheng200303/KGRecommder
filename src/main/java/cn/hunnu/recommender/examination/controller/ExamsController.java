@@ -79,9 +79,9 @@ public class ExamsController extends ExaminationBaseController {
     }
 
     @GetMapping("/getById")
-    @ApiOperation(value = "根据课堂ID查找考试", notes = "根据课堂ID查找考试")
-    public Result getById(@RequestParam("classId") Integer classId){
-        Exams byId = examsService.getById(classId);
+    @ApiOperation(value = "根据考试ID查找考试信息", notes = "根据考试ID查找考试信息")
+    public Result getById(@RequestParam("examId") Integer examId){
+        Exams byId = examsService.getById(examId);
         return Result.success(byId);
     }
 
