@@ -57,11 +57,11 @@ public class ClassResourceController extends CourseBaseController {
         wrapper.orderByDesc(ClassResource::getClassId);
 
         if(!"".equals(classResourceQuery.getMaterialId())&& classResourceQuery.getMaterialId()!=null){
-            wrapper.like(ClassResource::getMaterialId, classResourceQuery.getMaterialId());
+            wrapper.eq(ClassResource::getMaterialId, classResourceQuery.getMaterialId());
         }
 
         if(!"".equals(classResourceQuery.getClassId())&& classResourceQuery.getClassId()!=null){
-            wrapper.like(ClassResource::getClassId, classResourceQuery.getClassId());
+            wrapper.eq(ClassResource::getClassId, classResourceQuery.getClassId());
         }
 
         Page<ClassResource> page = classResourceService.page(

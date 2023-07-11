@@ -63,11 +63,11 @@ public class ClassUserController extends CourseBaseController {
         wrapper.orderByDesc(ClassUser::getClassId);
 
         if(!"".equals(classUserQuery.getUserId())&& classUserQuery.getUserId()!=null){
-            wrapper.like(ClassUser::getUserId, classUserQuery.getUserId());
+            wrapper.eq(ClassUser::getUserId, classUserQuery.getUserId());
         }
 
         if(!"".equals(classUserQuery.getClassId())&& classUserQuery.getClassId()!=null){
-            wrapper.like(ClassUser::getClassId, classUserQuery.getClassId());
+            wrapper.eq(ClassUser::getClassId, classUserQuery.getClassId());
         }
 
         Page<ClassUser> page = classUserService.page(

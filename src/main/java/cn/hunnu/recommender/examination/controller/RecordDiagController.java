@@ -44,7 +44,7 @@ public class RecordDiagController extends ExaminationBaseController {
         wrapper.orderByDesc(RecordDiag::getRecordDiagId);
 
         if (recordDiagQuery.getRecordDiagId() != null) {
-            wrapper.like(RecordDiag::getRecordDiagId, recordDiagQuery.getRecordDiagId());
+            wrapper.eq(RecordDiag::getRecordDiagId, recordDiagQuery.getRecordDiagId());
         }
 
         Page<RecordDiag> page = recordDiagService.page(

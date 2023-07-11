@@ -46,11 +46,11 @@ public class UserGradeController extends ExaminationBaseController {
         wrapper.orderByDesc(UserGrade::getUserId);
 
         if (!"".equals(userGradeQuery.getUserId()) && userGradeQuery.getUserId() != null) {
-            wrapper.like(UserGrade::getUserId,userGradeQuery.getUserId());
+            wrapper.eq(UserGrade::getUserId,userGradeQuery.getUserId());
         }
 
         if (!"".equals(userGradeQuery.getExamsId()) && userGradeQuery.getExamsId() != null) {
-            wrapper.like(UserGrade::getExamsId,userGradeQuery.getExamsId());
+            wrapper.eq(UserGrade::getExamsId,userGradeQuery.getExamsId());
         }
 
         Page<UserGrade> page = userGradeService.page(

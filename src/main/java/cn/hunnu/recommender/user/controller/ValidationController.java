@@ -58,7 +58,7 @@ public class ValidationController extends userBaseController {
         wrapper.orderByDesc(Validation::getId);
 
         if(!"".equals(ValidationQuery.getId())&& ValidationQuery.getId()!=null){
-            wrapper.like(Validation::getId, ValidationQuery.getId());
+            wrapper.eq(Validation::getId, ValidationQuery.getId());
         }
 
         Page<Validation> page = validationService.page(

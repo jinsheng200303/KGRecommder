@@ -61,7 +61,7 @@ public class ClassAnnouncementController extends CourseBaseController {
         }
 
         if(!"".equals(classAnnouncementQuery.getClassId())&& classAnnouncementQuery.getClassId()!=null){
-            wrapper.like(ClassAnnouncement::getClassId, classAnnouncementQuery.getClassId());
+            wrapper.eq(ClassAnnouncement::getClassId, classAnnouncementQuery.getClassId());
         }
 
         Page<ClassAnnouncement> page = classAnnouncementService.page(

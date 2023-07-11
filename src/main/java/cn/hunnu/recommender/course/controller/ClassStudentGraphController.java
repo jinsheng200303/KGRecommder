@@ -58,15 +58,15 @@ public class ClassStudentGraphController extends CourseBaseController {
         wrapper.orderByDesc(ClassStudentGraph::getClassId);
 
         if(!"".equals(classStudentGraphQuery.getGraphId())&& classStudentGraphQuery.getGraphId()!=null){
-            wrapper.like(ClassStudentGraph::getGraphId, classStudentGraphQuery.getGraphId());
+            wrapper.eq(ClassStudentGraph::getGraphId, classStudentGraphQuery.getGraphId());
         }
 
         if(!"".equals(classStudentGraphQuery.getClassId())&& classStudentGraphQuery.getClassId()!=null){
-            wrapper.like(ClassStudentGraph::getClassId, classStudentGraphQuery.getClassId());
+            wrapper.eq(ClassStudentGraph::getClassId, classStudentGraphQuery.getClassId());
         }
 
         if(!"".equals(classStudentGraphQuery.getUserId())&& classStudentGraphQuery.getUserId()!=null){
-            wrapper.like(ClassStudentGraph::getUserId, classStudentGraphQuery.getUserId());
+            wrapper.eq(ClassStudentGraph::getUserId, classStudentGraphQuery.getUserId());
         }
 
         Page<ClassStudentGraph> page = classStudentGraphService.page(

@@ -62,11 +62,11 @@ public class PersonRoleController extends userBaseController {
         wrapper.orderByDesc(PersonRole::getPersonRoleId);
 
         if(!"".equals(personRoleQuery.getUserId())&& personRoleQuery.getUserId()!=null){
-            wrapper.like(PersonRole::getUserId, personRoleQuery.getUserId());
+            wrapper.eq(PersonRole::getUserId, personRoleQuery.getUserId());
         }
 
         if(!"".equals(personRoleQuery.getRoleId())&& personRoleQuery.getRoleId()!=null){
-            wrapper.like(PersonRole::getRoleId, personRoleQuery.getRoleId());
+            wrapper.eq(PersonRole::getRoleId, personRoleQuery.getRoleId());
         }
 
         Page<PersonRole> page = personRoleService.page(

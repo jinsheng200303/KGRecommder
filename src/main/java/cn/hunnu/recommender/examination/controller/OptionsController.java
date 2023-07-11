@@ -46,7 +46,7 @@ public class OptionsController extends ExaminationBaseController {
         }
 
         if (!"".equals(optionsQuery.getQuestionId()) && optionsQuery.getQuestionId() != null) {
-            wrapper.like(Options::getQuestionId, optionsQuery.getQuestionId());
+            wrapper.eq(Options::getQuestionId, optionsQuery.getQuestionId());
         }
 
         Page<Options> page = optionsService.page(

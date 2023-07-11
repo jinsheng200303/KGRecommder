@@ -42,7 +42,7 @@ public class ResourcesKnowledgeController extends ExaminationBaseController {
         wrapper.orderByDesc(ResourcesKnowledge::getResourcesKnowledgeId);
 
         if (resourcesKnowledgeQuery.getResourcesKnowledgeId() != null) {
-            wrapper.like(ResourcesKnowledge::getResourcesKnowledgeId, resourcesKnowledgeQuery.getResourcesKnowledgeId());
+            wrapper.eq(ResourcesKnowledge::getResourcesKnowledgeId, resourcesKnowledgeQuery.getResourcesKnowledgeId());
         }
 
         Page<ResourcesKnowledge> page = resourcesKnowledgeService.page(

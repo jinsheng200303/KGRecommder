@@ -62,11 +62,11 @@ public class RolePermissionController extends userBaseController {
         wrapper.orderByDesc(RolePermission::getRolePermissionId);
 
         if(!"".equals(rolePermissionQuery.getPermissionId())&& rolePermissionQuery.getPermissionId()!=null){
-            wrapper.like(RolePermission::getPermissionId, rolePermissionQuery.getPermissionId());
+            wrapper.eq(RolePermission::getPermissionId, rolePermissionQuery.getPermissionId());
         }
 
         if(!"".equals(rolePermissionQuery.getRoleId())&& rolePermissionQuery.getRoleId()!=null){
-            wrapper.like(RolePermission::getRoleId, rolePermissionQuery.getRoleId());
+            wrapper.eq(RolePermission::getRoleId, rolePermissionQuery.getRoleId());
         }
 
         Page<RolePermission> page = rolePermissionService.page(

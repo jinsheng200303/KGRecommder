@@ -57,11 +57,11 @@ public class ClassHomeworkController extends CourseBaseController {
         wrapper.orderByDesc(ClassHomework::getClassId);
 
         if(!"".equals(classHomeworkQuery.getHomeworkId())&& classHomeworkQuery.getHomeworkId()!=null){
-            wrapper.like(ClassHomework::getHomeworkId, classHomeworkQuery.getHomeworkId());
+            wrapper.eq(ClassHomework::getHomeworkId, classHomeworkQuery.getHomeworkId());
         }
 
         if(!"".equals(classHomeworkQuery.getClassId())&& classHomeworkQuery.getClassId()!=null){
-            wrapper.like(ClassHomework::getClassId, classHomeworkQuery.getClassId());
+            wrapper.eq(ClassHomework::getClassId, classHomeworkQuery.getClassId());
         }
 
         Page<ClassHomework> page = classHomeworkService.page(
