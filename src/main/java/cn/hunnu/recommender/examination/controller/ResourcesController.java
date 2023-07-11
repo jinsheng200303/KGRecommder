@@ -59,11 +59,11 @@ public class ResourcesController extends ExaminationBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody Resources papers) {
+    public Result save(@Validated @RequestBody Resources resources) {
 
 //        throw new CustomException("这个是自定义异常");
 
-        resourcesService.saveOrUpdate(papers);
+        resourcesService.saveOrUpdate(resources);
         return Result.success();
     }
 

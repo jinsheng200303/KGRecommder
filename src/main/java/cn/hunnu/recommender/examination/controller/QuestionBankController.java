@@ -62,11 +62,11 @@ public class QuestionBankController extends ExaminationBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody QuestionBank papers) {
+    public Result save(@Validated @RequestBody QuestionBank questionBank) {
 
 //        throw new CustomException("这个是自定义异常");
 
-        questionBankService.saveOrUpdate(papers);
+        questionBankService.saveOrUpdate(questionBank);
         return Result.success();
     }
 

@@ -60,11 +60,11 @@ public class RecordDiagController extends ExaminationBaseController {
     //编辑和新增
     @ApiOperation(value = "数据保存或更新",notes = "数据保存或更新")
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody RecordDiag papers) {
+    public Result save(@Validated @RequestBody RecordDiag recordDiag) {
 
 //        throw new CustomException("这个是自定义异常");
 
-        recordDiagService.saveOrUpdate(papers);
+        recordDiagService.saveOrUpdate(recordDiag);
         return Result.success();
     }
 
