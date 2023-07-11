@@ -44,7 +44,7 @@ public class Exams extends ExaminationBaseEntity {
 
     @ApiModelProperty("考试持续时间")
     @TableField("time_duration")
-    private Date timeDuration;
+    private String timeDuration;
 
     @Range(min = 0,max = 100, message = "考试最终得分需要在【0-100】之间")
     @ApiModelProperty("最终得分")
@@ -53,12 +53,12 @@ public class Exams extends ExaminationBaseEntity {
 
     @ApiModelProperty("开始时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @TableField(value = "start_time", fill = FieldFill.INSERT)
+    @TableField(value = "start_time")
     private Date startTime;
 
     @ApiModelProperty("结束时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @TableField(value = "end_time", fill = FieldFill.UPDATE)
+    @TableField(value = "end_time")
     private Date endTime;
 
     @ApiModelProperty("考试所属课堂ID")

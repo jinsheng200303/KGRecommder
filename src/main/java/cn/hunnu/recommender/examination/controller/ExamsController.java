@@ -64,8 +64,6 @@ public class ExamsController extends ExaminationBaseController {
     @PostMapping("/save")
     public Result save(@Validated @RequestBody Exams exams) {
 
-//        throw new CustomException("这个是自定义异常");
-
         examsService.saveOrUpdate(exams);
         return Result.success();
     }
