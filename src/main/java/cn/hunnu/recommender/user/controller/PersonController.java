@@ -129,8 +129,8 @@ public class PersonController extends userBaseController {
             return Result.success(map);
         }else {
             //Result.error
-            //return Result.error("请检查用户名密码是否正确");
-            throw new CustomException("请检查用户名密码是否正确");
+            return Result.error("请检查用户名密码是否正确");
+//            throw new CustomException("请检查用户名密码是否正确");
         }
     }
 
