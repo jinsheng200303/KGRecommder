@@ -35,6 +35,10 @@ public class Exams extends ExaminationBaseEntity {
     @TableId(value = "exam_id", type = IdType.AUTO)
     private Integer examId;
 
+    @ApiModelProperty("试卷ID;外键")
+    @TableField("paper_id")
+    private Integer paperId;
+
     //数据为""和空格和null情况下会被拦截
     @NotBlank(message = "考试标题不能为空")
     @Length(min = 3, max = 50, message = "考试标题长度需要在【3-50】之间")

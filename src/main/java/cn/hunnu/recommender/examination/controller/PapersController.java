@@ -58,14 +58,10 @@ public class PapersController extends ExaminationBaseController {
     public Result<Page<Papers>> findPage(@RequestBody PapersQuery papersQuery) {
         //查出的数据降序排列，且支持名称模糊查询
         LambdaQueryWrapper<Papers> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(Papers::getExamId);
+        wrapper.orderByDesc(Papers::getPaperId);
 
         if (!"".equals(papersQuery.getPaperTitle()) && papersQuery.getPaperTitle() != null) {
             wrapper.like(Papers::getPaperTitle, papersQuery.getPaperTitle());
-        }
-
-        if (papersQuery.getExamId() != null) {
-            wrapper.eq(Papers::getExamId, papersQuery.getExamId());
         }
 
         if (papersQuery.getClassId() != null) {

@@ -30,10 +30,6 @@ public class Papers extends ExaminationBaseEntity {
     @TableId(value = "paper_id", type = IdType.AUTO)
     private Integer paperId;
 
-    @ApiModelProperty("考试ID;外键")
-    @TableField("exam_id")
-    private Integer examId;
-
     @ApiModelProperty("试卷标题")
     @TableField("paper_title")
     private String paperTitle;
