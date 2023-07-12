@@ -1,10 +1,12 @@
 package cn.hunnu.recommender.examination.serviceImpl;
 
+import cn.hunnu.recommender.examination.dto.QuestionsQuery;
 import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.mapper.QuestionsMapper;
 import cn.hunnu.recommender.examination.service.QuestionsService;
 import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
+import cn.hunnu.recommender.examination.vo.QuestionVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -42,6 +44,11 @@ public class QuestionsServiceImpl extends ServiceImpl<QuestionsMapper, Questions
     @Override
     public List<Options> findQuestionOptions(Integer questionId) {
         return questionsMapper.findQuestionOptions(questionId);
+    }
+
+    @Override
+    public Page<QuestionVO> findQuestions(Page<QuestionsQuery> objectPage, String bankName, String questionStatement) {
+        return questionsMapper.findQuestions(objectPage,bankName,questionStatement);
     }
 
 }

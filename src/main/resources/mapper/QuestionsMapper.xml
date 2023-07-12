@@ -38,4 +38,13 @@
                  where bank_id = #{bankId} and question_statement like concat('%',#{questionStatement},'%')
     </select>
 
+    <select id="findQuestions" resultType="cn.hunnu.recommender.examination.vo.QuestionVO">
+        select q.question_id,bank_name,knowledge_name,answer,score,question_statement
+        from questions q,question_bank qb,knowledge k
+        where q.bank_id = qb.bank_id and q.knowledge_id = k.knowledge_id and
+              question_statement like concat('%',#{questionStatement},'%') and
+              bank_name like concat('%',#{bankName},'%')
+        order by q.question_id desc
+    </select>
+
 </mapper>

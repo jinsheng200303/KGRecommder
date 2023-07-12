@@ -1,8 +1,10 @@
 package cn.hunnu.recommender.examination.mapper;
 
+import cn.hunnu.recommender.examination.dto.QuestionsQuery;
 import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
+import cn.hunnu.recommender.examination.vo.QuestionVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +31,6 @@ public interface QuestionsMapper extends BaseMapper<Questions> {
 
     @Select("select * from options where question_id=#{questionId}")
     List<Options> findQuestionOptions(Integer questionId);
+
+    Page<QuestionVO> findQuestions(Page<QuestionsQuery> objectPage,@Param("bankName") String bankName,@Param("questionStatement") String questionStatement);
 }

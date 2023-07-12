@@ -8,6 +8,7 @@ import cn.hunnu.recommender.examination.entity.QuestionBank;
 import cn.hunnu.recommender.examination.entity.Questions;
 import cn.hunnu.recommender.examination.service.QuestionsService;
 import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
+import cn.hunnu.recommender.examination.vo.QuestionVO;
 import cn.hunnu.recommender.user.vo.UserRoleVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -111,5 +112,15 @@ public class QuestionsController extends ExaminationBaseController {
     public Result findQuestionOptions(@RequestBody Integer questionId) {
         List<Options> options = questionsService.findQuestionOptions(questionId);
         return Result.success(options);
+    }
+
+    //分页查询试题信息
+    @ApiOperation(value = "试题信息分页查询",notes = "试题信息分页查询")
+    @PostMapping("/findQuestions")
+    public Result findQuestions(@RequestBody QuestionsQuery questionsQuery) {
+        Page<QuestionVO> questionVOPage = questionsService.findQuestions(
+                new Page<QuestionsQuery>(questionsQuery.getPageNum(),questionsQuery.getPageSize()),
+                questionsQuery.getBankName(),questionsQuery.getQuestionStatement());
+        return Result.success(questionVOPage);
     }
 }
