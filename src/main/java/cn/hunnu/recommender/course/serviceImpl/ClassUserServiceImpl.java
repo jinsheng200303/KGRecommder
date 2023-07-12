@@ -1,6 +1,7 @@
 package cn.hunnu.recommender.course.serviceImpl;
 
 import cn.hunnu.recommender.course.entity.ClassUser;
+import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.mapper.ClassUserMapper;
 import cn.hunnu.recommender.course.service.ClassUserService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -9,6 +10,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -21,9 +25,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser> implements ClassUserService {
 
-//    public Page<ClassUser> selectPage(){
-//        LambdaQueryWrapper<ClassUser> wrapper = Wrappers.lambdaQuery(ClassUser.class);
-//        Page<ClassUser> ClassPage = this.page(new Page<>(1,3),wrapper);
-//        return ClassPage;
-//    }
+    @Resource
+    private ClassUserMapper classUserMapper;
+    //根据用户ID查找其加入的课堂信息
+    @Override
+    public List<Classes> selectClass(Integer userId) {
+        return classUserMapper.selectClass(userId);
+    }
+
+
+
 }

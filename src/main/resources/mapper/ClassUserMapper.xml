@@ -16,4 +16,10 @@
             #{userId}
         </foreach>
     </delete>
+<!--    根据用户ID查找其加入的课堂信息-->
+    <select id="selectClass" resultType="cn.hunnu.recommender.course.entity.Classes">
+        SELECT c.*
+        FROM class_user cu LEFT JOIN classes c ON cu.class_id = c.class_id
+        WHERE cu.user_id = #{userId}
+    </select>
 </mapper>

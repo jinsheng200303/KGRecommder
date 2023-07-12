@@ -2,6 +2,8 @@ package cn.hunnu.recommender.user.controller;
 
 
 import cn.hunnu.recommender.common.Result;
+import cn.hunnu.recommender.course.entity.Classes;
+import cn.hunnu.recommender.course.service.ClassUserService;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.*;
 import cn.hunnu.recommender.user.entity.Permission;
@@ -44,6 +46,8 @@ public class PersonController extends userBaseController {
     PersonRoleController personRoleController;
     @Resource
     PersonMapper personMapper;
+    @Resource
+    ClassUserService classUserService;
 
     @ApiOperation(value = "用户列表",notes = "用户列表")
     @GetMapping("/list")
@@ -215,6 +219,13 @@ public class PersonController extends userBaseController {
         Page<UserRoleVO> page = personService.getUserNameRole(new Page<>(userRoleVO.getPageNum(),userRoleVO.getPageSize())
                 , userRoleVO.getUserName(),userRoleVO.getRoleName());
         return Result.success(page);
+    }
+
+    @ApiOperation(value = "根据用户ID查找其加入的课堂信息", notes = "根据用户ID查找其加入的课堂信息")
+    @GetMapping("/view/{userId}")
+    public Result viewClass(@PathVariable Integer userId){
+        List<Classes> list = classUserService.selectClass(userId);
+        return Result.success(list);
     }
 
 }

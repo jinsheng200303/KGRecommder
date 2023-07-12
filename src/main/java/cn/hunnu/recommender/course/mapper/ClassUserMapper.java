@@ -1,6 +1,7 @@
 package cn.hunnu.recommender.course.mapper;
 
 import cn.hunnu.recommender.course.entity.ClassUser;
+import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.vo.ClassVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.swagger.models.auth.In;
@@ -24,4 +25,7 @@ public interface ClassUserMapper extends BaseMapper<ClassUser> {
     public List<ClassVO> classStudentQuery(int classId,int roleId);
 
     public void classStudentDelete(int classId,List<Integer> studentId);
+
+    //根据用户ID查找其加入的课堂信息
+    List<Classes> selectClass(Integer userId);
 }
