@@ -33,4 +33,7 @@ public interface QuestionsMapper extends BaseMapper<Questions> {
     List<Options> findQuestionOptions(Integer questionId);
 
     Page<QuestionVO> findQuestions(Page<QuestionsQuery> objectPage,@Param("bankName") String bankName,@Param("questionStatement") String questionStatement);
+
+    @Select("select * from questions where bank_id = #{bankId};")
+    List<Questions> bankIdFindQuestions(Integer bankId);
 }

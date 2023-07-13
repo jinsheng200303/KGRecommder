@@ -3,7 +3,6 @@ package cn.hunnu.recommender.examination.service;
 import cn.hunnu.recommender.examination.dto.QuestionsQuery;
 import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Questions;
-import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
 import cn.hunnu.recommender.examination.vo.QuestionVO;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -27,4 +26,6 @@ public interface QuestionsService extends IService<Questions> {
     List<Options> findQuestionOptions(Integer questionId);
 
     Page<QuestionVO> findQuestions(Page<QuestionsQuery> objectPage, String bankName, String questionStatement);
+
+    List<Questions> bankIdFindQuestions(Integer bankId);
 }

@@ -123,4 +123,11 @@ public class QuestionsController extends ExaminationBaseController {
                 questionsQuery.getBankName(),questionsQuery.getQuestionStatement());
         return Result.success(questionVOPage);
     }
+
+    @ApiOperation(value = "根据题库ID查找试题",notes = "根据题库ID查找试题")
+    @GetMapping("/bankIdFindQuestions")
+    public List<Questions> bankIdFindQuestions(@RequestParam Integer bankId) {
+        return questionsService.bankIdFindQuestions(bankId);
+    }
+
 }

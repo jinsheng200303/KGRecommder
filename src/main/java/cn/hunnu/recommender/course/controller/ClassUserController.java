@@ -5,6 +5,7 @@ import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.dto.ClassUserQuery;
 import cn.hunnu.recommender.course.entity.ClassStudentGraph;
 import cn.hunnu.recommender.course.entity.ClassUser;
+import cn.hunnu.recommender.course.entity.Classes;
 import cn.hunnu.recommender.course.mapper.ClassUserMapper;
 import cn.hunnu.recommender.course.service.ClassUserService;
 import cn.hunnu.recommender.course.vo.ClassVO;
@@ -93,4 +94,5 @@ public class ClassUserController extends CourseBaseController {
         classUserMapper.classStudentDelete(classId,studentId);
         return Result.success();
     }
+
 }

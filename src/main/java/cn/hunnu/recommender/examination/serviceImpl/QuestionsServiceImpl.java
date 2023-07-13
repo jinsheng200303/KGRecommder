@@ -51,4 +51,9 @@ public class QuestionsServiceImpl extends ServiceImpl<QuestionsMapper, Questions
         return questionsMapper.findQuestions(objectPage,bankName,questionStatement);
     }
 
+    @Override
+    public List<Questions> bankIdFindQuestions(Integer bankId) {
+        return questionsMapper.bankIdFindQuestions(bankId);
+    }
+
 }

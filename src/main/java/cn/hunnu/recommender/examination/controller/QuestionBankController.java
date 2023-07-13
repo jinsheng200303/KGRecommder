@@ -84,4 +84,6 @@ public class QuestionBankController extends ExaminationBaseController {
         QuestionBank byId = questionBankService.getById(categoryId);
         return Result.success(byId);
     }
+
+
 }
