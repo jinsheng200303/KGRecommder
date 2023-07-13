@@ -173,4 +173,11 @@ public class ClassesController extends CourseBaseController {
         return Result.success(byId);
     }
 
+    @PostMapping("/getByCreateUserId")
+    @ApiOperation(value = "根据创建人ID查找", notes = "根据创建人ID查找")
+    public Result getByCreateUserId(@RequestParam Integer createUserId){
+        List<Classes> classes = classesMapper.getByCreateUserId(createUserId);
+        return Result.success(classes);
+    }
+
 }

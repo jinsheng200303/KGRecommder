@@ -28,4 +28,7 @@ public interface ClassesMapper extends BaseMapper<Classes> {
     Page<ClassInfoVO> classInfoQuery(Page<ClassInfoVO> page, @Param("className") String className, @Param("userName") String userName, @Param("categoryName") String categoryName);
 
     void addClass(@Param("userId") Integer userId,@Param("className") String className,@Param("categoryId") String classCategoryId);
+
+    @Select("select * from classes where create_user_id = #{createUserId};")
+    List<Classes> getByCreateUserId(Integer createUserId);
 }
