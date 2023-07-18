@@ -46,4 +46,7 @@ public class ExaminationBaseController {
 
     @Autowired
     StudentPaperServiceImpl studentPaperService;
+
+    @Autowired
+    QuestionKnowledgeServiceImpl questionKnowledgeService;
 }

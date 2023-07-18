@@ -40,10 +40,6 @@ public class Questions extends ExaminationBaseEntity {
     @TableField("question_type_id")
     private Integer questionTypeId;
 
-    @ApiModelProperty("试题知识点分类")
-    @TableField("knowledge_id")
-    private Integer knowledgeId;
-
     @ApiModelProperty("试题描述")
     @TableField("question_statement")
     private String questionStatement;
