@@ -23,4 +23,7 @@ public class userBaseController {
 
     @Autowired
     ValidationServiceImpl validationService;
+
+    @Autowired
+    PersonKnowledgeServiceImpl personKnowledgeService;
 }

@@ -21,7 +21,7 @@ public class CodeGenerator {
         String mapperLocation = "D:\\neo4j\\zhang'sProject\\recommender\\src\\main\\resources\\mapper";
         List<String> tables = new ArrayList<>();
 
-        tables.add("validation");
+        tables.add("person_knowledge");
 
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {
