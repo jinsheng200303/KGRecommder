@@ -4,10 +4,14 @@ package cn.hunnu.recommender.examination.controller;
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.examination.dto.QuestionKnowledgeQuery;
 import cn.hunnu.recommender.examination.entity.QuestionKnowledge;
+import cn.hunnu.recommender.examination.mapper.QuestionKnowledgeMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sun.mail.util.QEncoderStream;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.cursor.Cursor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +31,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/question-knowledge")
 public class QuestionKnowledgeController extends ExaminationBaseController {
+    @Autowired
+    QuestionKnowledgeMapper questionKnowledgeMapper;
     @ApiOperation(value = "试题知识点关联列表",notes = "试题知识点关联列表")
     @GetMapping("/list")
     public List<QuestionKnowledge> list() {
@@ -70,5 +76,19 @@ public class QuestionKnowledgeController extends ExaminationBaseController {
         questionKnowledgeService.removeByIds(ids);
         return Result.success();
     }
+
+    @GetMapping("/acquireMatrix")
+    @ApiOperation(value = "查询试题知识点关联信息矩阵",notes = "查询试题知识点关联信息矩阵")
+    public Result acquireMatrix(){
+        QuestionKnowledge questionKnowledge = questionKnowledgeMapper.findLastRecords();
+        int len = questionKnowledge.getQuestionKnowledgeId();
+        List<QuestionKnowledge> questionKnowledgeList = questionKnowledgeMapper.findRecords();
+        int a[][] = new int[len][188];
+        for (int i = 0; i < 10; i++){
+            a[questionKnowledgeList.get(i).getQuestionId()][questionKnowledgeList.get(i).getKnowledgeId()] = 1;
+        }
+        return Result.success(a);
+    }
+
 
 }
