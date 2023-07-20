@@ -2,6 +2,7 @@ package cn.hunnu.recommender.examination.controller;
 
 
 import cn.hunnu.recommender.common.Result;
+import cn.hunnu.recommender.course.mapper.KnowledgeMapper;
 import cn.hunnu.recommender.examination.dto.StudentPaperQuery;
 import cn.hunnu.recommender.examination.entity.QuestionKnowledge;
 import cn.hunnu.recommender.examination.entity.StudentPaper;
@@ -25,17 +26,17 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
 import cn.hunnu.recommender.examination.controller.ExaminationBaseController;
 
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * <p>
@@ -55,6 +56,9 @@ public class StudentPaperController extends ExaminationBaseController {
 
     @Autowired
     QuestionKnowledgeMapper questionKnowledgeMapper;
+
+    @Autowired
+    KnowledgeMapper knowledgeMapper;
     @ApiOperation(value = "学生考试记录列表",notes = "学生考试记录列表")
     @GetMapping("/list")
     public List<StudentPaper> list() {
@@ -102,12 +106,12 @@ public class StudentPaperController extends ExaminationBaseController {
             studentPaper.setUserId(studentPaper.getUserId());
         }
 
-//        studentPaperService.saveOrUpdate(studentPaper);
-
+        studentPaperService.saveOrUpdate(studentPaper);
+        int lastKnowledge = knowledgeMapper.findLastKnowledge();
         JSONArray json = JSON.parseArray(studentPaper.getPaper()); // 首先把字符串转成 JSONArray  对象
-        int questionKnowledgeMatrix[][] = new int[json.size()][188]; //试题知识点矩阵
-        int questionScoreMatrix[] = new int[json.size()];   //试题得分矩阵，0没分，1有分
-        int studentKnowledgeMatrix[][] = new int[json.size()][3]; //学生知识点掌握程度矩阵
+        int questionKnowledgeMatrix[][] = new int[json.size()][lastKnowledge]; //试题知识点矩阵
+        int questionScoreMatrix[][] = new int[1][json.size()];   //试题得分矩阵，0没分，1有分
+        int studentKnowledgeMatrix[][] = new int[lastKnowledge][3]; //学生知识点掌握程度矩阵
         //填充试题知识点矩阵和学生得分矩阵
         if(json.size()>0){
             int j = 0;
@@ -118,9 +122,9 @@ public class StudentPaperController extends ExaminationBaseController {
                 studentKnowledgeMatrix[i][0] = studentPaper.getUserId();
                 studentKnowledgeMatrix[i][1] = questionKnowledge.getKnowledgeId();
                 if(job.get("answer").equals(job.get("studentAnswer"))){
-                    questionScoreMatrix[i] = 1;
+                    questionScoreMatrix[0][i] = 1;
                 }else {
-                    questionScoreMatrix[i] = 0;
+                    questionScoreMatrix[0][i] = 0;
                 }
             }
         }
@@ -135,9 +139,17 @@ public class StudentPaperController extends ExaminationBaseController {
             conn.setRequestMethod("POST");
             // 发送POST请求
             JSONObject jsonRequest = new JSONObject();
-            jsonRequest.put("q", new JSONArray(Collections.singletonList(questionKnowledgeMatrix)));
-            jsonRequest.put("data", new JSONArray(Collections.singletonList(questionScoreMatrix)));
+//            jsonRequest.put("q", new JSONArray(Collections.singletonList(questionKnowledgeMatrix)));
+//            jsonRequest.put("data", new JSONArray(Collections.singletonList(questionScoreMatrix)));
+            jsonRequest.put("q", questionKnowledgeMatrix);
+            jsonRequest.put("data", questionScoreMatrix);
+            System.out.println(jsonRequest.toString());
             conn.setDoOutput(true);
+            // 将JSON对象的字符串表示写入输出流
+            OutputStream outputStream = conn.getOutputStream();
+            outputStream.write(jsonRequest.toString().getBytes());
+            outputStream.flush();
+            outputStream.close();
             // 获取响应
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
@@ -148,6 +160,18 @@ public class StudentPaperController extends ExaminationBaseController {
             reader.close();
             // 输出响应结果
             System.out.println("Python接口的响应：" + response.toString());
+
+            String responseString = response.toString();
+            responseString = responseString.substring(2, responseString.length() - 2);  // 去掉方括号
+            String[] stringValues = responseString.split(",");  // 分割为字符串数组
+            float[] array = new float[stringValues.length];
+            studentPaperMapper.delPersonKnowledges(studentPaper.getUserId());
+            for (int i = 0; i < stringValues.length; i++) {
+                array[i] = Float.parseFloat(stringValues[i]);
+                studentPaperMapper.savePersonKnowledge(studentPaper.getUserId(),
+                        i+1,array[i]);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
