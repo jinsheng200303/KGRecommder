@@ -26,4 +26,10 @@ public class userBaseController {
 
     @Autowired
     PersonKnowledgeServiceImpl personKnowledgeService;
+
+    @Autowired
+    PersonStylePaperServiceImpl personStylePaperService;
+
+    @Autowired
+    StudyStyleServiceImpl studyStyleService;
 }

@@ -177,24 +177,6 @@ public class StudentPaperController extends ExaminationBaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        try{
-//            // 创建ObjectMapper对象
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            // 解析JSON数据
-//            JsonNode rootNode = objectMapper.readTree(studentPaper.getPaper());
-//            // 提取中间的一维数组
-//            JsonNode arrayNode = rootNode.get(0);
-//            for (int j = 0; j < json.size(); j++){
-//                float comprehension = Float.parseFloat(arrayNode.get(j).toString());
-////                studentPaperMapper.deletePersonKnowledge(studentKnowledgeMatrix[j][0],
-////                        studentKnowledgeMatrix[j][1],comprehension);
-////                studentPaperMapper.savePersonKnowledge(studentKnowledgeMatrix[j][0],
-////                        studentKnowledgeMatrix[j][1],comprehension);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return Result.success();
     }
 
