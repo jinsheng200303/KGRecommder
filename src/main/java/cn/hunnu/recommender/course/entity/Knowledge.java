@@ -39,5 +39,7 @@ public class Knowledge {
     @TableField("knowledge_description")
     private String knowledgeDescription;
 
+    @TableField(exist = false)
+    private double comprehension;
 
 }

@@ -6,6 +6,7 @@ import cn.hunnu.recommender.user.entity.PersonRole;
 import cn.hunnu.recommender.user.service.PersonRoleService;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hutool.core.collection.CollUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api(value = "绘图模块", tags = "绘图模块")
 @RestController
 @RequestMapping("/echarts")
 public class EchartsController {

@@ -9,5 +9,10 @@
         <result column="knowledge_id" property="knowledgeId" />
         <result column="comprehension" property="comprehension" />
     </resultMap>
+    <select id="selectKnowledge" resultType="cn.hunnu.recommender.course.entity.Knowledge">
+        SELECT k.*, pk.comprehension
+        FROM person_knowledge pk LEFT JOIN knowledge k ON pk.knowledge_id = k.knowledge_id
+        WHERE pk.user_id = #{userId}
+    </select>
 
 </mapper>

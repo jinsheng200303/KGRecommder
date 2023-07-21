@@ -3,14 +3,13 @@ package cn.hunnu.recommender.user.controller;
 
 import cn.hunnu.recommender.common.Result;
 import cn.hunnu.recommender.course.entity.Classes;
+import cn.hunnu.recommender.course.entity.Knowledge;
 import cn.hunnu.recommender.course.service.ClassUserService;
 import cn.hunnu.recommender.exception.CustomException;
 import cn.hunnu.recommender.user.dto.*;
-import cn.hunnu.recommender.user.entity.Permission;
-import cn.hunnu.recommender.user.entity.Person;
-import cn.hunnu.recommender.user.entity.PersonRole;
-import cn.hunnu.recommender.user.entity.Validation;
+import cn.hunnu.recommender.user.entity.*;
 import cn.hunnu.recommender.user.mapper.PersonMapper;
+import cn.hunnu.recommender.user.service.PersonKnowledgeService;
 import cn.hunnu.recommender.user.service.PersonService;
 import cn.hunnu.recommender.user.utils.JwtUtils;
 import cn.hunnu.recommender.user.vo.UserRoleVO;
@@ -48,6 +47,8 @@ public class PersonController extends userBaseController {
     PersonMapper personMapper;
     @Resource
     ClassUserService classUserService;
+    @Resource
+    PersonKnowledgeService personKnowledgeService;
 
     @ApiOperation(value = "用户列表",notes = "用户列表")
     @GetMapping("/list")
@@ -225,6 +226,13 @@ public class PersonController extends userBaseController {
     @GetMapping("/view/{userId}")
     public Result viewClass(@PathVariable Integer userId){
         List<Classes> list = classUserService.selectClass(userId);
+        return Result.success(list);
+    }
+
+    @ApiOperation(value = "根据用户ID查找其知识点掌握程度", notes = "根据用户ID查找其知识点掌握程度")
+    @GetMapping("/dina/{userId}")
+    public Result viewKnowledge(@PathVariable Integer userId){
+        List<Knowledge> list = personKnowledgeService.selectKnowledge(userId);
         return Result.success(list);
     }
 
