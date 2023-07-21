@@ -2,6 +2,9 @@ package cn.hunnu.recommender.examination.service;
 
 import cn.hunnu.recommender.examination.entity.StudentPaper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface StudentPaperService extends IService<StudentPaper> {
 
+    @Transactional
+    void revisePersonKnowledge(Integer userId,List<Integer> listKnowledgeId, List<Float> listPermission);
 }

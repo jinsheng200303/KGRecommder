@@ -117,7 +117,7 @@ public class StudentPaperController extends ExaminationBaseController {
             int j = 0;
             for(int i=0;i<json.size();i++){
                 JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
-                QuestionKnowledge questionKnowledge = questionKnowledgeMapper.findRecord((Integer) job.get("id"));
+                QuestionKnowledge questionKnowledge = questionKnowledgeMapper.findRecord((Integer) job.get("questionId"));
                 questionKnowledgeMatrix[i][questionKnowledge.getKnowledgeId()] = 1;
                 studentKnowledgeMatrix[i][0] = studentPaper.getUserId();
                 studentKnowledgeMatrix[i][1] = questionKnowledge.getKnowledgeId();
@@ -166,11 +166,13 @@ public class StudentPaperController extends ExaminationBaseController {
             String[] stringValues = responseString.split(",");  // 分割为字符串数组
             float[] array = new float[stringValues.length];
             studentPaperMapper.delPersonKnowledges(studentPaper.getUserId());
+            List<Float> listPermission = new ArrayList<Float>();
+            List<Integer> listKnowledgeId = new ArrayList<Integer>();
             for (int i = 0; i < stringValues.length; i++) {
-                array[i] = Float.parseFloat(stringValues[i]);
-                studentPaperMapper.savePersonKnowledge(studentPaper.getUserId(),
-                        i+1,array[i]);
+                listPermission.add(Float.parseFloat(stringValues[i]));
+                listKnowledgeId.add(i+1);
             }
+            studentPaperService.revisePersonKnowledge(studentPaper.getUserId(),listKnowledgeId,listPermission);
 
         } catch (Exception e) {
             e.printStackTrace();
