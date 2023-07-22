@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- * 用户风格测试试卷 前端控制器
+ * 学习风格 前端控制器
  * </p>
  *
  * @author czj
@@ -23,24 +23,24 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/study-style")
-@Api(value = "用户风格测试试卷模块",tags = "用户风格测试试卷模块")
+@Api(value = "学习风格模块",tags = "学习风格模块")
 public class StudyStyleController extends userBaseController {
 
-    @ApiOperation(value = "用户风格测试试卷列表",notes = "用户风格测试试卷列表")
+    @ApiOperation(value = "学习风格列表",notes = "学习风格列表")
     @GetMapping("/list")
     public List<StudyStyle> list() {
         return studyStyleService.list();
     }
     @PostMapping("/save")
-    @ApiOperation(value = "用户风格测试试卷新增/修改",notes = "用户风格测试试卷新增/修改")
+    @ApiOperation(value = "学习风格新增/修改",notes = "学习风格新增/修改")
     public Result save(@Validated @RequestBody StudyStyle studyStyle){
         studyStyleService.saveOrUpdate(studyStyle);
         return Result.success();
     }
 
-    //根据ID删除用户风格测试试卷
+    //根据ID删除学习风格
     @PostMapping("/delBatch")
-    @ApiOperation(value = "删除用户风格测试试卷",notes = "删除用户风格测试试卷")
+    @ApiOperation(value = "删除学习风格",notes = "删除学习风格")
     public Result delete(@RequestBody List<Integer> IDS){
         studyStyleService.removeByIds(IDS);
         return Result.success();
@@ -48,15 +48,15 @@ public class StudyStyleController extends userBaseController {
 
     //分页模糊查询
     @PostMapping("/page")
-    @ApiOperation(value = "用户风格测试试卷信息查询",notes = "用户风格测试试卷信息查询")
+    @ApiOperation(value = "学习风格信息查询",notes = "学习风格信息查询")
     public Result<Page<StudyStyle>> queryStudyStyleInfo(@RequestBody StudyStyleQuery studyStyleQuery){
 
 
         LambdaQueryWrapper<StudyStyle> wrapper = new LambdaQueryWrapper<>();
-        wrapper.orderByDesc(StudyStyle::getId);
+        wrapper.orderByDesc(StudyStyle::getStudyStyleId);
 
-        if(!"".equals(studyStyleQuery.getId())&& studyStyleQuery.getId()!=null){
-            wrapper.eq(StudyStyle::getId, studyStyleQuery.getId());
+        if(!"".equals(studyStyleQuery.getStudyStyleId())&& studyStyleQuery.getStudyStyleId()!=null){
+            wrapper.eq(StudyStyle::getStudyStyleId, studyStyleQuery.getStudyStyleId());
         }
 
         Page<StudyStyle> page = studyStyleService.page(

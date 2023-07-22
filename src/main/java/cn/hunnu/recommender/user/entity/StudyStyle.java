@@ -17,31 +17,27 @@ import lombok.Setter;
  * </p>
  *
  * @author czj
- * @since 2023-07-21
+ * @since 2023-07-22
  */
 @Getter
 @Setter
 @TableName("study_style")
-@ApiModel(value = "StudyStyle对象", description = "学习风格测量表")
+@ApiModel(value = "StudyStyle对象", description = "")
 public class StudyStyle extends userBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("题目ID")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @ApiModelProperty("学习风格ID")
+    @TableId(value = "study_style_id", type = IdType.AUTO)
+    private Integer studyStyleId;
 
-    @ApiModelProperty("题干")
-    @TableField("question_name")
-    private String questionName;
+    @ApiModelProperty("学习风格名称")
+    @TableField("study_style_name")
+    private String studyStyleName;
 
-    @ApiModelProperty("选项一")
-    @TableField("option1")
-    private String option1;
-
-    @ApiModelProperty("选项二")
-    @TableField("option2")
-    private String option2;
+    @ApiModelProperty("学习风格对应的资源类型")
+    @TableField("resource_type")
+    private String resourceType;
 
 
 }

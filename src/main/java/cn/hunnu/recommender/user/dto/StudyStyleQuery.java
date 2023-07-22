@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class StudyStyleQuery extends PageInfo {
-    @ApiModelProperty("题目ID")
-    private Integer id;
+    @ApiModelProperty("学习风格ID")
+    private Integer studyStyleId;
 }

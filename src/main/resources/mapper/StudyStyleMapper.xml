@@ -4,10 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.hunnu.recommender.user.entity.StudyStyle">
-        <id column="id" property="id" />
-        <result column="question_name" property="questionName" />
-        <result column="option1" property="option1" />
-        <result column="option2" property="option2" />
+        <id column="study_style_id" property="studyStyleId" />
+        <result column="study_style_name" property="studyStyleName" />
+        <result column="resource_type" property="resourceType" />
     </resultMap>
 
 </mapper>

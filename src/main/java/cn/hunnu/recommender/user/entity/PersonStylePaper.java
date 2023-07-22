@@ -37,5 +37,19 @@ public class PersonStylePaper extends userBaseEntity {
     @TableField("answers")
     private String answers;
 
+    @ApiModelProperty("第一类学习风格ID")
+    @TableField("study_style_id1")
+    private Integer studyStyleId1;
 
+    @ApiModelProperty("第二类学习风格ID")
+    @TableField("study_style_id2")
+    private Integer studyStyleId2;
+
+    @ApiModelProperty("第三类学习风格ID")
+    @TableField("study_style_id3")
+    private Integer studyStyleId3;
+
+    @ApiModelProperty("第四类学习风格ID")
+    @TableField("study_style_id4")
+    private Integer studyStyleId4;
 }

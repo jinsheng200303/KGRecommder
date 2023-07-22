@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 学习风格测量表 服务实现类
+ *  服务实现类
  * </p>
  *
  * @author czj
- * @since 2023-07-21
+ * @since 2023-07-22
  */
 @Service
 public class StudyStyleServiceImpl extends ServiceImpl<StudyStyleMapper, StudyStyle> implements StudyStyleService {

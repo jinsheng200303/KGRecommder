@@ -1,18 +1,18 @@
 package cn.hunnu.recommender.user.mapper;
 
-import cn.hunnu.recommender.user.entity.StudyStyle;
+import cn.hunnu.recommender.user.entity.StudyStylePaper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * 学习风格测量表 Mapper 接口
  * </p>
  *
  * @author czj
- * @since 2023-07-22
+ * @since 2023-07-21
  */
 @Mapper
-public interface StudyStyleMapper extends BaseMapper<StudyStyle> {
+public interface StudyStylePaperMapper extends BaseMapper<StudyStylePaper> {
 
 }
