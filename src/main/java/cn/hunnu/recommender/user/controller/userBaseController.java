@@ -34,4 +34,7 @@ public class userBaseController {
 
     @Autowired
     StudyStyleServiceImpl studyStyleService;
+
+    @Autowired
+    BrowseRecordsServiceImpl browseRecordsService;
 }
