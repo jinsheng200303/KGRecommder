@@ -27,4 +27,17 @@ public class PersonKnowledgeServiceImpl extends ServiceImpl<PersonKnowledgeMappe
     public List<Knowledge> selectKnowledge(Integer userId) {
         return personKnowledgeMapper.selectKnowledge(userId);
     }
+
+    @Override
+    public double findComprehension(Integer userId, Integer resourceId) {
+        int knowledgeId = personKnowledgeMapper.findKnowledgeId(resourceId);
+        PersonKnowledge personKnowledge = personKnowledgeMapper.findComprehension(userId, resourceId);
+        if(personKnowledge == null){
+            return 0;
+        }else {
+            return personKnowledge.getComprehension();
+        }
+
+    }
+
 }

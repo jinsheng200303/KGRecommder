@@ -11,5 +11,11 @@
         <result column="resource_link" property="resourceLink" />
         <result column="knowledge_id" property="knowledgeId" />
     </resultMap>
+    <select id="findByTopicIdIn" resultType="cn.hunnu.recommender.examination.entity.Resources">
+        select * from resources where resource_id in
+        <foreach collection="resourceIds" item="resourceId" separator="," open="(" close=")">
+            #{resourceId}
+        </foreach>;
+    </select>
 
 </mapper>

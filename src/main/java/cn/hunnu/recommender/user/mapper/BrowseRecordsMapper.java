@@ -3,6 +3,9 @@ package cn.hunnu.recommender.user.mapper;
 import cn.hunnu.recommender.user.entity.BrowseRecords;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BrowseRecordsMapper extends BaseMapper<BrowseRecords> {
+
+    @Select("select resource_id from browse_records where user_id = #{userId} ;")
+    List<Integer> getResourceListByUserID(Integer userId);
+
 
 }

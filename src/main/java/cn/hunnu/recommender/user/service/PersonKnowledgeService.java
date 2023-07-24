@@ -17,4 +17,6 @@ import java.util.List;
 public interface PersonKnowledgeService extends IService<PersonKnowledge> {
 //根据用户ID查询其知识点掌握情况
     List<Knowledge> selectKnowledge(Integer userId);
+
+    double findComprehension(Integer userId, Integer resourceId);
 }

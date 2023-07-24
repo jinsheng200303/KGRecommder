@@ -41,5 +41,7 @@ public class Resources extends ExaminationBaseEntity {
     @TableField("resource_link")
     private String resourceLink;
 
-
+    @ApiModelProperty("资源对应知识点ID")
+    @TableField("knowledge_id")
+    private String knowledgeId;
 }

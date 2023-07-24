@@ -8,5 +8,21 @@
         <result column="user_id" property="userId" />
         <result column="answers" property="answers" />
     </resultMap>
+    <select id="findUsersId" resultType="java.lang.Integer">
+        select user_id from person_style_paper
+        where study_style_id1 in
+        <foreach collection="studyStyleId1" item="studyStyle1" separator="," open="(" close=")">
+            #{studyStyle1}
+        </foreach> or study_style_id2 in
+        <foreach collection="studyStyleId2" item="studyStyle2" separator="," open="(" close=")">
+            #{studyStyle2}
+        </foreach> or study_style_id3 in
+        <foreach collection="studyStyleId3" item="studyStyle3" separator="," open="(" close=")">
+            #{studyStyle3}
+        </foreach> or study_style_id4 in
+        <foreach collection="studyStyleId4" item="studyStyle4" separator="," open="(" close=")">
+            #{studyStyle4}
+        </foreach>
+    </select>
 
 </mapper>
