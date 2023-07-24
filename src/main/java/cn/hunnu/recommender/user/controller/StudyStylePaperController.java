@@ -28,8 +28,8 @@ public class StudyStylePaperController extends userBaseController {
 
     @ApiOperation(value = "用户风格测试试卷列表",notes = "用户风格测试试卷列表")
     @GetMapping("/list")
-    public List<StudyStylePaper> list() {
-        return studyStylePaperService.list();
+    public Result list() {
+        return Result.success(studyStylePaperService.list());
     }
     @PostMapping("/save")
     @ApiOperation(value = "用户风格测试试卷新增/修改",notes = "用户风格测试试卷新增/修改")
