@@ -124,9 +124,9 @@ public class PersonStylePaperController extends userBaseController {
             for(int i=0;i<json.size();i++){
                 JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
                 if(job.get("studentAnswer").equals("A")){
-                    answerANum[(int) job.get("question_type")]++;
+                    answerANum[(int) job.get("questionType")]++;
                 }else {
-                    answerBNum[(int) job.get("question_type")]++;
+                    answerBNum[(int) job.get("questionType")]++;
                 }
             }
             if(answerANum[1] - answerBNum[1] >= 5){
