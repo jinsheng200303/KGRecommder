@@ -122,11 +122,11 @@ public class PersonStylePaperController extends userBaseController {
             int[] answerANum = new int[5];
             int[] answerBNum = new int[5];
             for(int i=0;i<json.size();i++){
-                JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                JSONObject job = json.getJSONObject(i);  // 遍历 jsonArray 数组，把每一个对象转成 json 对象
                 if(job.get("studentAnswer").equals("A")){
-                    answerANum[(int) job.get("questionType")]++;
+                    answerANum[Integer.parseInt(job.get("questionType").toString())]++;
                 }else {
-                    answerBNum[(int) job.get("questionType")]++;
+                    answerBNum[Integer.parseInt(job.get("questionType").toString())]++;
                 }
             }
             if(answerANum[1] - answerBNum[1] >= 5){
