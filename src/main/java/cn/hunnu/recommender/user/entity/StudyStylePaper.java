@@ -41,5 +41,9 @@ public class StudyStylePaper extends userBaseEntity {
     @TableField("option2")
     private String option2;
 
+    @ApiModelProperty("题目类别")
+    @TableField("question_type")
+    private String questionType;
+
 
 }
