@@ -35,9 +35,9 @@ public class Knowledge {
     @TableField("knowledge_name")
     private String knowledgeName;
 
-    @ApiModelProperty("知识点描述")
-    @TableField("knowledge_description")
-    private String knowledgeDescription;
+    @ApiModelProperty("上级知识点ID")
+    @TableField("pid")
+    private Integer pid;
 
     @TableField(exist = false)
     private double comprehension;

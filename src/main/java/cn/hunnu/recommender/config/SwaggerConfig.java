@@ -22,7 +22,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.hunnu.recommender"))//找到对应rest包
                 .paths(PathSelectors.any())
-                .build().apiInfo(new ApiInfoBuilder().title("基于知识建模和认知诊断的大学生个性化智能辅学系统").version("v1.0").build());
+                .build().apiInfo(new ApiInfoBuilder().title("面向留学生汉语教育的智能辅学系统").version("v1.0").build());
     }
 
 }
