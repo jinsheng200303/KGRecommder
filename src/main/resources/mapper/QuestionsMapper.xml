@@ -8,7 +8,6 @@
         <result column="status" property="status" />
         <result column="bank_id" property="bankId" />
         <result column="question_type_id" property="questionTypeId" />
-        <result column="knowledge_id" property="knowledgeId" />
         <result column="question_statement" property="questionStatement" />
         <result column="answer" property="answer" />
         <result column="difficulty_level" property="difficultyLevel" />
@@ -45,6 +44,13 @@
               question_statement like concat('%',#{questionStatement},'%') and
               bank_name like concat('%',#{bankName},'%')
         order by q.question_id desc
+    </select>
+
+    <select id="findByTopicIdIn" resultType="cn.hunnu.recommender.examination.entity.Questions">
+        select * from questions where question_id in
+        <foreach collection="questionIds" item="questionId" separator="," open="(" close=")">
+            #{questionId}
+        </foreach>;
     </select>
 
 </mapper>

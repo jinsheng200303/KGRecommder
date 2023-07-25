@@ -29,4 +29,7 @@ public interface QuestionKnowledgeMapper extends BaseMapper<QuestionKnowledge> {
 
     @Select("select * from question_knowledge")
     Cursor<QuestionKnowledge> selectCursor();
+
+    @Select("select question_id from question_knowledge where knowledge_id = #{knowledgeId}")
+    List<Integer> findQuestionsId(Integer knowledgeId);
 }

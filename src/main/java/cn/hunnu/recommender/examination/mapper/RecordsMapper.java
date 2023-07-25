@@ -3,6 +3,9 @@ package cn.hunnu.recommender.examination.mapper;
 import cn.hunnu.recommender.examination.entity.Records;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RecordsMapper extends BaseMapper<Records> {
 
+    @Select("select question_id from records where user_id = #{userId} ;")
+    List<Integer> getQuestionListByUserID(Integer userId);
 }

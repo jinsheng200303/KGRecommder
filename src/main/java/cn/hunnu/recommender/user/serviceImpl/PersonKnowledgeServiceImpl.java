@@ -31,7 +31,7 @@ public class PersonKnowledgeServiceImpl extends ServiceImpl<PersonKnowledgeMappe
     @Override
     public double findComprehension(Integer userId, Integer resourceId) {
         int knowledgeId = personKnowledgeMapper.findKnowledgeId(resourceId);
-        PersonKnowledge personKnowledge = personKnowledgeMapper.findComprehension(userId, resourceId);
+        PersonKnowledge personKnowledge = personKnowledgeMapper.findComprehension(userId, knowledgeId);
         if(personKnowledge == null){
             return 0;
         }else {
@@ -40,4 +40,25 @@ public class PersonKnowledgeServiceImpl extends ServiceImpl<PersonKnowledgeMappe
 
     }
 
+    @Override
+    public double findQuestionComprehension(Integer userId, Integer questionId) {
+        int knowledgeId = personKnowledgeMapper.findQuestionKnowledgeId(questionId);
+        PersonKnowledge personKnowledge = personKnowledgeMapper.findComprehension(userId, knowledgeId);
+        if(personKnowledge == null){
+            return 0;
+        }else {
+            return personKnowledge.getComprehension();
+        }
+    }
+
+    @Override
+    public Integer findLeastKnowledgeId(Integer userId){
+        if(personKnowledgeMapper.findUser(userId)!=null){
+            double comprehension = personKnowledgeMapper.findLeastComprehension(userId);
+            Integer knowledgeId = personKnowledgeMapper.findLeastKnowledgeId(userId,comprehension);
+            return knowledgeId;
+        }else {
+            return 0;
+        }
+    }
 }

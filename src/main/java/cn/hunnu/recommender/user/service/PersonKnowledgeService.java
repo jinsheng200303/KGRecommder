@@ -19,4 +19,8 @@ public interface PersonKnowledgeService extends IService<PersonKnowledge> {
     List<Knowledge> selectKnowledge(Integer userId);
 
     double findComprehension(Integer userId, Integer resourceId);
+
+    double findQuestionComprehension(Integer userId, Integer resourceId);
+
+    Integer findLeastKnowledgeId(Integer userId);
 }

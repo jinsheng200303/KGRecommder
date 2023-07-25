@@ -19,7 +19,15 @@ import java.util.List;
 public interface ResourcesMapper extends BaseMapper<Resources> {
     @Select("select resource_id from resources order by resource_id desc ;")
     List<Integer> findID();
+
+    @Select("select resource_id from resources where resource_type='视频' order by resource_id desc ;")
+    List<Integer> findIDVideo();
+
+    @Select("select resource_id from resources where resource_type='文档' order by resource_id desc ;")
+    List<Integer> findIDDocumentation();
     
     List<Resources> findByTopicIdIn(List<Integer> resourceIds);
 
+    @Select("select resource_type from resources where resource_id = #{resourceId}")
+    String findResourceType(Integer resourceId);
 }

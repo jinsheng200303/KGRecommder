@@ -3,6 +3,7 @@ package cn.hunnu.recommender.examination.mapper;
 import cn.hunnu.recommender.examination.dto.QuestionsQuery;
 import cn.hunnu.recommender.examination.entity.Options;
 import cn.hunnu.recommender.examination.entity.Questions;
+import cn.hunnu.recommender.examination.entity.Resources;
 import cn.hunnu.recommender.examination.vo.QuestionOptionsVO;
 import cn.hunnu.recommender.examination.vo.QuestionVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -36,4 +37,11 @@ public interface QuestionsMapper extends BaseMapper<Questions> {
 
     @Select("select * from questions where bank_id = #{bankId};")
     List<Questions> bankIdFindQuestions(Integer bankId);
+
+    @Select("select question_id from questions order by question_id desc ;")
+    List<Integer> findID();
+
+    List<Questions> findByTopicIdIn(List<Integer> questionIds);
+
+
 }
