@@ -316,7 +316,7 @@ public class PersonStylePaperController extends userBaseController {
         }
         System.out.println("TopicID,推荐度\n"+resourceRecommendDegree);
         //取最大的5个
-        if(resourceRecommendDegree.size()<5){
+        if(resourceRecommendDegree.size()<6){
             List<Integer> list = resourceRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                     .map(entry -> entry.getKey()).collect(Collectors.toList())
@@ -331,7 +331,7 @@ public class PersonStylePaperController extends userBaseController {
                 list1 = resourcesMapper.findID();
             }
             for(int i=0;i<list1.size();i++){
-                if(list.size()==5)
+                if(list.size()==6)
                     break;
                 if(list.contains(list1.get(i)))
                     continue;
@@ -343,7 +343,7 @@ public class PersonStylePaperController extends userBaseController {
             List<Integer> list = resourceRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                     .map(entry -> entry.getKey()).collect(Collectors.toList())
-                    .subList(0, 5);
+                    .subList(0, 6);
             System.out.println(list);
             return Result.success(resourcesMapper.findByTopicIdIn(list));
         }
@@ -474,14 +474,14 @@ public class PersonStylePaperController extends userBaseController {
         }
         System.out.println("TopicID,推荐度\n"+questionRecommendDegree);
         //取最大的5个
-        if(questionRecommendDegree.size()<5){
+        if(questionRecommendDegree.size()<6){
             List<Integer> list = questionRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                     .map(entry -> entry.getKey()).collect(Collectors.toList())
                     .subList(0, questionRecommendDegree.size());
             List<Integer> list1=questionsMapper.findID();
             for(int i=0;i<list1.size();i++){
-                if(list.size()==5)
+                if(list.size()==6)
                     break;
                 if(list.contains(list1.get(i)))
                     continue;
@@ -493,7 +493,7 @@ public class PersonStylePaperController extends userBaseController {
             List<Integer> list = questionRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                     .map(entry -> entry.getKey()).collect(Collectors.toList())
-                    .subList(0, 5);
+                    .subList(0, 6);
             System.out.println(list);
             return Result.success(questionsMapper.findByTopicIdIn(list));
         }
