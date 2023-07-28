@@ -159,9 +159,9 @@ public class PersonStylePaperController extends userBaseController {
                 personStylePaper.setStudyStyleId3(9);
             }
             if(answerANum[4] - answerBNum[4] >= 5){
-                personStylePaper.setStudyStyleId4(5);
+                personStylePaper.setStudyStyleId4(7);
             } else if (answerBNum[4] - answerANum[4] >= 5) {
-                personStylePaper.setStudyStyleId4(6);
+                personStylePaper.setStudyStyleId4(8);
             }else {
                 personStylePaper.setStudyStyleId4(9);
             }
@@ -303,12 +303,12 @@ public class PersonStylePaperController extends userBaseController {
                 }
                 if(videoPreference==1 && documentationPreference==0){
                     if(resourcesMapper.findResourceType(resource).equals("视频")){
-                        RecommendDegree *= 2;
+                        RecommendDegree += 0.2;
                     }
                 }
                 if(videoPreference==0 && documentationPreference==1){
                     if(resourcesMapper.findResourceType(resource).equals("文档")){
-                        RecommendDegree *= 2;
+                        RecommendDegree += 0.2;
                     }
                 }
                 resourceRecommendDegree.put(resource,RecommendDegree);
