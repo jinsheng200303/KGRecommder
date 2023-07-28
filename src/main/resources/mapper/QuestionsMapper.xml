@@ -32,6 +32,14 @@
         </foreach>;
     </delete>
 
+    <delete id="delBatchQuestionKnowledges">
+        delete from question_knowledge
+        where question_id in
+        <foreach collection="ids" item="questionId" separator="," open="(" close=")">
+            #{questionId}
+        </foreach>;
+    </delete>
+
     <select id="queryQuestion" resultMap="BaseResultMap">
         select * from questions Q
                  where bank_id = #{bankId} and question_statement like concat('%',#{questionStatement},'%')

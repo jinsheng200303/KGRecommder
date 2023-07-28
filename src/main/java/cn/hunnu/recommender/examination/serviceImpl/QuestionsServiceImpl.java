@@ -39,6 +39,7 @@ public class QuestionsServiceImpl extends ServiceImpl<QuestionsMapper, Questions
     public void delBatchQuestionsAndOptions(List<Integer> ids) {
         questionsMapper.delBatchQuestions(ids);
         questionsMapper.delBatchOptions(ids);
+        questionsMapper.delBatchQuestionKnowledges(ids);
     }
 
     @Override

@@ -32,4 +32,7 @@ public interface QuestionKnowledgeMapper extends BaseMapper<QuestionKnowledge> {
 
     @Select("select question_id from question_knowledge where knowledge_id = #{knowledgeId}")
     List<Integer> findQuestionsId(Integer knowledgeId);
+
+    @Select("select question_knowledge_id from question_knowledge where question_id=#{questionId}")
+    Integer findQuestionKnowledgeId(Integer questionId);
 }
