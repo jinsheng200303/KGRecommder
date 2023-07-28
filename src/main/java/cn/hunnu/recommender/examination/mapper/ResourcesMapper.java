@@ -30,4 +30,7 @@ public interface ResourcesMapper extends BaseMapper<Resources> {
 
     @Select("select resource_type from resources where resource_id = #{resourceId}")
     String findResourceType(Integer resourceId);
+
+    @Select("select resource_id from resources where knowledge_id = #{knowledgeId}")
+    List<Integer> findResourcesId(Integer knowledgeId);
 }

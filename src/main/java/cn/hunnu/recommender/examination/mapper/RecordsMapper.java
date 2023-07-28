@@ -20,4 +20,7 @@ public interface RecordsMapper extends BaseMapper<Records> {
 
     @Select("select question_id from records where user_id = #{userId} ;")
     List<Integer> getQuestionListByUserID(Integer userId);
+
+    @Select("select * from records where user_id = #{userId} and question_id = #{questionId}")
+    Records findRecord(Integer userId,Integer questionId);
 }

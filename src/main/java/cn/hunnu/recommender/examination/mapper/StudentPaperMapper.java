@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -21,9 +23,10 @@ public interface StudentPaperMapper extends BaseMapper<StudentPaper> {
     @Delete("delete from person_knowledge where user_id = #{userId} and knowledge_id = #{knowledgeId}")
     void deletePersonKnowledge(Integer userId,Integer knowledgeId,float comprehension);
 
-    @Delete("delete from person_knowledge where user_id = #{userId}")
-    void delPersonKnowledges(Integer userId);
+//    @Delete("delete from person_knowledge where user_id = #{userId} and knowledge_id in")
+    void delPersonKnowledges(Integer userId, List<Integer> knowledgeIds);
 
     @Insert("insert into person_knowledge(user_id,knowledge_id,comprehension) values(#{userId},#{knowledgeId},#{comprehension})")
     void savePersonKnowledge(Integer userId,Integer knowledgeId,float comprehension);
 }
+

@@ -33,7 +33,7 @@ public interface PersonKnowledgeMapper extends BaseMapper<PersonKnowledge> {
     @Select("select knowledge_id from question_knowledge where question_id = #{questionId};")
     Integer findQuestionKnowledgeId(Integer questionId);
 
-    @Select("select comprehension from person_knowledge where user_id = #{userId} and knowledge_id = #{knowledgeId};")
+    @Select("select * from person_knowledge where user_id = #{userId} and knowledge_id = #{knowledgeId};")
     PersonKnowledge findComprehension(Integer userId,Integer knowledgeId);
 
     @Select("select knowledge_id from person_knowledge where user_id = #{userId} and comprehension = #{comprehension} limit 1;")

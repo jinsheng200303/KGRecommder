@@ -107,20 +107,26 @@ public class StudentPaperController extends ExaminationBaseController {
         }
 
         studentPaperService.saveOrUpdate(studentPaper);
-        int lastKnowledge = knowledgeMapper.findLastKnowledge();
+
         JSONArray json = JSON.parseArray(studentPaper.getPaper()); // 首先把字符串转成 JSONArray  对象
-        int questionKnowledgeMatrix[][] = new int[json.size()][lastKnowledge]; //试题知识点矩阵
+
+        List<Integer> knowledgeIds = new ArrayList<Integer>();
+        for (int i = 0; i < json.size(); i++){
+            JSONObject job = json.getJSONObject(i);
+            QuestionKnowledge questionKnowledge = questionKnowledgeMapper.findRecord((Integer) job.get("questionId"));
+            knowledgeIds.add(questionKnowledge.getKnowledgeId());
+        }
+
+        int questionKnowledgeMatrix[][] = new int[json.size()][knowledgeIds.size()]; //试题知识点矩阵
         int questionScoreMatrix[][] = new int[1][json.size()];   //试题得分矩阵，0没分，1有分
-        int studentKnowledgeMatrix[][] = new int[lastKnowledge][3]; //学生知识点掌握程度矩阵
+//        int studentKnowledgeMatrix[][] = new int[knowledgeIds.size()][3]; //学生知识点掌握程度矩阵
         //填充试题知识点矩阵和学生得分矩阵
         if(json.size()>0){
             int j = 0;
             for(int i=0;i<json.size();i++){
                 JSONObject job = json.getJSONObject(i);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
                 QuestionKnowledge questionKnowledge = questionKnowledgeMapper.findRecord((Integer) job.get("questionId"));
-                questionKnowledgeMatrix[i][questionKnowledge.getKnowledgeId()] = 1;
-                studentKnowledgeMatrix[i][0] = studentPaper.getUserId();
-                studentKnowledgeMatrix[i][1] = questionKnowledge.getKnowledgeId();
+                questionKnowledgeMatrix[i][i] = 1;
                 if(job.get("answer").equals(job.get("studentAnswer"))){
                     questionScoreMatrix[0][i] = 1;
                 }else {
@@ -164,13 +170,30 @@ public class StudentPaperController extends ExaminationBaseController {
             String responseString = response.toString();
             responseString = responseString.substring(2, responseString.length() - 2);  // 去掉方括号
             String[] stringValues = responseString.split(",");  // 分割为字符串数组
-            float[] array = new float[stringValues.length];
-            studentPaperMapper.delPersonKnowledges(studentPaper.getUserId());
+//            float[] array = new float[stringValues.length];
+            studentPaperMapper.delPersonKnowledges(studentPaper.getUserId(),knowledgeIds);
             List<Float> listPermission = new ArrayList<Float>();
             List<Integer> listKnowledgeId = new ArrayList<Integer>();
             for (int i = 0; i < stringValues.length; i++) {
-                listPermission.add(Float.parseFloat(stringValues[i]));
-                listKnowledgeId.add(i+1);
+                int flag = 1;
+                for (int j = 0; j < listKnowledgeId.size(); j++){
+                    if(listKnowledgeId.get(j) == knowledgeIds.get(i)){
+                        flag = 0;
+                    }
+                }
+                if (flag == 1){
+                    Float k = (float)0;
+                    int num = 0;
+                    for (int j = 0; j < stringValues.length; j++){
+                        if(knowledgeIds.get(i) == knowledgeIds.get(j)){
+                            k += Float.parseFloat(stringValues[j]);
+                            num++;
+                        }
+                    }
+                    k = k / num;
+                    listPermission.add(k);
+                    listKnowledgeId.add(knowledgeIds.get(i));
+                }
             }
             studentPaperService.revisePersonKnowledge(studentPaper.getUserId(),listKnowledgeId,listPermission);
 

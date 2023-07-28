@@ -11,5 +11,11 @@
         <result column="time" property="time" />
         <result column="score" property="score" />
     </resultMap>
+    <delete id="delPersonKnowledges">
+        delete from person_knowledge where user_id = #{userId} and knowledge_id in
+        <foreach collection="knowledgeIds" item="knowledgeId" separator="," open="(" close=")">
+            #{knowledgeId}
+        </foreach>;
+    </delete>
 
 </mapper>

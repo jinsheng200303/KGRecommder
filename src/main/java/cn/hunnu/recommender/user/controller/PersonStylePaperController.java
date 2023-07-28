@@ -289,6 +289,16 @@ public class PersonStylePaperController extends userBaseController {
         }
         //计算指定用户recommendUser的资源推荐度
         Map<Integer,Double> resourceRecommendDegree=new HashMap<>();//topic->推荐度
+
+        Integer knowledgeId = personKnowledgeService.findLeastKnowledgeId(userId);
+        if(knowledgeId!=0){
+            List<Integer> resourcesId = resourcesMapper.findResourcesId(knowledgeId);
+            for (int i = 0; i < resourcesId.size(); i++){
+                double RecommendDegree = 0.5-personKnowledgeService.findComprehension(userId,resourcesId.get(i))*0.7;;
+                resourceRecommendDegree.put(resourcesId.get(i),RecommendDegree);
+            }
+        }
+
         for(Integer resource:resources){//遍历每一件资源
             //得到购买当前资源的所有用户集合
             Set<Integer> users=userResourceCollection.get(resource);
@@ -314,8 +324,15 @@ public class PersonStylePaperController extends userBaseController {
                 resourceRecommendDegree.put(resource,RecommendDegree);
             }
         }
+
+        for (Map.Entry<Integer, Double> entry : resourceRecommendDegree.entrySet()) {
+            if (Double.isNaN(entry.getValue())) { // 根据值找到对应的键
+                entry.setValue(-1.0); // 替换对应键的值
+            }
+        }
         System.out.println("TopicID,推荐度\n"+resourceRecommendDegree);
-        //取最大的5个
+
+        //取最大的6个
         if(resourceRecommendDegree.size()<6){
             List<Integer> list = resourceRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
@@ -337,14 +354,14 @@ public class PersonStylePaperController extends userBaseController {
                     continue;
                 list.add(list1.get(i));
             }
-            System.out.println(list);
+            System.out.println("+++++++++++++++++++++++++++"+list);
             return Result.success(resourcesMapper.findByTopicIdIn(list));
         }else {
             List<Integer> list = resourceRecommendDegree.entrySet().stream()
                     .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
                     .map(entry -> entry.getKey()).collect(Collectors.toList())
                     .subList(0, 6);
-            System.out.println(list);
+            System.out.println("========================"+list);
             return Result.success(resourcesMapper.findByTopicIdIn(list));
         }
     }
@@ -450,8 +467,10 @@ public class PersonStylePaperController extends userBaseController {
         if(knowledgeId!=0){
             List<Integer> questionId = questionKnowledgeMapper.findQuestionsId(knowledgeId);
             for (int i = 0; i < questionId.size(); i++){
-                double RecommendDegree = 0.5-personKnowledgeService.findQuestionComprehension(userId,questionId.get(i))*0.7;;
-                questionRecommendDegree.put(questionId.get(i),RecommendDegree);
+                double RecommendDegree = 0.5-personKnowledgeService.findQuestionComprehension(userId,questionId.get(i))*0.7;
+                if(recordsMapper.findRecord(userId,questionId.get(i))==null){
+                    questionRecommendDegree.put(questionId.get(i),RecommendDegree);
+                }
             }
         }
         for(Integer question:questions){//遍历每一件资源
@@ -470,6 +489,11 @@ public class PersonStylePaperController extends userBaseController {
                     }
                 }
                 questionRecommendDegree.put(question,RecommendDegree);
+            }
+        }
+        for (Map.Entry<Integer, Double> entry : questionRecommendDegree.entrySet()) {
+            if (Double.isNaN(entry.getValue())) { // 根据值找到对应的键
+                entry.setValue(-1.0); // 替换对应键的值
             }
         }
         System.out.println("TopicID,推荐度\n"+questionRecommendDegree);
